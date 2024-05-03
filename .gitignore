@@ -12,7 +12,9 @@
 /build
 
 
-# ignore
+# ignore mine (mene khud kiya )
+*.env
+*.node_modules
 
 # misc
 .DS_Store
