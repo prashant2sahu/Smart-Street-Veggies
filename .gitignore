@@ -13,9 +13,10 @@
 
 
 # ignore mine (mene khud kiya )
-*.env
-*.node_modules
+# *.env
+# *.node_modules
 /Backend/.env
+/Backend/node_modules
 
 
 # misc
