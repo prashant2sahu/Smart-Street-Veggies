@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    overflow-x: hidden;
+    align-items: center;
+    max-width: 1150px;
+    margin: 0 auto ;
+
+}
+
+*{
+    /* display: flex;   */
+    /* text-align: center; */
+    /* justify-content: center; */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginFormMain {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image:linear-gradient(#078107a2,rgba(0, 0, 0, 0.7)) ,url('../src/assets/Smart\ Street\ Veggies\ Background.webp');
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+}
+
+.loginFormMain h1 {
+    font-size: 50px;
+    color: white;
+    font-weight: 600;
+}
+
+.loginFormMain span {
+    font-size: 20px;
+    color: white;
+}
+
+.loginFormOne {
+    background-color: #fff;
+    border-radius: 15px;
+    max-width: 430px;
+    width: 100%;
+    padding: 15px;
+    margin: 10px;
+}
+
+.loginFormOne input {
+    height: 45px;
+    width: 100%;
+}
+
+.loginPara1 {
+    font-weight: 500;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.loginPara2 {
+    font-weight: 500;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.loginInput1 {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.loginInput2 {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.loginPara3 {
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
+.loginFormOne button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 30px;
+    padding: 3px;
+    margin: 1;
+}
+
+.paraLogin {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+
+
+.navbarOne {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size:16px;
+    text-decoration: none;
+}
+
+.navbarOne li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navbarTwo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarThree {
+    font-weight: 500;
+    color: white;
+    background-color: green;
+    border-radius: 15px;
+    padding: 6px;
+}
+
+.navbarFour {
+    font-weight: 500;
+    color: white;
+    background-color: green;
+    border-radius: 15px;
+    padding: 6px;
+}
+
+.signupRadioButton [type=radio]{
+    border: 1px;
+    width: 100%;
+    height: 17px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.signupRadioButton2 {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.signupRadioButton3 {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.signupRadioButton4 {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.signupRadioButton input {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.signupRadioButton2 input {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.signupRadioButton3 input {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.signupRadioButton4 input {
+    color: black;
+    background-color: #e6e1e1;
+    border-radius: 5px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.mapDisplay1 h1{
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    background-color: aliceblue;
+}
+
+.mapDisplay2 {
+    font-size: 15;
+    font-weight: 600;
+    align-items: start;
+    display: flex;
+    justify-content: space-between;  
+    padding: 3px;
+}
+
+.mapDisplay3 {
+    color: white;
+    background-color: green;
+    padding: 7px;
+    border-radius: 10px;
+    display: block; 
+    margin: auto;
+}
+
+.allVeggie {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.allVeggie h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.allVeggie h5 {
+    font-size: 20px;
+}
+
+.allVeggie input {
+    background-color: e6e1e1;
+}
