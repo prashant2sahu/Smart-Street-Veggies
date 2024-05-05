@@ -17,7 +17,10 @@
 # *.node_modules
 /Backend/.env
 /Backend/node_modules
+.env
 
+*.env
+**/.env
 
 # misc
 .DS_Store
