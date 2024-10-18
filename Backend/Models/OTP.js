@@ -39,5 +39,8 @@ otpSchema.pre("save", async function(next) {
 	}
 	next();
 });
-const otp =mongoose.model("OTP",otpSchema);
-module.exports=otp;
+const OTP =mongoose.model("OTP",otpSchema);
+module.exports = {
+    OTP,
+    sendVerificationMail,
+};
