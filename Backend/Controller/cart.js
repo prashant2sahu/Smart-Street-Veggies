@@ -30,7 +30,15 @@ exports.showCart=async(req,res)=>{
     try {
       const allVeggie = await Cart.find()
                                   .populate({path:"stall",
-                                             populate:"veggies"}
+                                             populate:[{
+
+                                                 path:"veggies"
+                                             },{
+                                                path:"position"
+                                             }
+
+                                             ]
+                                            }                                             
                                             )
     //   many things to do here
       res.status(200).json({

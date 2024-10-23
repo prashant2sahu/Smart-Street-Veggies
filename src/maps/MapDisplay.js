@@ -236,22 +236,26 @@ const live = {
     >
       { /* Child components, such as markers, info windows, etc. */}
       {
-        markers.map((element)=>{
+        rowData.map((element)=>{
+            console.log("earch element",element);
           return (<div key={element.id}>
-
-            <Marker position={element.position} 
+            
+             <Marker 
+            //  position={element.position} 
+             
+             position={{ lat: element.position.lat, lng: element.position.lng }}
              onClick={()=>{setOneCart(element)
             }}
             icon={icon}
             />
-
+          
 
           </div>)
           
         })
       }
-      {/* <Marker position={current}  icon={live} />  */}
-      <Marker position={current} /> 
+      <Marker position={current}  icon={live} /> 
+      {/* <Marker position={current} />  */}
       {oneCart && 
       <InfoWindow key={oneCart.id} position={oneCart.position} >
         <>
