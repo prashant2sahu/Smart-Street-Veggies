@@ -1,0 +1,43 @@
+/* Add smooth sliding for the mobile menu
+.collapse.navbar-collapse {
+    transition: transform 2s ease;
+  }
+  
+  .navbar-nav .nav-link {
+    color: white !important;
+  }
+  
+  .btn-light {
+    background-color: white;
+    color: var(--bs-primary);
+  }
+  
+  .btn-outline-light {
+    border-color: white;
+    color: white;
+  }
+   */
+   /* Add smooth sliding for the off-canvas menu */
+.offcanvas {
+    transition: transform 2s ease;
+  }
+  
+  .navbar-nav .nav-link {
+    color: white !important;
+  }
+  
+  .btn-light {
+    background-color: white;
+    color: var(--bs-primary);
+  }
+  
+  .btn-outline-light {
+    border-color: white;
+    color: white;
+  }
+  
+  .nav-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
