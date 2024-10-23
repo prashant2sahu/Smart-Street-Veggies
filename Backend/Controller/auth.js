@@ -1,8 +1,11 @@
 const User=require("../Models/User");
-const OTP =require("../Models/OTP");
+// const OTP =require("../Models/OTP");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const cookie=require("cookie-parser");
+// const sendVerificationMail = require('../Models/OTP').sendVerificationMail;
+const { OTP, sendVerificationMail } = require('../Models/OTP'); 
+
 const otpGenerator=require("otp-generator");
 const express=require("express");
 express.json();
@@ -217,3 +220,106 @@ exports.sendOtp=async(req,res)=>{
         })
     }
 }
+<<<<<<< HEAD
+=======
+
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User does not exist",
+            });
+        }
+
+        // Generate a new OTP
+        let otp = otpGenerator.generate(6, {
+            upperCaseAlphabets: false,
+            lowerCaseAlphabets: false,
+            specialChars: false,
+        });
+
+        // Save the OTP in the database (update if exists)
+        const otpRecord = await OTP.findOneAndUpdate(
+            { email }, // filter by email
+            { otp, createdAt: Date.now() }, // update OTP and created time
+            { upsert: true, new: true } // upsert: true will create a new record if not found
+        );
+
+        // Send the OTP via email
+        await sendVerificationMail(email, otp);
+
+        return res.status(200).json({
+            success: true,
+            message: "OTP sent to your email",
+        });
+    } catch (error) {
+        console.error("Error in forgotPassword:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Error occurred while sending OTP",
+        });
+    }
+};
+  
+  exports.resetPassword = async (req, res) => {
+    try {
+      const { email, otp, newPassword, confirmPassword } = req.body;
+  
+      if (!email || !otp || !newPassword || !confirmPassword) {
+        return res.status(400).json({
+          success: false,
+          message: "All fields are required",
+        });
+      }
+  
+      if (newPassword !== confirmPassword) {
+        return res.status(400).json({
+          success: false,
+          message: "Passwords do not match",
+        });
+      }
+  
+      // Find the latest OTP for the email
+      const otpRecord = await OTP.findOne({ email }).sort({ createdAt: -1 });
+  
+      if (!otpRecord) {
+        return res.status(400).json({
+          success: false,
+          message: "No OTP found for this email or OTP has expired.",
+        });
+      }
+  
+      console.log("Found OTP record:", otpRecord);
+  
+      // Check if the OTP matches
+      if (otpRecord.otp !== otp) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid OTP",
+        });
+      }
+  
+      // OTP is valid, proceed with password reset
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+  
+      await User.findOneAndUpdate({ email }, { password: hashedPassword });
+  
+      return res.status(200).json({
+        success: true,
+        message: "Password has been reset successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        success: false,
+        message: "Error while resetting password",
+      });
+    }
+  };
+  
+>>>>>>> 008b1003dedf8d9e3e7a98e9f9314bf5ee121697
