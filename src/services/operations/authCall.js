@@ -16,6 +16,7 @@ export function SendOtp(email,navigate){
         const taostId=toast.loading("Loading....");
         dispatch(setLoading(true))
         try{
+        console.log("andar uhiu");
         
         const response= await apiConnector("POST",SEND_OTP,{email,checkUserPresent: true});
 
