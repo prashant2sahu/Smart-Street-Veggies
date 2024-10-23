@@ -1,0 +1,96 @@
+/* 
+
+  /* Custom styles for the overlay text */
+.login-image-container {
+    position: relative;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .overlay-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .overlay-text p {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+#manageHeight{
+    height:90vh;
+ 
+}
+
+  
+  /* For smaller devices (mobile) */
+  @media (max-width: 767px) {
+    .overlay-text h1 {
+      font-size: 1.8rem; /* Make text smaller */
+    }
+    #manageHeight{
+        height:70vh;
+     
+    }
+ 
+    .overlay-text p {
+      font-size: 1rem; /* Adjust paragraph text size */
+    }
+  }
+  
+  /* For tablets (iPad Pro) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .overlay-text h1 {
+      font-size: 2.5rem; /* Reduce font size on tablets */
+    }
+  
+    .overlay-text p {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* For larger devices (desktop) */
+  @media (min-width: 1025px) {
+    .overlay-text h1 {
+      font-size: 3.5rem; /* Larger font size for desktops */
+    }
+  
+    .overlay-text p {
+      font-size: 1.3rem;
+    }
+  }
+  .manage{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+
+ @media (min-width: 1200px) {
+    /* Styles for extra large devices */
+    .innerSubheading{
+margin-left:-30px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Styles for large devices */
+    .innerSubheading{
+        margin-left:10px;
+            }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Styles for medium devices */
+    .innerSubheading{
+        margin-left:-30px;
+            }
+}
+
