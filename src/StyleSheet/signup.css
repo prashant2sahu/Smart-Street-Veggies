@@ -1,0 +1,175 @@
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .overlay-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .overlay-text p {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+@media (max-width: 767px) {
+    #signBtn{
+    font-size:7px;
+    width:50px;
+}
+#footerHead{
+    font-size: 12px;
+    
+    margin-top:43px;
+    width:100%;
+    justify-content:space-between;
+}
+
+#handleBtn{
+    flex-direction: column;
+}
+}
+.imgShadow{
+    box-shadow: -7px 5px 19px -7px rgba(0,0,0,0.74);
+-webkit-box-shadow: -7px 5px 19px -7px rgba(0,0,0,0.74);
+-moz-box-shadow: -7px 5px 19px -7px rgba(0,0,0,0.74);
+}
+/* For smaller screens */
+@media (max-width: 576px) {
+    .overlay-text h1 {
+        font-size: 3rem; /* Smaller font size for smaller screens */
+    }
+    
+    .overlay-text h2 {
+        font-size: 1.5rem; /* Smaller font size for smaller screens */
+    }
+    
+    .overlay-text p {
+        font-size: 0.9rem; /* Smaller font size for smaller screens */
+    }
+}
+
+/* For larger screens */
+@media (min-width: 992px) {
+    .overlay-text h1 {
+        font-size: 4.5rem; /* Default font size for larger screens */
+    }
+    
+    .overlay-text h2 {
+        font-size: 2rem; /* Default font size for larger screens */
+    }
+    
+    .overlay-text p {
+        font-size: 1rem; /* Default font size for larger screens */
+    }
+}
+
+
+/* Base styles (mobile first) */
+
+/* Tablet screens (min-width: 768px) */
+@media (min-width: 768px) {
+    #footerHead{
+        font-size: 10px;;
+        
+        margin-top:12px;
+        width:100%;
+        justify-content:space-between;
+    }
+}
+
+/* Desktop screens (min-width: 992px) */
+@media (min-width: 992px) {
+    #footerHead{
+        font-size: 15px;;
+        
+        margin-top:32px;
+        width:100%;
+        justify-content:space-between;
+    }
+    .FormShadow1{
+        box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    -webkit-box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    -moz-box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    height: 750px;
+    overflow: hidden;
+    padding-left: 65px;
+    }
+
+}
+
+/* Large desktop screens (min-width: 1200px) */
+@media (min-width: 1200px) {
+
+    #footerHead{
+        font-size: 15px;;
+        
+        margin-top:43px;
+        width:100%;
+        justify-content:space-between;
+    }
+    .FormShadow1{
+        box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    -webkit-box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    -moz-box-shadow: 7px 5px 21px -7px rgba(0,0,0,0.74);
+    height: 750px;
+    overflow: hidden;
+    padding-left: 65px;
+    }
+    
+
+  
+}
+
+/* From Uiverse.io by mobinkakei */ 
+.signupbtn {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to top, #5a26b6, #5324a6, #153565);
+    color: #fff;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+  }
+  
+  .signupbtn span {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: top 0.5s;
+  }
+  
+  .signupbtn-text-one {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .signupbtn-text-two {
+    position: absolute;
+    width: 100%;
+    top: 150%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .signupbtn:hover .signupbtn-text-one {
+    top: -100%;
+  }
+  
+  .signupbtn:hover .signupbtn-text-two {
+    top: 50%;
+  }
+  

@@ -236,24 +236,26 @@ const live = {
     >
       { /* Child components, such as markers, info windows, etc. */}
       {
-        rowData.map((element)=>{
-            console.log("earch element",element);
-          return (<div key={element.id}>
-            
-             <Marker 
-            //  position={element.position} 
-             
-             position={{ lat: element.position.lat, lng: element.position.lng }}
-             onClick={()=>{setOneCart(element)
-            }}
+  rowData.map((element) => {
+    // Ensure that element and element.position have lat and lng values
+    if (element.position && element.position.lat && element.position.lng) {
+      return (
+        <div key={element.id}>
+          <Marker
+            position={{ lat: element.position.lat, lng: element.position.lng }}
+            onClick={() => setOneCart(element)}
             icon={icon}
-            />
-          
+          />
+        </div>
+      );
+    } else {
+      // Handle cases where lat or lng are missing
+      console.error(`Missing coordinates for element: ${element.name}`);
+      return null;
+    }
+  })
+}
 
-          </div>)
-          
-        })
-      }
       <Marker position={current}  icon={live} /> 
       {/* <Marker position={current} />  */}
       {oneCart && 
