@@ -114,7 +114,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
 <div className="container-fluid d-flex justify-content-center align-items-start" id="manageHeight">
     <div className="container">
-        <div className="row">
+        <div className="row shadow" id="manageComponenet">
             {/* Left side - Login Form */}
             <div className="col-md-6 col-12 d-flex justify-content-center">
                 <div className="login-form-container text-center -mt-5"> {/* Added margin top */}
@@ -180,21 +180,21 @@ const LoginForm = ({ setIsLoggedIn }) => {
                                 <input className="form-check-input" type="checkbox" />
                                 <label className="form-check-label">Remember me</label>
                             </div>
-                            <Link to="#" className="text-primary">Forgot Password?</Link>
+                            <Link to="#" className=""  style={{textDecoration:"none",color:"red"}}>Forgot Password?</Link>
                         </div>
 
-                        <button className="btn btn-primary w-100 mt-3">Sign In</button>
+                        <button className="btn signinTheme w-100 mt-3">Sign In</button>
                     </form>
 
-                    <p className="mt-4">Don't have an account? <Link to="#">Sign Up</Link></p>
+                    <p className="mt-4">Don't have an account? <Link to="/signup" style={{textDecoration:"none",color:"green"}}>Sign Up</Link></p>
                    
 <br/>
 <br/>
 <br/>
 
                     {/* Footer - Privacy Policy and Copyright */}
-                    <div className="text-center mt-5" >
-                        <p className="d-flex justify-content-between w-100">
+                    <div className="text-center" id="FooterHead" >
+                        <p className="d-flex justify-content-between w-100" >
                             <span>Privacy Policy</span>
                             <span>© 2024 Smart Street Veggie</span>
                         </p>
@@ -207,14 +207,14 @@ const LoginForm = ({ setIsLoggedIn }) => {
                 <img
                     src={image || 'https://via.placeholder.com/500x500'}
                     alt="Login Visual"
-                    className="img-fluid"
-                    style={{ height: '90%', objectFit: 'cover' }}
+                    className="img"
+                    style={{ height: '750px',width:"450px", objectFit: 'cover' }}
                 />
                 
                 <div className="col-md-6 overlay-text position-absolute top-50 start-50 translate-middle text-white text-center d-flex flex-column gap-1">
                     <div className='innerSubheading'>
                         <div className='' style={{
-                            marginTop: "120px",
+                            marginTop: "310px",
                             position: "relative",
                             fontSize: "4.5rem",
                             fontWeight: "bold",
@@ -235,11 +235,11 @@ const LoginForm = ({ setIsLoggedIn }) => {
                             fontSize: "1rem",
                             textOverflow: "wrap",
                             color: "white",
-                            width: "450px",
+                            width: "500px",
                             textAlign: "center",
-                            paddingLeft: "60px",
-                            paddingRight: "60px",
-                            marginLeft: "-140px"
+                            paddingLeft: "90px",
+                            paddingRight: "40px",
+                            marginLeft: "-150px"
                         }}>
                             Welcome to Smart Street Veggies, your local source for fresh, healthy, and sustainably grown produce! We are committed to bringing farm-fresh vegetables straight to your neighborhood.
                         </p>

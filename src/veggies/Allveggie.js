@@ -49,36 +49,70 @@ function Allveggie() {
            
         }
 
-    return ( <div className='allVeggie'>
-        {/* <form> */}
-        <h1 >Enter Your Cart Details</h1>
-            {
-            veggies.map((val,i)=>
-        <div className='allVeggie1' key={i}>
-        <label>
+    return (<div className="container my-5">
+        <h1 className="text-center mb-4">Enter Your Cart Details</h1>
+        {veggies.map((val, i) => (
+          <div className="row mb-4" key={i}>
+            <div className="col-md-5 mb-3">
+              <label className="form-label">
                 <h5>Enter Veggie Name</h5>
-                <input type='text' required={true} placeholder='Tomato' onChange={(e)=>changeHandler(e,i)}
-                        name='veggiesName' value={val.veggiesName}
-                />
-            </label>
-
-
-            <label>
-                <h5>Enter Market rate of respective veggie</h5>
-                <input type='number' required={true} placeholder='45' onChange={(e)=>changeHandler(e,i)}
-                        name='rate' value={val.rate} 
-                />
-            </label>
-                
-            <button onClick={()=>deleteHandler(i)} >Delete</button>
-            <button onClick={()=>submitVeggies(val)}>Add this</button>
-
-        </div> )}
-        <button onClick={clickHandler}>Add More Veggies</button>
-
-         <h3>Make your cart <span className='cursor-pointer' onClick={formSubmitHandler}><b>onLine</b></span></h3>       
-         {/* </form> */}
-        </div> );
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                required
+                placeholder="Tomato"
+                onChange={(e) => changeHandler(e, i)}
+                name="veggiesName"
+                value={val.veggiesName}
+              />
+            </div>
+      
+            <div className="col-md-5 mb-3">
+              <label className="form-label">
+                <h5>Enter Market Rate of Veggie</h5>
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                required
+                placeholder="45"
+                onChange={(e) => changeHandler(e, i)}
+                name="rate"
+                value={val.rate}
+              />
+            </div>
+      
+            <div className="col-md-1 d-flex justify-content-start align-items-center mt-4">
+              <button
+                className="btn btn-danger me-2"
+                onClick={() => deleteHandler(i)}
+              >
+                Delete
+              </button>
+              <button
+                className="btn btn-success"
+                onClick={() => submitVeggies(val)}
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        ))}
+      
+        <div className="text-center mb-3">
+          <button className="btn btn-primary" onClick={clickHandler}>
+            Add More Veggies
+          </button>
+        </div>
+      
+        <div className="text-center">
+          <h3>
+            Make your cart <span className="text-primary cursor-pointer" onClick={formSubmitHandler}><b>onLine</b></span>
+          </h3>
+        </div>
+      </div>
+    )
 }
 
 export default Allveggie;

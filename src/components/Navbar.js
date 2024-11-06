@@ -169,7 +169,7 @@ const Navbar = () => {
   return (
    <>
      {/* Main Navbar */}
-     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+     <nav className="navbar navbar-expand-lg navbar-dark ThemeColor">
         <div className="container-fluid">
           {/* Logo */}
           <Link to="/" className="navbar-brand">
@@ -191,13 +191,13 @@ const Navbar = () => {
           <div className="collapse navbar-collapse justify-content-center">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item mx-3">
-                <Link to="/DashBoard" className="nav-link">Home</Link>
+                <Link to="/DashBoard" id="Hovering"className="nav-link">Home</Link>
               </li>
               <li className="nav-item mx-3">
-                <Link to="/" className="nav-link">About</Link>
+                <Link to="/" id="Hovering" className="nav-link">About</Link>
               </li>
               <li className="nav-item mx-3">
-                <Link to="/" className="nav-link">Contact</Link>
+                <Link to="/" id="Hovering" className="nav-link">Contact</Link>
               </li>
             </ul>
           </div>
@@ -206,13 +206,13 @@ const Navbar = () => {
           <div className="d-none d-lg-flex">
             {token === null ? (
               <>
-                <Link to="/login" className="btn btn-light me-2">Login</Link>
-                <Link to="/signup" className="btn btn-outline-light">Sign Up</Link>
+                <Link to="/login" className=" text-center btn-light LoginHover">Login</Link>
+                <Link to="/signup" className="text-center btn-light LoginHover">Sign Up</Link>
               </>
             ) : (
               <>
-                <button className="btn btn-light me-2" onClick={handleLogout}>Log Out</button>
-                <Link to="/dashboard" className="btn btn-light">Dashboard</Link>
+                <button className="text-center LoginHover btn-light me-2" onClick={handleLogout}>Log Out</button>
+                <Link to="/dashboard" className="text-center LoginHover btn-light">Dashboard</Link>
               </>
             )}
           </div>

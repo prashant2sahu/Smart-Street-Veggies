@@ -28,6 +28,10 @@
     height:90vh;
  
 }
+#FooterHead{
+  margin-top:120px;
+  font-size: 15px;
+}
 
   
   /* For smaller devices (mobile) */
@@ -43,12 +47,25 @@
     .overlay-text p {
       font-size: 1rem; /* Adjust paragraph text size */
     }
+    #FooterHead{
+      margin-top:-20px;
+      font-size: 15px;
+    }
+    .shadow{
+      /* box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;     */
+    }
   }
   
   /* For tablets (iPad Pro) */
   @media (min-width: 768px) and (max-width: 1024px) {
     .overlay-text h1 {
       font-size: 2.5rem; /* Reduce font size on tablets */
+    }
+    .shadow{
+ 
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
+  
+      
     }
   
     .overlay-text p {
@@ -61,7 +78,17 @@
     .overlay-text h1 {
       font-size: 3.5rem; /* Larger font size for desktops */
     }
-  
+    #manageComponenet{
+margin-left: 200px;
+box-sizing: border-box;
+width:900px
+
+    }
+    
+    .shadow{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
+    }
+   
     .overlay-text p {
       font-size: 1.3rem;
     }
@@ -76,21 +103,55 @@
  @media (min-width: 1200px) {
     /* Styles for extra large devices */
     .innerSubheading{
-margin-left:-30px;
+margin-left:5px;
     }
+    #manageComponenet{
+      margin-left: 200px;
+          }
+          .shadow{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
+          }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
     /* Styles for large devices */
     .innerSubheading{
-        margin-left:10px;
+        margin-left:5px;
             }
+            #FooterHead{
+              font-size: 10px;
+            }
+            #manageComponenet{
+              margin-left: 200px;
+                  }
+                  .shadow{
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
+                  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     /* Styles for medium devices */
     .innerSubheading{
-        margin-left:-30px;
+        margin-left:5px;
             }
 }
 
+.signinTheme{
+  border-radius: 999px;
+  padding: 1em 2em;
+  background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease 0s;
+  letter-spacing: 0.08rem;
+}
+.signinTheme:hover,
+.signinTheme:focus {
+ background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
+ box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+}

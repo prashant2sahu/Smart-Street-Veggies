@@ -39,10 +39,18 @@ otpSchema.pre("save", async function(next) {
 	}
 	next();
 });
+<<<<<<< HEAD
 
+=======
+const otp =mongoose.model("OTP",otpSchema);
+module.exports=otp;
+>>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
 const OTP =mongoose.model("OTP",otpSchema);
 module.exports = {
     OTP,
     sendVerificationMail,
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
