@@ -6,6 +6,7 @@ import { login } from '../services/operations/authCall';
 import { useDispatch } from "react-redux"
 import image from '../assets/StreetLogin.png'
 import '../StyleSheet/LoginForm.css'
+
 const LoginForm = ({ setIsLoggedIn }) => {
     const URL = process.env.REACT_APP_BASE_URL;
 
@@ -249,6 +250,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         </div>
     </div>
 </div>
+
 
         </>
     )

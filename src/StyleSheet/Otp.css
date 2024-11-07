@@ -1,56 +1,33 @@
-/* Container size limit for larger screens */
-.otp-container {
-    max-width: 750px;
-  }
-  
-  /* OTP input box width adjustment */
-  .otp-input {
-    width: 40px;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .otp-section {
-      padding: 3rem 1.5rem;
-    }
+/* Scoped styles for VerifyEmail */
+.verify-email .otp-container {
+  width: 850px;
+  height: 720px;
+}
 
-    .otp-input {
-      width: 35px;
-    }
-    #OTPBOX{
-        height:750px;
-    }
-    #FooterOTp span{
-        font-size: 12px;
-        
-        color: gray;
-    
-      }
-      #otpbutton:hover{
+.verify-email .otp-input {
+  width: 40px;
+}
 
-        color :whitesmoke;
-        transition:2s;
-        box-shadow:0 0 10px rgb(118, 30, 206),2px 2px 6px rgb(119, 0, 255),5px 6px 10px rgb(97, 0, 139); 
-      
-        box-shadow:0 0 10px blue,2px 3px red,5px 6px 10px blue; 
-      }
+@media (max-width: 768px) {
+  .verify-email .otp-section {
+    padding: 2rem 1rem;
   }
-  
-  #otpbutton{
-font-size:15px;
-cursor:pointer;
-    background-color: blueviolet;
-
-  }
-  #otpbutton:hover{
-    color :whitesmoke;
-    transition:2s;
-    box-shadow:0 0 10px rgb(118, 30, 206),2px 2px 6px rgb(119, 0, 255),5px 6px 10px rgb(97, 0, 139); 
+  .shadow{
+    box-shadow: none;
   }
 
-  #FooterOTp span{
+  .verify-email .otp-container {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .verify-email #otpbutton {
+    width: 80%;
     font-size: 14px;
-    padding-top:23px;
-    color: gray;
-
+    padding: 10px;
+    margin: 15px auto;
   }
+}
+
+/* Rest of the CSS, scoped for mobile */

@@ -43,7 +43,9 @@
         height:70vh;
      
     }
- 
+ .shadow{
+  box-shadow: none;
+ }
     .overlay-text p {
       font-size: 1rem; /* Adjust paragraph text size */
     }
