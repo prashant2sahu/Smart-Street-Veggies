@@ -4,7 +4,7 @@ const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const cookie=require("cookie-parser");
 // const sendVerificationMail = require('../Models/OTP').sendVerificationMail;
-const { OTP, sendVerificationMail } = require('../Models/OTP'); 
+const { OTP, sendResetPasswordTemplate } = require('../Models/OTP'); 
 
 const otpGenerator=require("otp-generator");
 const express=require("express");
@@ -249,7 +249,8 @@ exports.forgotPassword = async (req, res) => {
         );
 
         // Send the OTP via email
-        await sendVerificationMail(email, otp);
+        // await sendVerificationMail(email, otp);
+        await sendResetPasswordTemplate(email,otp)
 
         return res.status(200).json({
             success: true,
@@ -295,7 +296,7 @@ exports.forgotPassword = async (req, res) => {
       console.log("Found OTP record:", otpRecord);
   
       // Check if the OTP matches
-      if (otpRecord.otp !== otp) {
+      if (otpRecord.otp != otp) {
         return res.status(400).json({
           success: false,
           message: "Invalid OTP",
