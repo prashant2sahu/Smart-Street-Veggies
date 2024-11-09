@@ -6,6 +6,7 @@ import { login } from '../services/operations/authCall';
 import { useDispatch } from "react-redux"
 import image from '../assets/StreetLogin.png'
 import '../StyleSheet/LoginForm.css'
+
 const LoginForm = ({ setIsLoggedIn }) => {
     const URL = process.env.REACT_APP_BASE_URL;
 
@@ -117,7 +118,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <div className="row shadow" id="manageComponenet">
             {/* Left side - Login Form */}
             <div className="col-md-6 col-12 d-flex justify-content-center">
-                <div className="login-form-container text-center -mt-5"> {/* Added margin top */}
+                <div className="login-form-container text-center mt-5"> {/* Added margin top */}
                     <h2>Sign In</h2>
                     <p className="text-muted">Send, spend and save smarter</p>
 
@@ -180,7 +181,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
                                 <input className="form-check-input" type="checkbox" />
                                 <label className="form-check-label">Remember me</label>
                             </div>
-                            <Link to="#" className=""  style={{textDecoration:"none",color:"red"}}>Forgot Password?</Link>
+                            <Link to="/forgot" className=""  style={{textDecoration:"none",color:"red"}}>Forgot Password?</Link>
                         </div>
 
                         <button className="btn signinTheme w-100 mt-3">Sign In</button>
@@ -208,7 +209,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
                     src={image || 'https://via.placeholder.com/500x500'}
                     alt="Login Visual"
                     className="img"
-                    style={{ height: '750px',width:"450px", objectFit: 'cover' }}
+                    style={{ height: '760px',width:"450px", objectFit: 'cover' }}
                 />
                 
                 <div className="col-md-6 overlay-text position-absolute top-50 start-50 translate-middle text-white text-center d-flex flex-column gap-1">
@@ -218,26 +219,26 @@ const LoginForm = ({ setIsLoggedIn }) => {
                             position: "relative",
                             fontSize: "4.5rem",
                             fontWeight: "bold",
-                            color: "white", marginLeft: "-70%"
+                            color: "white", marginLeft: "-50%"
                         }}>Smart</div>
                         <div style={{
                             fontSize: "2rem",
                             fontWeight: "bold",
                             color: "white",
-                            marginLeft: "-70%",
+                            marginLeft: "-50%",
                             marginTop: "-20px"
                         }} className='subHeading'
                         >Street veggie</div>
                         <p className="subHeading" style={{
-                            color: 'gainsboro', marginLeft: "-70%"
+                            color: 'gainsboro', marginLeft: "-50%"
                         }}>Yahhh!!! Fresh Veggies</p>
                         <p className=" " style={{
-                            fontSize: "1rem",
+                            fontSize: "1.2rem",
                             textOverflow: "wrap",
                             color: "white",
                             width: "500px",
                             textAlign: "center",
-                            paddingLeft: "90px",
+                            paddingLeft: "70px",
                             paddingRight: "40px",
                             marginLeft: "-150px"
                         }}>
@@ -249,6 +250,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         </div>
     </div>
 </div>
+
 
         </>
     )

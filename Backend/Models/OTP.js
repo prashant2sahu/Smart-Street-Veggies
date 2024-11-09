@@ -1,6 +1,10 @@
 const mongoose=require('mongoose');
 const  mailSender=require("../utilities/mailSender");
-const otpTemplate= require("../mail/verificationMail" );
+
+const otpTemplate= require("../mail/verificationMail");
+const resetPasswordTemplate=require('../mail/VerificationPasswordMail')
+// const otpTemplate= require("../mail/verificationMail" );
+
 
 const otpSchema=mongoose.Schema({
 
@@ -29,6 +33,16 @@ async function sendVerificationMail(email,otp){
         console.log("send verification error in the otp models");
     }
 }
+async function sendResetPasswordTemplate(email,otp){
+    try{
+        let response= mailSender(email,"Email verification Code",resetPasswordTemplate(otp));
+        // consolne.log("mailsender",response);
+
+    }catch(error){
+        console.error(error);
+        console.log("send verification error in the otp models");
+    }
+}
 
 otpSchema.pre("save", async function(next) {
 	console.log("New document saved to database");
@@ -48,5 +62,5 @@ otpSchema.pre("save", async function(next) {
 const OTP =mongoose.model("OTP",otpSchema);
 module.exports = {
     OTP,
-    sendVerificationMail,
+    sendVerificationMail,sendResetPasswordTemplate
 };

@@ -228,7 +228,7 @@ const Navbar = () => {
       aria-labelledby="offcanvasNavbarLabel"
     >
       <div className="offcanvas-header">
-        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">SMART STREET VEGGIES</h5>
         <button
           type="button"
           className="btn-close text-reset"

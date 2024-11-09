@@ -158,18 +158,18 @@ const SignupForm = ({ setIsLoggedIn }) => {
             <div className="container d-flex align-items-md-start">
                 <div className="row vh-100" style={{ marginTop: "50px" }}>
                     {/* Left side image with overlay text */}
-                    <div className="col-md-4 d-none d-md-block position-relative" style={{ marginLeft: "200px" }}>
+                    <div className="col-md-4 d-none d-md-block position-relative" style={{ marginLeft: "100px" }}>
     <img
         src={image}
         alt="Login Visual"
         className="imgShadow"
-        style={{ height: "750px", objectFit: 'cover' }}
+        style={{ height: "760px" , objectFit: 'cover' }}
     />
      <div className="card-img-overlay d-flex flex-column justify-content-center align-items-start position-relative" style={{marginTop:"-450px",marginLeft:"20px"}}>
     <h5 className="card-title text-white mt-5 " style={{ fontSize: "4rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Smart</h5>
     <h6 className="card-title text-white" style={{ fontSize: "2rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Street Veggie</h6>
     <p className="card-text text-white-50 " style={{paddingLeft:"30px"}}>Yahhh!!! Fresh Veggies</p>
-    <p className="card-text mt-4 text-center" style={{ color: "gainsboro", fontSize: "1.1rem" }}>
+    <p className="card-text mt-2 text-center" style={{ color: "gainsboro", fontSize: "1.2rem" }}>
       Welcome to Smart Street Veggies, your local source for fresh, healthy, and sustainably grown produce! We are committed to bringing farm-fresh vegetables straight to your neighborhood.
     </p>
 
@@ -178,7 +178,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
 
 
                     {/* Right side sign-up form */}
-                    <div className="col-lg-6 col-md-1 d-flex justify-content-center FormShadow1">
+                    <div className="col-lg-6 pl-3 pt-4  d-flex justify-content-center FormShadow1">
                         <form className="w-75" onSubmit={submitHandler}>
                             <h2 className="text-center mb-4">Sign up for an account</h2>
 
@@ -338,7 +338,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
     <span className="signupbtn-text-two">Thanku!</span>
 </button>
                             {/* Footer Privacy info */}
-                            <p className="text-center d-flex " id="footerHead" style={{marginTop:"60px",width:"100%", justifyContent:"space-between"}}><span>Privacy</span><span>  @2024 SmartStreetVeggie</span></p>
+                            <p className="text-center d-flex " id="footerHead" ><span>Privacy</span><span>  @2024 SmartStreetVeggie</span></p>
                         </form>
                     </div>
                 </div>
