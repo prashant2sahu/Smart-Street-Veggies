@@ -3,13 +3,20 @@ const User=require("../Models/User");
 const Cart=require("../Models/Cart");
 const { populate } = require("dotenv");
 const CartBook=require("../Models/CartBook");
-
+const veggieCartSchema=require("../Models/veggie")
 
 exports.makeCartOnline=async(req,res)=>{
    try{  
     const id=req.user.id;
+    // const id =
+    //         req.cookies.token.id ||
+    //         req.body.token.id ||
+    //         (req.headers.Authorization && req.headers.Authorization.split(" ")[1]);
+
     console.log(id);
     const cartData=await Cart.create({stall:id});
+    console.log("makingCrt online");
+    
 
     res.status(200).json({
         succcess:true,
@@ -19,11 +26,54 @@ exports.makeCartOnline=async(req,res)=>{
     catch(error){
         console.log(error);
         res.status(500).json({
-            succcess:true,
+            succcess:false,
             message:" error in data added to cart"
         })  
     }
 }
+
+// const VeggieCart = require('../models/VeggieCart');
+// const User = require('../models/User');
+
+// exports.makeCartOnline = async (req, res) => {
+//     try {
+//         const userId = req.user.id;  // Assuming req.user contains user info from middleware
+//         const { veggies } = req.body;  // Array of veggies with {veggiesName, rate}
+
+//         if (!veggies || veggies.length === 0) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Veggies array cannot be empty."
+//             });
+//         }
+
+//         // Create the new cart with embedded veggie items
+//         const cartData = await veggieCartSchema.create({
+//             user: userId,
+//             veggies: veggies.map(({ veggiesName, rate }) => ({ veggiesName, rate })),
+//         });
+
+//         // Add the newly created cart's ID to the user's veggies array
+//         await User.findByIdAndUpdate(
+//             userId,
+//             { $push: { veggies: cartData._id } },
+//             { new: true, useFindAndModify: false }  // Returns the updated document
+//         );
+
+//         res.status(200).json({
+//             success: true,
+//             message: "Cart created successfully and added to user's veggies list.",
+//             cartData
+//         });
+//     } catch (error) {
+//         console.error("Error creating cart:", error);
+//         res.status(500).json({
+//             success: false,
+//             message: "Error creating cart",
+//             error: error.message
+//         });
+//     }
+// };
 
 
 exports.showCart=async(req,res)=>{

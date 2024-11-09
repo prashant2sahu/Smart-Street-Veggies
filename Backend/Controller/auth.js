@@ -220,11 +220,11 @@ exports.sendOtp=async(req,res)=>{
         })
     }
 }
-<<<<<<< HEAD
 // <<<<<<< HEAD
+// // <<<<<<< HEAD
+// // =======
 // =======
-=======
->>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
+// >>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
 
 exports.forgotPassword = async (req, res) => {
     try {
@@ -325,7 +325,7 @@ exports.forgotPassword = async (req, res) => {
     }
   };
   
-<<<<<<< HEAD
+// <<<<<<< HEAD
 // >>>>>>> 008b1003dedf8d9e3e7a98e9f9314bf5ee121697
-=======
->>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
+// =======
+// >>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05

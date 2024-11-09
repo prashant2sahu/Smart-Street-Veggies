@@ -6,7 +6,7 @@ html,
 body {
     overflow-x: hidden;
     align-items: center;
-    max-width: 1150px;
+    /* max-width: 1150px; */
     margin: 0 auto ;
 
 }
@@ -210,15 +210,18 @@ body {
     padding-left: 5px;
 }
 
+
 .mapDisplay1 h1{
-    font-size: 16px;
+     
+    /* height: 100px; */
+    font-size: 15px;
     font-weight: 400;
     padding-bottom: 5px;
     background-color: aliceblue;
 }
 
 .mapDisplay2 {
-    font-size: 15;
+    font-size: 15px;
     font-weight: 600;
     align-items: start;
     display: flex;
