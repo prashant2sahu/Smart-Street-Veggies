@@ -19,7 +19,7 @@ exports.auth = async (req, res, next) => {
 
         // If JWT is missing, return 401 Unauthorized response
         if (!token) {
-            return res.status(401).json({ success: false, message: `Token Missing` });
+            return res.status(401).json({ success: false, message: "Token Missing" });
         }
 
         try {
@@ -40,7 +40,7 @@ exports.auth = async (req, res, next) => {
         console.error("Error during authentication:", error);
         return res.status(401).json({
             success: false,
-            message: `Something went wrong while validating the token`,
+            message:" Something went wrong while validating the token",
         });
     }
 };
@@ -58,7 +58,7 @@ exports.isCartMan = async (req, res, next) => {
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ success: false, message: `User Role Can't be Verified` });
+			.json({ success: false, message: "User Role Can't be Verified" });
 	}
 };
 exports.isCustomer = async (req, res, next) => {
@@ -75,6 +75,6 @@ exports.isCustomer = async (req, res, next) => {
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ success: false, message: `User Role Can't be Verified` });
+			.json({ success: false, message: "User Role Can't be Verified" });
 	}
 };

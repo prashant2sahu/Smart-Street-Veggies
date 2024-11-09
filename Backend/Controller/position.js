@@ -52,3 +52,44 @@ exports.setPosition=async(req,res)=>{
         })  
      }
 }
+
+// controllers/locationController.js
+
+exports.updateLocationInDb = async (userId, latitude, longitude) => {
+    try {
+
+        const locationData = {
+            userId,
+            latitude,
+            longitude,
+            timestamp: new Date()
+        };
+
+        // Update the location if it already exists, or create a new one
+        const updatedLocation = await Position.findOneAndUpdate(
+            { userId },             // Filter by userId
+            { $set: locationData },  // Update latitude, longitude, and timestamp
+            { upsert: true, new: true }
+        );
+
+        // return updatedLocation;
+        const updatedData=await User.findByIdAndUpdate(userId,
+            {$set:{position:updatedLocation._id}},
+            {new :true}
+           );
+
+           return updatedLocation;
+        // return res.status(200).json({
+        // success:true,
+        // message:"location has been setted successfully",
+        // updatedData,
+        // updatedLocation
+// cartAdded,  
+        // })
+    } catch (error) {
+        console.error("Error updating location:", error);
+        throw error;
+    }
+};
+
+// module.exports = { updateLocationInDb };

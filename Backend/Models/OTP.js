@@ -1,7 +1,10 @@
 const mongoose=require('mongoose');
 const  mailSender=require("../utilities/mailSender");
+
 const otpTemplate= require("../mail/verificationMail");
 const resetPasswordTemplate=require('../mail/VerificationPasswordMail')
+// const otpTemplate= require("../mail/verificationMail" );
+
 
 const otpSchema=mongoose.Schema({
 
@@ -50,8 +53,12 @@ otpSchema.pre("save", async function(next) {
 	}
 	next();
 });
-const otp =mongoose.model("OTP",otpSchema);
-module.exports=otp;
+// <<<<<<< HEAD
+
+// =======
+// const otp =mongoose.model("OTP",otpSchema);
+// module.exports=otp;
+// >>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
 const OTP =mongoose.model("OTP",otpSchema);
 module.exports = {
     OTP,
