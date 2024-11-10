@@ -3,68 +3,68 @@ const User=require("../Models/User");
 
 
 
-exports.setPosition=async(req,res)=>{
-   try{
+// exports.setPosition=async(req,res)=>{
+//    try{
 
-    const id=req.user.id;
-    // const is=req.id;
-    const {lat,lng} =req.body;
+//     const id=req.user.id;
+//     // const is=req.id;
+//     const {lat,lng} =req.body;
 
-    if(!lat,!lng){
-        res.status(400).json({
-            success:false,
-            message:"please fill all the credentials",
-        })
-    }
+//     if(!lat,!lng){
+//         res.status(400).json({
+//             success:false,
+//             message:"please fill all the credentials",
+//         })
+//     }
 
-    const position=await Position.create({lat,lng});
-
-
-    // veggies
-    console.log("position",position);
-    console.log("input",lat,lng);
+//     const position=await Position.create({lat,lng});
 
 
-    if(!position){
-        res.status(400).json({ 
-            success:false,
-            message:"Error while uploading the position on its model",
-        })
-    }
+//     // veggies
+//     console.log("position",position);
+//     console.log("input",lat,lng);
 
-    const updatedData=await User.findByIdAndUpdate(id,
-                                                   {$push:{position:position._id}},
-                                                   {new :true}
-                                                  );
 
-    return res.status(200).json({
-        success:true,
-        message:"all the veggies data has been setted successfully",
-        updatedData,
-        // cartAdded,  
-    })
+//     if(!position){
+//         res.status(400).json({ 
+//             success:false,
+//             message:"Error while uploading the position on its model",
+//         })
+//     }
 
-    }catch(error){
-        console.log(error.message);
-        res.status(400).json({
-             succcess:false,
-             message:"error while setting veggies Detail"
-        })  
-     }
-}
+//     const updatedData=await User.findByIdAndUpdate(id,
+//                                                     {$push:{position:position._id}},
+//                                                     {new :true}
+//                                                   );
 
-// controllers/locationController.js
+//     return res.status(200).json({
+//         success:true,
+//         message:"all the veggies data has been setted successfully",
+//         updatedData,
+//         // cartAdded,  
+//     })
+
+//     }catch(error){
+//         console.log(error.message);
+//         res.status(400).json({
+//              succcess:false,
+//              message:"error while setting veggies Detail"
+//         })  
+//      }
+// }
+
+// controllers/locationController.js 
 
 exports.updateLocationInDb = async (userId, latitude, longitude) => {
     try {
 
         const locationData = {
             userId,
-            latitude,
-            longitude,
+            lat: latitude,  // Make sure this matches `lat` in your schema
+            lng: longitude, 
             timestamp: new Date()
         };
-
+ 
         // Update the location if it already exists, or create a new one
         const updatedLocation = await Position.findOneAndUpdate(
             { userId },             // Filter by userId

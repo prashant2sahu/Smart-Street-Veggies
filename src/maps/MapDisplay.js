@@ -6,7 +6,7 @@ import {jwtDecode} from 'jwt-decode'
 import liveMarker from "./Live.png";
 
 import cart from "./sec.png";
-import '../App.css';
+import '../StyleSheet/map.css';
 
 // import compass from "./compass.jpg"
 // import blue from "./blue.png"
@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux';
 import { ShowOnlineCart } from '../services/operations/cartApi';
 import { BookCart } from '../services/operations/cartApi';
 import { Navigate } from 'react-router-dom';
-import { setPosition } from '../services/operations/authCall';
+// import { setPosition } from '../services/operations/authCall';
 // import cartMarker from "./CartMan_Marker.png";
 import customerMarker from "./Customer.png";
 import jwt_decode from 'jwt-decode';
@@ -115,7 +115,7 @@ const markers = [
 
 const containerStyle = {
 width: '100%',
-  height: '600px'
+  height: '650px'
 };
 
 const center = {
@@ -130,13 +130,13 @@ function MapDisplay() {
   // const id=localStorage.getItem("token");
   const token=localStorage.getItem("token");
   const decodedToken = token ? jwtDecode(token) : null;
-  const userId=decodedToken.id;
+  const userId=decodedToken.id; 
   const accountType=localStorage.getItem("accountType");
   console.log("account Type",userId);
-  
+   
   // const token = localStorage.getItem("token");
   const intervalRef = useRef(null); 
-  const [current, setCurrent] = useState({lat:"",lng:""});
+  const [currentLocation, setCurrent] = useState({ lat: 23.2319596, lng: 77.4351323 });
   const [oneCart,setOneCart]=useState("");
   const destination = { lat: 34.0522, lng: -118.2437 };
   const [map, setMap] = React.useState(null)
@@ -151,6 +151,7 @@ function MapDisplay() {
   
   // const {acccountType} =decodedToken       ;
   // console.log("acccountType",acccountType);
+  // Inside your component
 
   useEffect(() => {
 
@@ -173,8 +174,8 @@ function MapDisplay() {
           },
           {
             enableHighAccuracy: true, // Requests high accuracy (e.g., GPS)
-            timeout: 5000,           // 10-second timeout
-            maximumAge: 0             // Ensures fresh location data
+            timeout: 10000,           // 10-second timeout
+            maximumAge: 5000             // Ensures fresh location data
         }
         );
       }, 5000);
@@ -182,13 +183,13 @@ function MapDisplay() {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
         }
-    };
+    }; 
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
 
-    // let data=dispatch(ShowOnlineCart());
-    // console.log("data",data);
+   // let data=dispatch(ShowOnlineCart());
+   // console.log("data",data);
   }, []);
 
   useEffect(() => {
@@ -202,11 +203,10 @@ function MapDisplay() {
       }
     };
 
-    fetchData();
+    fetchData();  
   }, [dispatch]);
-  console.log("data",rowData);
+  console.log("data",rowData); 
 
-  
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -221,7 +221,7 @@ function MapDisplay() {
 
   const icon = {
     // url: cartMarker, // url
-    url: accountType==="Customer"? cartMarker :customerMarker, // url
+    url: accountType==="Customer"? customerMarker :cartMarker , // url
 
     // scaledSize: Size(50, 50), // scaled size
     // scale: 2,
@@ -257,42 +257,48 @@ const live = {
 return isLoaded ? (
   <GoogleMap
     mapContainerStyle={containerStyle}
-    center={current}
+    center={currentLocation}
     zoom={10}
     onLoad={onLoad}
     // onUnmount={onUnmount}
   >
-    <Marker position={current} icon={live}></Marker>
+    <Marker position={currentLocation} icon={live}></Marker>
 
     {
     rowData.map((element) => {
   // Check that element has a valid position with both latitude and longitude
-  const { id, name, position } = element;
+  const { _id,   } = element;
+  const {firstName,lastName,position}=element.stall
   
-  if (position?.lat && position?.lng) {
+  console.log("lat",position);
+  if (position) {
+    const lat = parseFloat(position.lat);
+      const lng = parseFloat(position.lng);
     return (
-      <div key={id}>
+      <div key={_id}>
         <Marker
-          position={{ lat: position.lat, lng: position.lng }}
-          onClick={() => setOneCart(element)}
+          position={{ lat: lat, lng: lng }}
+          onClick={() => setOneCart(element.stall)}
           icon={icon}
         />
       </div>
     );
   } else {
     // Log an error if coordinates are missing
-    console.error(`Missing coordinates for element: ${name}`);
+    console.error(`Missing coordinates for element: ${position}`);
     return null;
   }
 })
 }
 
 
-{oneCart && (
+{/* {oneCart && (
   <InfoWindow key={oneCart.id} position={oneCart.position}>
     <>
     <div  className="mapDisplay1">
-      <h1>{oneCart.name}</h1>
+      <h1>{oneCart.firstname}</h1>
+      <h1>{oneCart.lastname}</h1>
+
       <h1>{oneCart.email}</h1>
       {oneCart.veggies.map((veg) => (
         <div className="mapDisplay2" key={veg.veggiesName}>
@@ -306,8 +312,32 @@ return isLoaded ? (
     </div>
 
     </>
+  </InfoWindow> 
+)} */}
+{oneCart && oneCart.position  && (
+  // const lat = parseFloat(position.lat);
+  // const lng = parseFloat(position.lng);
+  <InfoWindow
+    key={oneCart._id}
+    position={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
+    // onCloseClick={() => setOneCart(null)} // Optional: Close the InfoWindow when clicked outside
+  >
+    <div className="mapDisplay1">
+      <h1>{oneCart.firstName}</h1>
+      <h1>{oneCart.lastName}</h1>
+      <h1>{oneCart.email}</h1>
+      {oneCart.veggies.map((veg) => (
+        <div className="mapDisplay2" key={veg._id}>
+          <h2>{veg.veggiesName}</h2>
+          <h2>{veg.rate}</h2>
+        </div>
+      ))}
+      <button className='mapDisplay3' onClick={BookCartHandler}>Book Now</button>
+    </div>
   </InfoWindow>
 )}
+
+
 
  <></>
     </GoogleMap>

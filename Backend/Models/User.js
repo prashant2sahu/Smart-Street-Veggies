@@ -46,7 +46,7 @@ const userSchema=mongoose.Schema({
         //may be array but not now
         type:mongoose.Schema.Types.ObjectId,
         ref:"Veggie"
-    }]
+    }] 
 })
 
 module.exports = mongoose.model("User",userSchema);
