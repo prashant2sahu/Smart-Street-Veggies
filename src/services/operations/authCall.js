@@ -125,36 +125,35 @@ export function login(email,password, navigate) {
     }
   }
 
-export function setPosition(lat,lng,token) {
-  return async (dispatch) => {
-    // const toastId = toast.loading("Loading...")
-    // dispatch(setLoading(true))
-    try {
-      const response = await apiConnector("POST",SET_POS,{
-        lat,lng,
-      },{Authorization: `Bearer ${token}`})
+// export function setPosition(lat,lng,token) {
+//   return async (dispatch) => {
+//     // const toastId = toast.loading("Loading...")
+//     // dispatch(setLoading(true))
+//     try {
+//       const response = await apiConnector("POST",SET_POS,{
+//         lat,lng,
+//       },{Authorization: `Bearer ${token}`})
 
-      console.log("POsition API RESPONSE............", response)
-      if (!response.data.success) {
-        // toast
-        throw new Error(response.data.message)
-      }
-      return response;
+//       console.log("POsition API RESPONSE............", response)
+//       if (!response.data.success) {
+//         // toast
+//         throw new Error(response.data.message)
+//       }
+//       return response;
 
-      // toast.success("Login Successful")
-      // navigate("/dashboard")
-    }catch(error) {
-      console.log("setPosition API ERROR............",error.message)
-      // toast.error("setPosition Failed")
-  // /    toast.error( error.message)
-// 
+//       // toast.success("Login Successful")
+//       // navigate("/dashboard")
+//     }catch(error) {
+//       console.log("setPosition API ERROR............",error.message)
+//       // toast.error("setPosition Failed")
+//   // /    toast.error( error.message)
+// // 
 
-    }
-    // dispatch(setLoading(false))
-    // toast.dismiss(toastId)
-  }
-}
-
+//     }
+//     // dispatch(setLoading(false))
+//     // toast.dismiss(toastId)
+//   }
+// }
 
 export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
   return async (dispatch) => {
@@ -187,6 +186,7 @@ export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
   }
 }
 
+// <<<<<<< HEAD
 // idhar adarsh ka kaam hai
 export function FetchUserVeggies(token) {
   return async (dispatch) => {
@@ -283,3 +283,40 @@ export function DeleteVeggie(token, veggieId) {
     }
   };
 }
+
+// export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
+//   return async (dispatch) => {
+//     const toastId = toast.loading("Loading...")
+//     dispatch(setLoading(true))
+//     console.log("veggiesName and rate",veggiesName,rate,token);
+//     console.log("Headers:", { Authorization: `Bearer ${token}` });
+
+//     try {
+//       const response = await apiConnector("POST",SAVE_VEG_API,
+//         { veggiesName,rate},
+//         { Authorization:`Bearer ${token}`})
+
+//         console.log("Headers:", { Authorization: `Bearer ${token}` });
+
+//       console.log("Getting veggies API RESPONSE............", response)
+
+//       if (!response.data.success) {
+//         // toast
+//         throw new Error(response.data.message)
+//       }
+
+//       toast.success("Veggies saved successfully")
+//       //  navigate("/home")
+//     } catch (error) {
+//       console.log("veggies API ERROR............", error)
+//       toast.error("Failed to save veggies")
+//       toast.error( error.message)
+
+
+//     }
+//     dispatch(setLoading(false))
+//     toast.dismiss(toastId)
+//   }
+// }
+
+// >>>>>>> 8319f7e8bb78464687d182c4c83e89fed6ad2edd

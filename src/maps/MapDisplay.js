@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { useJsApiLoader, GoogleMap,InfoWindow, Marker} from "@react-google-maps/api";
 import cartMarker from "./CartMan_Marker.png";
 // import cartMarker from "./Customer.png";
-// import jwt_decode from 'jwt-decode';
-
+import {jwtDecode} from 'jwt-decode'
 import liveMarker from "./Live.png";
 
 import cart from "./sec.png";
+import '../App.css';
+
 // import compass from "./compass.jpg"
 // import blue from "./blue.png"
 import { useEffect } from 'react';
@@ -19,7 +20,17 @@ import { Navigate } from 'react-router-dom';
 import { setPosition } from '../services/operations/authCall';
 // import cartMarker from "./CartMan_Marker.png";
 import customerMarker from "./Customer.png";
-// import jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
+// import { useEffect } from 'react';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:5000');
+
+const sendLocation = (userId, latitude, longitude) => {
+    socket.emit('updateLocation', { userId, latitude, longitude });
+};
+
+
 
 const markers = [
   {
@@ -103,22 +114,28 @@ const markers = [
 ]
 
 const containerStyle = {
-  width: '90%',
+width: '100%',
   height: '600px'
 };
 
 const center = {
-  lat: 23.296011,
-  lng: 77.400635,
+  // lat: 23.296011,
+  // lng: 77.400635,
+  
+lat: 23.2319596,
+lng:77.4351323
 };
 
 function MapDisplay() {
-  // const token=localStorage.getItem("token");
+  // const id=localStorage.getItem("token");
   const token=localStorage.getItem("token");
+  const decodedToken = token ? jwtDecode(token) : null;
+  const userId=decodedToken.id;
   const accountType=localStorage.getItem("accountType");
-
+  console.log("account Type",userId);
+  
   // const token = localStorage.getItem("token");
-
+  const intervalRef = useRef(null); 
   const [current, setCurrent] = useState({lat:"",lng:""});
   const [oneCart,setOneCart]=useState("");
   const destination = { lat: 34.0522, lng: -118.2437 };
@@ -138,22 +155,34 @@ function MapDisplay() {
   useEffect(() => {
 
     if (navigator.geolocation) {
-      setInterval(() => {
-
+      intervalRef.current =setInterval(() => {
+        // intervalRef.current = navigator.geolocation.watchPosition(
+        // getCurrentPosition
         navigator.geolocation.getCurrentPosition(
           (position) => {
             //   const { latitude, longitude } = position.coords;
             let lat = position.coords.latitude;
             let lng = position.coords.longitude;
             console.log(position);
+            sendLocation(userId, lat, lng);
             setCurrent({ lat:lat, lng:lng});
-            dispatch(setPosition(lat,lng,token));
+            // dispatch(setPosition(lat,lng,token));
           },
           (error) => {
             console.error(error);
-          }
+          },
+          {
+            enableHighAccuracy: true, // Requests high accuracy (e.g., GPS)
+            timeout: 5000,           // 10-second timeout
+            maximumAge: 0             // Ensures fresh location data
+        }
         );
       }, 5000);
+      return () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+    };
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
@@ -199,8 +228,8 @@ function MapDisplay() {
     // fillOpacity: 10,
     // scaledSize: 5*5, 
     scaledSize:  new window.google.maps.Size(50,50),
-    // origin: new window.google.maps.Point(0,0), // origin
-    // anchor: new window.google.maps.Point(0, 0) // anchor
+    origin: new window.google.maps.Point(0,0), // origin
+    anchor: new window.google.maps.Point(0, 0), // anchor
     fillColor: "blue",
     fillOpacity: 0.6,
     strokeWeight: 0,
@@ -225,71 +254,68 @@ const live = {
   scale: 2,
   // anchor: new window.google.maps.Point(0, 20),
 };
+return isLoaded ? (
+  <GoogleMap
+    mapContainerStyle={containerStyle}
+    center={current}
+    zoom={10}
+    onLoad={onLoad}
+    // onUnmount={onUnmount}
+  >
+    <Marker position={current} icon={live}></Marker>
 
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={15}
-      onLoad={onLoad}
-    //   onUnmount={onUnmount}
-    >
-      { /* Child components, such as markers, info windows, etc. */}
-      {
-  rowData.map((element) => {
-    // Ensure that element and element.position have lat and lng values
-    if (element.position && element.position.lat && element.position.lng) {
-      return (
-        <div key={element.id}>
-          <Marker
-            position={{ lat: element.position.lat, lng: element.position.lng }}
-            onClick={() => setOneCart(element)}
-            icon={icon}
-          />
-        </div>
-      );
-    } else {
-      // Handle cases where lat or lng are missing
-      console.error(`Missing coordinates for element: ${element.name}`);
-      return null;
-    }
-  })
+    {
+    rowData.map((element) => {
+  // Check that element has a valid position with both latitude and longitude
+  const { id, name, position } = element;
+  
+  if (position?.lat && position?.lng) {
+    return (
+      <div key={id}>
+        <Marker
+          position={{ lat: position.lat, lng: position.lng }}
+          onClick={() => setOneCart(element)}
+          icon={icon}
+        />
+      </div>
+    );
+  } else {
+    // Log an error if coordinates are missing
+    console.error(`Missing coordinates for element: ${name}`);
+    return null;
+  }
+})
 }
 
-      <Marker position={current}  icon={live} /> 
-      {/* <Marker position={current} />  */}
-      {oneCart && 
-      <InfoWindow key={oneCart.id} position={oneCart.position} >
-        <>
-        <div className='mapDisplay1'>
-        <h1>{oneCart.name}</h1>
-        <h1>{oneCart.email}</h1>
-        {
-          oneCart.veggies.map((veg)=>{
-            return(<div className='mapDisplay2' key={veg.veggiesName}>
-              <h2>{veg.veggiesName}</h2>
-              <h2>{veg.rate}</h2>
 
-            </div>
+{oneCart && (
+  <InfoWindow key={oneCart.id} position={oneCart.position}>
+    <>
+    <div  className="mapDisplay1">
+      <h1>{oneCart.name}</h1>
+      <h1>{oneCart.email}</h1>
+      {oneCart.veggies.map((veg) => (
+        <div className="mapDisplay2" key={veg.veggiesName}>
+          <h2>{veg.veggiesName}</h2>
+          <h2>{veg.rate}</h2>
+        </div>
+      ))}
 
-) 
-})
-} 
 <button className='mapDisplay3' onClick={()=>BookCartHandler()}>Book Now</button>
-</div>
-</>
 
-      
-      {/* aagr dikkat kare to close button bana lunga or usme click event pe setOneCart("") kar dunga */}
-      </InfoWindow>
-      
-      }
-      {/* <GetDirection destination={destination} current={current} /> */}
+    </div>
 
+    </>
+  </InfoWindow>
+)}
 
-      <></>
+ <></>
     </GoogleMap>
   ) : <p>Ooops !! Map Loading fail</p>
+
+
+  
 }
+
 
 export default MapDisplay;

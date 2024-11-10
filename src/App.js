@@ -15,6 +15,7 @@ import MapDisplay from "./maps/MapDisplay";
 import Veggieform from "./veggies/Veggieform";
 import Allveggie from "./veggies/Allveggie";
 import VerifyEmail from "./pages/VerifyEmail"
+
 import NotFoundPage from "./components/PageNotFound";
 // import ResetPassword from "./components/resetPassword";
 function App() {

@@ -264,3 +264,102 @@ function Allveggie() {
 }
 
 export default Allveggie;
+// import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+
+// import { saveVeggieCart } from '../services/operations/cartApi';  // New API function to save the whole cart
+// const token = localStorage.getItem('token');
+
+// function Allveggie() {
+//     const [veggies, setVeggies] = useState([{ veggiesName: '', rate: '' }]);
+//     const dispatch = useDispatch();
+//     const navigate = useNavigate();
+
+//     function clickHandler() {
+//         setVeggies([...veggies, { veggiesName: '', rate: '' }]);
+//     }
+
+//     function changeHandler(e, i) {
+//         const { name, value } = e.target;
+//         const updatedVeggies = [...veggies];
+//         updatedVeggies[i][name] = value;
+//         setVeggies(updatedVeggies);
+//     }
+
+//     const deleteHandler = (i) => {
+//         const updatedVeggies = [...veggies];
+//         updatedVeggies.splice(i, 1);
+//         setVeggies(updatedVeggies);
+//     };
+
+//     function formSubmitHandler() {
+//         console.log('Submitting all veggies:', veggies);
+
+//         // Dispatching the action to save the entire cart in one go
+//         dispatch(saveVeggieCart(veggies, token, navigate));
+//     }
+
+//     return (
+//         <div className="container my-5">
+//             <h1 className="text-center mb-4">Enter Your Cart Details</h1>
+//             {veggies.map((val, i) => (
+//                 <div className="row mb-4" key={i}>
+//                     <div className="col-md-5 mb-3">
+//                         <label className="form-label">
+//                             <h5>Enter Veggie Name</h5>
+//                         </label>
+//                         <input
+//                             type="text"
+//                             className="form-control"
+//                             required
+//                             placeholder="Tomato"
+//                             onChange={(e) => changeHandler(e, i)}
+//                             name="veggiesName"
+//                             value={val.veggiesName}
+//                         />
+//                     </div>
+
+//                     <div className="col-md-5 mb-3">
+//                         <label className="form-label">
+//                             <h5>Enter Market Rate of Veggie</h5>
+//                         </label>
+//                         <input
+//                             type="number"
+//                             className="form-control"
+//                             required
+//                             placeholder="45"
+//                             onChange={(e) => changeHandler(e, i)}
+//                             name="rate"
+//                             value={val.rate}
+//                         />
+//                     </div>
+
+//                     <div className="col-md-1 d-flex justify-content-start align-items-center mt-4">
+//                         <button
+//                             className="btn btn-danger me-2"
+//                             onClick={() => deleteHandler(i)}
+//                         >
+//                             Delete
+//                         </button>
+//                     </div>
+//                 </div>
+//             ))}
+
+//             <div className="text-center mb-3">
+//                 <button className="btn btn-primary" onClick={clickHandler}>
+//                     Add More Veggies
+//                 </button>
+//             </div>
+
+//             <div className="text-center">
+//                 <button className="btn btn-success" onClick={formSubmitHandler}>
+//                     Submit Cart
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default Allveggie;
+// >>>>>>> 8319f7e8bb78464687d182c4c83e89fed6ad2edd
