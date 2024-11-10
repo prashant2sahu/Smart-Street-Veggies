@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -7,22 +7,23 @@ body {
     overflow-x: hidden;
     align-items: center;
     /* max-width: 1150px; */
-    margin: 0 auto ;
+    /* margin: 0 auto ; */
 
-}
+/* } */
 
-*{
+/* *{ */
     /* display: flex;   */
     /* text-align: center; */
     /* justify-content: center; */
-}
+/* } */
 
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
+/*
 .loginFormMain {
     min-height: 100vh;
     width: 100%;
@@ -214,12 +215,12 @@ body {
 .mapDisplay1 h1{
      
     /* height: 100px; */
-    font-size: 15px;
+    /* font-size: 15px;
     font-weight: 400;
     padding-bottom: 5px;
-    background-color: aliceblue;
-}
-
+    background-color: aliceblue; */
+/* } */
+/* 
 .mapDisplay2 {
     font-size: 15px;
     font-weight: 600;
@@ -258,4 +259,4 @@ body {
 
 .allVeggie input {
     background-color: e6e1e1;
-}
+} */

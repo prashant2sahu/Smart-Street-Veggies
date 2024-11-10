@@ -6,7 +6,7 @@ const Cart=require("../Models/Cart");
 // const id="662a7181b97b98ee6f0e2d4a";
 exports.setVeggiesDetail=async(req,res)=>{
     try{
-
+  
     const id=req.user.id;
     // const is=req.id;
     const {veggiesName,rate} =req.body;
@@ -31,7 +31,7 @@ exports.setVeggiesDetail=async(req,res)=>{
 
     if(!allVeggiesData){
         res.status(400).json({ 
-            success:false,
+            success:false, 
             message:"Error while uploading the veggies on its model",
         })
     }

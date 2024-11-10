@@ -38,18 +38,18 @@ app.use("/api/v1/veggies",veggie);
 app.use("/api/v1/cart",cart);
 
 
-
+ 
 const server=https.createServer(
 	// {
 	// 	key: fs.readFileSync("path/to/your/ssl.key"),
 	// 	cert: fs.readFileSync("path/to/your/ssl.crt"),
 	//   },
-	  app);
+	  app); 
 const  io= new Server(server,{
     cors:{
         origin:"*",
         credentials:true,     
-    }
+    } 
 }); 
 
 io.on("connection", (socket) => {
@@ -68,7 +68,7 @@ io.on("connection", (socket) => {
             //     longitude: updatedLocation.longitude
 				
             // });
-			console.log("locatioon updated")
+			console.log("locatioon updated",latitude,longitude)
 			
         } catch (error) {
             console.error("Failed to update location in DB:", error);

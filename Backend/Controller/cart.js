@@ -82,9 +82,9 @@ exports.showCart=async(req,res)=>{
                                   .populate({path:"stall",
                                              populate:[{
 
-                                                 path:"veggies"
-                                             },{
-                                                path:"position"
+                                                 path:"position"
+                                            },{
+                                                path:"veggies"
                                              }
 
                                              ]
