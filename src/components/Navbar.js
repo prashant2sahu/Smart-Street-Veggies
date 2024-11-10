@@ -172,8 +172,8 @@ const Navbar = () => {
      <nav className="navbar navbar-expand-lg navbar-dark ThemeColor">
         <div className="container-fluid">
           {/* Logo */}
-          <Link to="/" className="navbar-brand">
-            <img src={logo} alt="Logo" width={160} height={50} loading="lazy" />
+          <Link to="/" className="navbar-brand pl-5">
+            <img src={logo} alt="Logo" width={180} height={80} loading="lazy" />
           </Link>
 
           {/* Toggle Button for Off-Canvas Menu */}

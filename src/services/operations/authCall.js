@@ -7,7 +7,7 @@ import {setToken} from "../../Redux/slices/authSlice";
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS,READ_VEG_API,DELETE_VEG_API} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -187,3 +187,99 @@ export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
   }
 }
 
+// idhar adarsh ka kaam hai
+export function FetchUserVeggies(token) {
+  return async (dispatch) => {
+  
+    
+    try {
+      const response = await apiConnector(
+        "GET",READ_VEG_API,
+        "/readVeggies", // Replace with the actual endpoint if different
+        {},
+        { authorization: `Bearer ${token}` }
+      );
+
+      console.log("Fetching veggies API RESPONSE............", response.data.veggies);
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+     
+    
+      toast.success("Veggies data fetched successfully");
+      return response.data.veggies;
+    } catch (error) {
+      console.log("Fetching veggies API ERROR............", error);
+  
+    }
+  };
+}
+
+
+// export function DeleteVeggie(token, veggieId) {
+//   return async (dispatch) => {
+//     try {
+//       // Construct the DELETE URL
+     
+//       // Log the full URL for debugging
+// console.log("AuthCall :" , veggieId)
+//       // Making the DELETE request with the correct Authorization header
+//       const response = await apiConnector(
+//         "POST",  // HTTP method
+//         DELETE_VEG_API ,// API URL
+//         {veggieId},  // No body data for DELETE request
+//         {
+//           "Authorization": `Bearer ${token}`  // Add the Authorization header correctly
+//         }
+//       );
+
+//       // Log the response data
+//       console.log("Delete Veggie API RESPONSE:", response.data);
+
+//       // Check if the response indicates a successful deletion
+//       if (!response.data.success) {
+//         // If not successful, throw an error with the message from the API response
+//         throw new Error(response.data.message || "Failed to delete veggie");
+//       }
+
+//       // Show success toast message
+//       toast.success("Veggie deleted successfully");
+
+//       // Optionally, return the response data if needed
+//       return response.data;
+//     } catch (error) {
+//       // If an error occurs, log it and show an error toast
+//       console.log("Delete Veggie API ERROR:", error.response ? error.response.data : error.message);
+//       toast.error("Failed to delete veggie");
+//     }
+//   };
+// }
+export function DeleteVeggie(token, veggieId) {
+  return async (dispatch) => {
+    try {
+      // Correct DELETE URL
+    // Assuming /deleteVeggie is correct
+      console.log("Delete Veggie URL: " , veggieId, token);
+
+      const response = await apiConnector(
+        "POST",  // Use DELETE method
+        DELETE_VEG_API,       // URL with the proper path
+        { veggieId },  // Send veggieId in body (if the backend expects it)
+        {
+          "Authorization": `Bearer ${token}`,
+        }
+      );
+
+      if (!response.data.success) {
+        throw new Error(response.data.message || "Failed to delete veggie");
+      }
+
+      toast.success("Veggie deleted successfully");
+      return response.data;
+    } catch (error) {
+      console.log("Error:", error);
+      toast.error("Failed to delete veggie");
+    }
+  };
+}
