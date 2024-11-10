@@ -20,7 +20,7 @@ import { Navigate } from 'react-router-dom';
 // import { setPosition } from '../services/operations/authCall';
 // import cartMarker from "./CartMan_Marker.png";
 import customerMarker from "./Customer.png";
-// import jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 // import { useEffect } from 'react';
 import io from 'socket.io-client';
 

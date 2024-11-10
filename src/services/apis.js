@@ -9,7 +9,9 @@ export const  endpoint ={
 
     // veggies 
     SAVE_VEG_API:BASE_URL+"/veggies/setVeggies",
-
+    READ_VEG_API:BASE_URL+"/veggies/readVeggies",
+    DELETE_VEG_API: BASE_URL + "/veggies/deleteVeggie",
+    
     // cart online here 
     MAKE_ONLINE:BASE_URL +"/cart/makeCartOnline",
     SHOW_CART:BASE_URL+"/cart/showCart",
