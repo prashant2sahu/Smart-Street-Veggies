@@ -34,7 +34,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
         event.preventDefault();
         setIsLoggedIn(true);
         const { email, password } = formData;
-        dispatch(login(email, password, navigate));
+        const res=dispatch(login(email, password, navigate));
+      
+
         // try{
         //     const savedUserResponse = await fetch(`${URL}/user/login`,
         //     {
