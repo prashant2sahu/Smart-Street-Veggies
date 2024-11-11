@@ -7,7 +7,7 @@ import {setToken} from "../../Redux/slices/authSlice";
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS,READ_VEG_API,DELETE_VEG_API} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS,READ_VEG_API,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -32,6 +32,29 @@ export function SendOtp(email,navigate){
         toast.dismiss(taostId)
     }
 }
+export function ReSendOtp(email,navigate){
+  return async(dispatch)=>{
+      const taostId=toast.loading("Loading....");
+      dispatch(setLoading(true))
+      try{ 
+      console.log("andar uhiu");
+      
+      const response= await apiConnector("POST",SEND_OTP,{email,checkUserPresent: true});
+
+          console.log("otp response",response.data);
+          console.log("eamil",email);
+          console.log(SEND_OTP);
+          toast.success("OTP send successsfully ")
+          navigate("/resetPassword")
+          
+      }catch(error){
+                  console.log("error while otp")
+      }
+      dispatch(setLoading(false))
+      toast.dismiss(taostId)
+  }
+}
+
 
 export function SignUp(accountType,firstName,lastName,email,password,confirmPassword,otp,navigate ){
   return async(dispatch)=>{
@@ -320,3 +343,61 @@ export function DeleteVeggie(token, veggieId) {
 // }
 
 // >>>>>>> 8319f7e8bb78464687d182c4c83e89fed6ad2edd
+
+// authCall.js
+export async function ForgotPassword(email) {
+  try {
+    console.log(email);
+    const response = await apiConnector('POST', FORGOT, { email });
+    console.log(response);
+    return response.data; // Return the actual data directly
+  } catch (error) {
+    console.log(error, " Forgot password");
+    throw new Error(error.response?.data?.message || 'Error occurred while sending OTP.');
+  }
+}
+
+
+
+export const resetPassword = async (email, otp, newPassword, confirmPassword) => {
+  try {
+    // Check if all fields are provided
+    // if (!email || !otp || !newPassword || !confirmPassword) {
+    //   return {
+    //     success: false,
+    //     message: "All fields are required.",
+    //   };
+    // }
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+      return {
+        success: false,
+        message: "Passwords do not match.",
+      };
+    }
+
+    // Prepare the request payload
+    const payload = { email, otp, newPassword, confirmPassword };
+
+    // Make API call using the apiConnector
+    const response = await apiConnector(
+    'POST',
+    RESET_PASSWORD
+     , {email, otp, newPassword, confirmPassword}  // The data to be sent in the request body
+    );
+
+    // Handle success and return response
+    return {
+      success: true,
+      message: response.data.message || 'Password has been reset successfully.',
+    };
+  } catch (error) {
+    // Handle errors
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error occurred while resetting password.',
+    };
+  }
+};
+

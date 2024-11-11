@@ -114,20 +114,20 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <>
 
 <div className="container-fluid d-flex justify-content-center align-items-start" id="manageHeight">
-    <div className="container">
-        <div className="row shadow" id="manageComponenet">
+<div className="container bg-light otp-container my-5" style={{ maxWidth: '1000px' }}>
+        <div className="row  overflow-hidden" id="manageComponenet"  >
             {/* Left side - Login Form */}
-            <div className="col-md-6 col-12 d-flex justify-content-center">
-                <div className="login-form-container text-center mt-5"> {/* Added margin top */}
+            <div className="col-md-6  d-flex  manageComponenet  ">
+                <div className="login-form-container  text-center mt-4"> {/* Added margin top */}
                     <h2>Sign In</h2>
                     <p className="text-muted">Send, spend and save smarter</p>
 
                     {/* Social login buttons */}
                     <div className="mb-4 d-flex justify-content-between gap-2">
-                        <button className="btn btn-outline-secondary w-48">
+                        <button className="btn btn-outline-secondary w-48 textMaintain" >
                             <i className="fab fa-google"></i> Sign In with Google
                         </button>
-                        <button className="btn btn-outline-secondary w-48">
+                        <button className="btn btn-outline-secondary w-48 textMaintain">
                             <i className="fab fa-apple"></i> Sign In with Apple
                         </button>
                     </div>
@@ -179,10 +179,11 @@ const LoginForm = ({ setIsLoggedIn }) => {
                         <div className="d-flex justify-content-between">
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" />
-                                <label className="form-check-label">Remember me</label>
-                            </div>
-                            <Link to="/forgot" className=""  style={{textDecoration:"none",color:"red"}}>Forgot Password?</Link>
-                        </div>
+                                <label className="form-check-label "style={{fontSize:"13px"}}>Remember me</label>
+                                </div>
+                            <div className="form-check">
+                            <Link to="/forgot" className=""  style={{textDecoration:"none",color:"red",fontSize:"13px"  }}>Forgot Password?</Link>
+                       </div>  </div>
 
                         <button className="btn signinTheme w-100 mt-3">Sign In</button>
                     </form>
@@ -209,7 +210,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
                     src={image || 'https://via.placeholder.com/500x500'}
                     alt="Login Visual"
                     className="img"
-                    style={{ height: '760px',width:"450px", objectFit: 'cover' }}
+                    style={{ height: '760px',width:"550px", objectFit: 'cover' }}
                 />
                 
                 <div className="col-md-6 overlay-text position-absolute top-50 start-50 translate-middle text-white text-center d-flex flex-column gap-1">

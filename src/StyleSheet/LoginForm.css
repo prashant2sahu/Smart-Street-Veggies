@@ -1,157 +1,241 @@
-/* 
-
-  /* Custom styles for the overlay text */
+/* Custom styles for the overlay text */
 .login-image-container {
-    position: relative;
-  }
-  
-  .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .overlay-text h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  
-  .overlay-text p {
-    font-size: 1.2rem;
-    color: #fff;
-  }
-#manageHeight{
-    height:90vh;
- 
+  position: relative;
 }
-#FooterHead{
-  margin-top:70px;
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.overlay-text p {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+#manageHeight {
+  height: 90vh;
+  margin-top: -10%;;
+}
+
+#manageComponenet{
+  padding-left: 50px;
+  padding-top: 5px;
+}
+#FooterHead {
+  margin-top: 90px;
+  padding-top: 20px;
   font-size: 15px;
 }
 
-  
-  /* For smaller devices (mobile) */
-  @media (max-width: 767px) {
-    .overlay-text h1 {
+/* For smaller devices (mobile) */
+@media (max-width: 768px) {
+  .overlay-text h1 {
       font-size: 1.8rem; /* Make text smaller */
-    }
-    #manageHeight{
-        height:70vh;
+  }
+  
+  .login-form-container{
+background-color: #ffffff;
+
+  }
+  #manageHeight {
+      height: 100dvh;
+      margin:0;
+  }
+   #manageComponenet {
+   margin-top:-90px;
+   justify-content: center;
+   margin-left:-75px;
      
-    }
- .shadow{
-  box-shadow: none;
- }
-    .overlay-text p {
+  }
+
+  .shadow {
+      box-shadow: 0 0 10px white;
+  }
+
+  .overlay-text p {
       font-size: 1rem; /* Adjust paragraph text size */
-    }
-    #FooterHead{
-      margin-top:-20px;
-      font-size: 15px;
-    }
-    
+  }
+  .textMaintain
+  {
+    font-size: 1rem;
+    flex-wrap: nowrap;
+  }
+  .signinTheme {
+    border-radius: 999px;
+    padding: 0.9em 1em;
+    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+    letter-spacing: 0.08rem;
   }
   
-  /* For tablets (iPad Pro) */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .overlay-text h1 {
+  .signinTheme:hover,
+  .signinTheme:focus {
+    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
+    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+  }
+  #FooterHead {
+      margin-top: -20px;
+      font-size: 10px;
+  }
+}
+
+/* For tablets (iPad Pro) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .overlay-text h1 {
       font-size: 2.5rem; /* Reduce font size on tablets */
-    }
-    .shadow{
- 
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
-  
-      
-    }
-  
-    .overlay-text p {
+  }
+
+  .shadow {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+                  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+                  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+
+  .overlay-text p {
       font-size: 1.1rem;
-    }
+  }
+}
+
+/* For larger devices (desktop) */
+@media (min-width: 1025px) {
+  .overlay-text h1 {
+      font-size: 3.5rem; /* Larger font size for desktops */
+  }
+
+ 
+
+  .shadow {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+                  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+                  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+
+  .overlay-text p {
+      font-size: 1.3rem;
+  }
+}
+
+.manage {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* For extra-large devices */
+@media (min-width: 1200px) {
+  .innerSubheading {
+      margin-left: 5px;
+  }
+
+  #manageComponenet {
+      /* margin-left: 200px; */
+  }
+
+  .signinTheme {
+    border-radius: 999px;
+    padding: 1em 2em;
+    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+    letter-spacing: 0.08rem;
   }
   
-  /* For larger devices (desktop) */
-  @media (min-width: 1025px) {
-    .overlay-text h1 {
-      font-size: 3.5rem; /* Larger font size for desktops */
-    }
-    #manageComponenet{
-margin-left: 200px;
-box-sizing: border-box;
-width:900px
-
-    }
-    
-    .shadow{
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
-    }
-   
-    .overlay-text p {
-      font-size: 1.3rem;
-    }
+  .signinTheme:hover,
+  .signinTheme:focus {
+    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
+    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
   }
-  .manage{
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-
- @media (min-width: 1200px) {
-    /* Styles for extra large devices */
-    .innerSubheading{
-margin-left:5px;
-    }
-    #manageComponenet{
-      margin-left: 200px;
-          }
-          .shadow{
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
-          }
 }
 
+/* For large devices */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    /* Styles for large devices */
-    .innerSubheading{
-        margin-left:5px;
-            }
-            #FooterHead{
-              font-size: 10px;
-            }
-            #manageComponenet{
-              margin-left: 200px;
-                  }
-                  .shadow{
-                    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;    
-                  }
+  .innerSubheading {
+      margin-left: 5px;
+  }
+  .signinTheme {
+    border-radius: 999px;
+    padding: 1em 2em;
+    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+    letter-spacing: 0.08rem;
+  }
+  
+  .signinTheme:hover,
+  .signinTheme:focus {
+    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
+    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+  }
+  #FooterHead {
+      font-size: 10px;
+  }
+
+  #manageComponenet {
+      /* margin-left: -200px; */
+  }
+
+  .shadow {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+                  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+                  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
 }
 
+/* For medium devices */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    /* Styles for medium devices */
-    .innerSubheading{
-        margin-left:5px;
-            }
+  .innerSubheading {
+      margin-left: 5px;
+  }
 }
 
-.signinTheme{
+/* Sign-in button theme */
+/* .signinTheme {
   border-radius: 999px;
   padding: 1em 2em;
   background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
   border: none;
-  color: rgb(255, 255, 255);
-  font-size: 1rem;
+  color: #fff;
+  font-size: 0.9rem;
   text-transform: uppercase;
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
-  transition: box-shadow 0.25s ease 0s;
+  transition: box-shadow 0.25s ease;
   letter-spacing: 0.08rem;
 }
+
 .signinTheme:hover,
 .signinTheme:focus {
- background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
- box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
-}
+  background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
+  box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+} */

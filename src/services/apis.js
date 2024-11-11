@@ -6,7 +6,8 @@ export const  endpoint ={
     LOGIN:BASE_URL+ "/user/login",
     SIGN_UP: BASE_URL+ "/user/signup",
     SET_POS: BASE_URL+ "/user/setPosition",
-
+    FORGOT: BASE_URL+"/user/forgotPassword",
+    RESET_PASSWORD:BASE_URL+"/user/resetPassword",
     // veggies 
     SAVE_VEG_API:BASE_URL+"/veggies/setVeggies",
     READ_VEG_API:BASE_URL+"/veggies/readVeggies",

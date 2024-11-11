@@ -1,0 +1,37 @@
+.mapDisplay1{
+    height: 200px;
+    width: 150px;
+}
+.mapDisplay1 h1{
+     
+    /* height: 100px; */
+     font-size: 15px;
+    font-weight: 600;
+    /* padding-bottom: 5px; */
+    /* background-color: aliceblue;  */
+}
+ 
+.mapDisplay2 {
+    font-size: 15px;
+    font-weight: 600;
+    align-items: start;
+    display: flex;
+    justify-content: space-between;  
+    /* padding: 3px; */
+}
+.mapDisplay2 h2{
+    font-size: 15px;
+    /* font-weight: 600; */
+    align-items: start;
+    display: flex;
+    justify-content: space-between;  
+    /* padding: 3px; */
+}
+.mapDisplay3 {
+    color: white;
+    background-color: green;
+    padding: 7px;
+    border-radius: 10px;
+    display: block; 
+    margin: auto;
+}
