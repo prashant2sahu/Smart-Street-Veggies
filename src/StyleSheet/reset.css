@@ -1,0 +1,14 @@
+#resetPasswordButton{
+    text-align: center;
+    color: rgb(244, 237, 237); 
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+
+}
+@media (max-width:768px){
+  .reset-password ,.otp-container{
+    margin-top: -50px;
+    }
+}

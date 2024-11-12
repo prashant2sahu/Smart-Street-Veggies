@@ -155,8 +155,8 @@ const SignupForm = ({ setIsLoggedIn }) => {
         // </div>
         <>
       
-            <div className="container d-flex align-items-md-start">
-                <div className="row vh-100" style={{ marginTop: "50px" }}>
+            <div className="container d-flex align-items-md-start signupheight">
+                <div className="row " style={{ marginTop: "50px" }}>
                     {/* Left side image with overlay text */}
                     <div className="col-md-4 d-none d-md-block position-relative" style={{ marginLeft: "100px" }}>
     <img
@@ -194,7 +194,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
 
                             {/* Account type */}
                             <div className='mb-3'>
-                                <label className="form-label">Account Type</label>
+                                <label className="form-label fw-bold">Account Type</label>
                                 <div className='d-flex'>
                                     <div className="form-check me-4">
                                         <input
@@ -230,7 +230,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                             {/* User details */}
                             <div className="row mb-3">
                                 <div className="col">
-                                    <label className="form-label">First Name</label>
+                                    <label className="form-label fw-bold">First Name</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -242,7 +242,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                                     />
                                 </div>
                                 <div className="col">
-                                    <label className="form-label">Last Name</label>
+                                    <label className="form-label fw-bold">Last Name</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -256,7 +256,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                             </div>
 
                             {/* Email */}
-                            <label className="form-label">Email Address</label>
+                            <label className="form-label fw-bold">Email Address</label>
                             <div className="mb-3 input-group">
 
                                 <span className="input-group-text">
@@ -276,7 +276,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                             {/* Password */}
                             <div className="row mb-3">
                                 <div className="col">
-                                    <label className="form-label">Create Password</label>
+                                    <label className="form-label fw-bold">Create Password</label>
                                     <div className="input-group">
                                     <span className="input-group-text">
                                     <i className="fas fa-lock"></i>
@@ -302,7 +302,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                                 </div>
                                 <div className="row mb-3">
                                 <div className="col">
-                                    <label className="form-label">Confirm Password</label>
+                                    <label className="form-label fw-bold">Confirm Password</label>
                                     <div className="input-group">
                                     <span className="input-group-text">
                                     <i className="fas fa-lock"></i>
