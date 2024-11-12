@@ -9,12 +9,14 @@ const positionSchema=mongoose.Schema({
     lat:{
         type:String,
         trim:true,
-        expires:1*60
+        expires:1*60,
+        required:true
     },
     lng:{
         type:String,
         trim:true,
         expires:1*60
+,        required:true
     },
     timestamp: {
         type: Date,

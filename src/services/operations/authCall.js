@@ -147,7 +147,7 @@ export function login(email,password, navigate) {
       navigate("/")
     }
   }
-
+ 
 // export function setPosition(lat,lng,token) {
 //   return async (dispatch) => {
 //     // const toastId = toast.loading("Loading...")

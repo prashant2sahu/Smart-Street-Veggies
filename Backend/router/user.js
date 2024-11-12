@@ -17,6 +17,6 @@ router.post("/forgotPassword", forgotPassword);
 router.post("/resetPassword", resetPassword);
 
 
-router.post("/setPosition",auth,setPosition)
+// router.post("/setPosition",auth,setPosition)
  
 module.exports=router;

@@ -126,7 +126,7 @@ function AccountSetting() {
              <p className="text-muted">
               Please note that if you choose to delete your profile, your Greengrocer account would no longer exist. You would lose access to the resources provided.
             </p>
-            <Button variant="danger ">Delete</Button>
+            <Button variant="danger">Delete</Button>
           </Card>
 
   );
