@@ -214,9 +214,9 @@ function MapDisplay() {
 
     setMap(map)
   }, [])
-  function BookCartHandler(){
-      dispatch(BookCart(token,Navigate));
-      console.log("Your Card has booked now we will connect you soon ");
+  function BookCartHandler(id){
+      dispatch(BookCart(id,token,Navigate));
+      console.log("Your Card has booked now we will connect you soon ",id);
   }
 
   const icon = {
@@ -267,7 +267,7 @@ return isLoaded ? (
     {
     rowData.map((element) => {
   // Check that element has a valid position with both latitude and longitude
-  const { _id,   } = element;
+  const { _id,   } = element; 
   const {firstName,lastName,position}=element.stall
   
   console.log("lat",position);
@@ -278,7 +278,8 @@ return isLoaded ? (
       <div key={_id}>
         <Marker
           position={{ lat: lat, lng: lng }}
-          onClick={() => setOneCart(element.stall)}
+          // onClick={() => setOneCart(element.stall)}
+          onClick={() => setOneCart(prevCart => (prevCart && prevCart._id === _id ? null : element.stall))}
           icon={icon}
         />
       </div>
@@ -320,7 +321,7 @@ return isLoaded ? (
   <InfoWindow
     key={oneCart._id}
     position={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
-    // onCloseClick={() => setOneCart(null)} // Optional: Close the InfoWindow when clicked outside
+    onCloseClick={() => setOneCart(null)} // Optional: Close the InfoWindow when clicked outside
   >
     <div className="mapDisplay1">
       <h1>{oneCart.firstName}</h1>
@@ -332,7 +333,7 @@ return isLoaded ? (
           <h2>{veg.rate}</h2>
         </div>
       ))}
-      <button className='mapDisplay3' onClick={BookCartHandler}>Book Now</button>
+      <button className='mapDisplay3' onClick={()=>BookCartHandler(oneCart._id)}>Book Now</button>
     </div>
   </InfoWindow>
 )}

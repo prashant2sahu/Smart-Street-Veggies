@@ -129,6 +129,7 @@ exports.login=async(req ,res)=>{
 
             
             user.token=token;
+            // localStorage.setItem("token",token);
             // user.password=undefined;
             const option={
                 expires:new Date( Date.now() +3*24*60*60*1000), 

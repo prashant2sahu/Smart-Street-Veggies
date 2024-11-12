@@ -46,6 +46,11 @@ const userSchema=mongoose.Schema({
         //may be array but not now
         type:mongoose.Schema.Types.ObjectId,
         ref:"Veggie"
+    }] ,
+    cartBooked:[{
+        //may be array but not now
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User" 
     }] 
 })
 
