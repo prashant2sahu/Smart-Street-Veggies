@@ -86,10 +86,18 @@
 import {React,useState} from 'react';
 import { Container, Card ,Form ,Button} from 'react-bootstrap';
 import {deleteUserAccount} from '../services/operations/authCall'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../services/operations/authCall';
+import { toast } from 'react-hot-toast';
 import { getFromLocalStorage } from '../services/operations/SecureLocal';
 function AccountSetting() {
+  let dispatch =useDispatch();
   let navigate =useNavigate();
+  const handleLogout = () => {
+    dispatch(logout(navigate));
+    toast.success('Logged Out');
+  };
   const [isAgreed, setIsAgreed] = useState(false);
 
     // Handle checkbox change
@@ -105,7 +113,9 @@ function AccountSetting() {
             console.log("Profile deleted.");
             let data=getFromLocalStorage("userData")
             console.log("Profile deleted. ", data.email);
-           if( deleteUserAccount(data.email)) navigate('/signup')
+           if( deleteUserAccount(data.email)) 
+            handleLogout();
+            navigate('/signup')
         }
     };
   return (

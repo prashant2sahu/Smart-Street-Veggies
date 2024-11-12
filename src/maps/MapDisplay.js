@@ -268,6 +268,7 @@ return isLoaded ? (
     rowData.map((element) => {
   // Check that element has a valid position with both latitude and longitude
   const { _id,   } = element;
+  console.log(element.stall);
   const {firstName,lastName,position}=element.stall
   
   console.log("lat",position);

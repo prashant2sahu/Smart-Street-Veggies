@@ -165,14 +165,18 @@ const Navbar = () => {
     dispatch(logout(navigate));
     toast.success('Logged Out');
   };
-  useLayoutEffect(()=>{
+useLayoutEffect(()=>{
    let result=getFromLocalStorage('userData')
- 
+    if(result){
   setAccountType(result.accountType) 
+    }else{
+      
+      
+    }
    console.log(accountType); 
   })
  
-  //
+  
 
   return (
    <>
@@ -207,7 +211,7 @@ const Navbar = () => {
               <li className="nav-item mx-3">
                 <Link to="/" id="Hovering" className="nav-link">Contact</Link>
               </li>
-             {accountType=="Customer"?"":<> <li className="nav-item mx-3">
+             {accountType==="Customer"?<></>:<> <li className="nav-item mx-3">
                 <Link to="/addVeggie" id="Hovering" className="nav-link">AddVeggie</Link>
               </li>   </>}
             </ul>
@@ -284,7 +288,8 @@ const Navbar = () => {
           </li>
 
           {accountType=="Customer"?"":<> <li className="nav-item mx-3">
-                <Link to="/addVeggie" id="Hovering" className="nav-link">AddVeggie</Link>
+                <Link to="/addVeggie" id="Hovering" className="nav-link" style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
+                >AddVeggie</Link>
               </li>   </>}
         </ul>
 

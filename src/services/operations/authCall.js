@@ -147,6 +147,8 @@ export function login(email,password, navigate) {
       // dispatch(resetCart())
       localStorage.removeItem("token")
       localStorage.removeItem("accountType")
+      localStorage.removeItem("userData")
+
       
       // localStorage.removeItem("user")
       toast.success("Logged Out")
