@@ -4,10 +4,19 @@ import AccountSettings from './AccountSettings'; // Import your AccountSettings 
 import image from '../assets/dashboardLogo.avif'
 import '../StyleSheet/Dashboard.css'
 import PurchaseHistory from './PurchaseHistory'
+import Wallet from './Wallet';
+import {getFromLocalStorage} from '../services/operations/SecureLocal'
+import Notifications from './Notification';
+
+// Importing other components
 function Dashboard() {
   // State to manage which section is active
   const [activeSection, setActiveSection] = useState('account');
+  let ans=getFromLocalStorage('userData')
+// let FirstName=getFromLocalStorage("firstName")
+// let LastName=getFromLocalStorage("lastName")
 
+  console.log(ans);
   // Render the main content based on the active section
   const renderSection = () => {
     switch (activeSection) {
@@ -25,19 +34,19 @@ function Dashboard() {
   };
 
   return (
-    <Container  >
-      <Row className='p-3'  >
+    <Container fluid className='mt-2' >
+      <Row className='p-3'  style={{ background: "#2B4F61" }}>
         {/* Sidebar Navigation */}
         <Col xs={12} md={3} className="sidebar  p-4 rounded" style={{ background: "#2B4F61" }}>
           <div className="text-center mb-4">
             <img
               src={image} // Placeholder for logo
               alt="Logo"
-              className="img-fluid rounded-circle mb-2"
+              className="img-fluid rounded-circle mt-4 mb-2"
               style={{ height: "150px", width: "150px" }}
             />
-            <h5 className="text-white">Customer</h5>
-            <p className="text-white">Hardik Dhakite</p>
+            <h5 className="text-white">{ans.accountType}</h5>
+            <p className="text-white">{`${ans.firstName} ${ans.lastName}`}</p>
           </div>
           <Nav className="flex-column">
             <Nav.Item className="mb-2">
@@ -84,8 +93,8 @@ function Dashboard() {
           {renderSection()}
         </Col>
       </Row>
-      <footer className="text-center mt-4">
-        <p>2024 © Smart Street Veggies</p>
+      <footer className="d-flex justify-content-between mt-1">
+      <p>Privacy Policy</p> <p>2024 © Smart Street Veggies</p>
       </footer>
     </Container>
   );
@@ -96,27 +105,10 @@ function Dashboard() {
 
 
 // Placeholder components for other sections
-function Wallet() {
-  return (
-    <Card className="p-4">
-      <h4>My Wallet</h4>
-      <p>Balance: ₹5000</p>
-      {/* Add additional wallet functionalities here */}
-    </Card>
-  );
-}
 
 
 
-function Notifications() {
-  return (
-    <Card className="p-4">
-      <h4>Notifications</h4>
-      <p>You have 3 new notifications.</p>
-      {/* Add notification details here */}
-    </Card>
-  );
-}
+
 
 export default Dashboard;
 

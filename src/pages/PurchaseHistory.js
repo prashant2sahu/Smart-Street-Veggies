@@ -12,12 +12,19 @@ const PurchaseHistory = () => {
     { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
     { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
     { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 5, amount: "₹420" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 1, amount: "₹20" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" },
+    { date: "12-10-2024", orderId: "gJXGJ1711214/2662780", items: 3, amount: "₹320" }
   ];
 
   return (
-    <Card className="p-4">
+    <Card className="p-4" style={{minHeight:"700px"}}>
       <h4 className="mb-3">Purchase History</h4>
-      <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+      <div style={{ maxHeight: '600px', overflowY: 'auto' }}>
         <Table striped bordered hover size="sm" responsive>
           <thead style={{ background: '#2B4F61', color: 'white' }}>
             <tr>

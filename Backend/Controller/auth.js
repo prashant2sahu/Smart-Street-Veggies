@@ -89,7 +89,42 @@ exports.signup=async(req ,res)=>{
     }
 
 }
-    
+// Controller function to delete the account
+exports.deleteAcc = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        // Check if email is provided
+        if (!email) {
+            return res.status(400).json({
+                success: false,
+                message: "Email is required to delete account",
+            });
+        }
+
+        // Find and delete the user by email
+        const user = await User.findOneAndDelete({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Account deleted successfully",
+        });
+    } catch (error) {
+        console.error("Error deleting account:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error deleting account",
+        });
+    }
+};
+
 exports.login=async(req ,res)=>{
 
     try{
@@ -110,7 +145,7 @@ exports.login=async(req ,res)=>{
 			});
 		}
 
-        
+       
 
         // let hashedPass=bcrypt.hash(password,10);
         const payload={

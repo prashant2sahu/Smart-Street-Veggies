@@ -83,13 +83,34 @@
 // }
 
 // export default AccountSettings;
-import React from 'react';
+import {React,useState} from 'react';
 import { Container, Card ,Form ,Button} from 'react-bootstrap';
-
+import {deleteUserAccount} from '../services/operations/authCall'
+import { useNavigate } from 'react-router-dom';
+import { getFromLocalStorage } from '../services/operations/SecureLocal';
 function AccountSetting() {
+  let navigate =useNavigate();
+  const [isAgreed, setIsAgreed] = useState(false);
+
+    // Handle checkbox change
+    const handleCheckboxChange = (event) => {
+        alert("are you sure ??")
+        setIsAgreed(event.target.checked);
+    };
+
+    // Delete button handler
+    const handleDelete = () => {
+        if (isAgreed) {
+            // Your delete function here
+            console.log("Profile deleted.");
+            let data=getFromLocalStorage("userData")
+            console.log("Profile deleted. ", data.email);
+           if( deleteUserAccount(data.email)) navigate('/signup')
+        }
+    };
   return (
    
-    <Card className="p-4">
+    <Card className="p-4" style={{minHeight:"700px"}}>
        <h4 className="mb-3">Account Settings</h4>
 
 <Form>
@@ -119,16 +140,23 @@ function AccountSetting() {
 
           <h4>Delete Profile</h4>
             <Form.Check
-              type="checkbox"
-              label="I agree to delete my profile"
-              className="mb-2"
+                type="checkbox"
+                label="I agree to delete my profile"
+                className="mb-2"
+                checked={isAgreed}
+                onChange={handleCheckboxChange}
             />
-             <p className="text-muted">
-              Please note that if you choose to delete your profile, your Greengrocer account would no longer exist. You would lose access to the resources provided.
+            <p className="text-muted">
+                Please note that if you choose to delete your profile, your Greengrocer account will no longer exist, and you will lose access to the resources provided.
             </p>
-            <Button variant="danger">Delete</Button>
-          </Card>
-
+            <Button
+                variant="danger"
+                onClick={handleDelete}
+                disabled={!isAgreed} // Disable button if checkbox is unchecked
+            >
+                Delete
+            </Button>
+        </Card>
   );
 }
 

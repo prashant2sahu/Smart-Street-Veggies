@@ -4,10 +4,11 @@ import {setIsLoggedIn, setLoading} from "../../Redux/slices/authSlice"
 import toast from "react-hot-toast";
 import { useSelector,useDispatch } from "react-redux";
 import {setToken} from "../../Redux/slices/authSlice";
+import {saveToLocalStorage} from '../operations/SecureLocal'
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS,READ_VEG_API,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -110,7 +111,12 @@ export function login(email,password, navigate) {
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
         
+        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email})
+     console.log(response.data.user.firstName);
+
+        
         localStorage.setItem("token", JSON.stringify(response.data.token))
+        
         toast.success("Login Successful")
         dispatch(setIsLoggedIn(true));
         // return;
@@ -401,3 +407,31 @@ export const resetPassword = async (email, otp, newPassword, confirmPassword) =>
   }
 };
 
+// apiConnector.js
+
+export async function deleteUserAccount(email,navigate) {
+  if (!email) {
+      console.error("Email is required to delete account.");
+      return;
+  }
+
+  try {
+      const result = await apiConnector("DELETE",DELETE_ACCOUNT,{email});
+
+     
+      if (result.success) {
+        window.location.href="/signup"
+        console.log("Account deleted successfully.");
+        
+        // Redirect to the signup page after account is deleted
+        localStorage.clear()
+      // Adjust the path as per your routes
+    } else {
+        console.error("Failed to delete account:", result.message);
+    }
+      return result; // Return the result to handle in the calling function
+  } catch (error) {
+      console.error("Error in API call:", error);
+      return { success: false, message: "API call failed" };
+  }
+}
