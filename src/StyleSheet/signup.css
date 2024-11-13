@@ -17,7 +17,7 @@
         font-size: 1.2rem;
         color: #fff;
     }
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         #signBtn{
         font-size:7px;
         width:50px;
@@ -36,6 +36,7 @@
     .FormShadow1{
         margin-top: -90px;
     }
+  
     }
     .imgShadow{
         box-shadow: -7px 5px 19px -7px rgba(0,0,0,0.74);
@@ -84,9 +85,11 @@
             width:100%;
             justify-content:space-between;
         }
-        .FormShadow1{
-
-        }
+        .signupheight{
+            height:fit-content;
+            position: absolute;
+            top:390px;
+            }
         
 
     }
@@ -108,7 +111,11 @@
         overflow: hidden;
         padding-left: 62px;
         }
-
+        .signupheight{
+            height:fit-content;
+            position: absolute;
+            top:390px;
+            }
     }
 
     /* Large desktop screens (min-width: 1200px) */
@@ -129,13 +136,10 @@
         overflow: hidden;
         padding-left: 62px;
         }
-        
         .signupheight{
-            height:70vh;
-            /* align-items: start; */
-            margin-top:-300px;
-        
-        
+            height:fit-content;
+            position: absolute;
+            top:100px;
             }
     
     }
@@ -144,7 +148,7 @@
     .signupbtn {
         width: 100%;
         height: 50px;
-        background: linear-gradient(to top, #5a26b6, #5324a6, #153565);
+        background: linear-gradient(to top, #2B4F61,#314b59, #51788b);
         color: #fff;
         border-radius: 50px;
         border: none;
@@ -186,10 +190,4 @@
     .signupbtn:hover .signupbtn-text-two {
         top: 50%;
     }
-    .signupheight{
-    height:70vh;
-    /* align-items: start; */
-
-
-
-    }
+   

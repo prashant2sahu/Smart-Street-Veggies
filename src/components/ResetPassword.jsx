@@ -3,6 +3,7 @@ import { resetPassword } from '../services/operations/authCall'; // The resetPas
 import image from '../assets/StreetLogin.png'; // Import the image
 import { useNavigate } from 'react-router-dom'; // For redirection
 import "../StyleSheet/reset.css";
+import Footer from './Footer';
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function ResetPassword() {
     }
   };
 
-  return (
+  return (<>
     <div className="reset-password">
       <div className="container bg-light otp-container my-5" style={{ maxWidth: '1000px' }}>
         <div className="row rounded overflow-hidden">
@@ -112,6 +113,9 @@ function ResetPassword() {
         </div>
       </div>
     </div>
+    <div className="HandleForgotFooter">
+<Footer/>
+    </div></>
   );
 }
 

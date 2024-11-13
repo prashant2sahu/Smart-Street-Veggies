@@ -54,11 +54,14 @@
     margin-top: 16px;
 }
 .reset-button{
-  background-color: #52069a;
+  background-color: #2B4F61;
+  color:white;
+  font-weight: bold;
 }
 .reset-button:hover{
-  transition: 2s; background-color: #52069a;
-   box-shadow:0 0 10px #52069a ;
+  transition: 2s; background-color: #2B4F61;
+   box-shadow:0 0 10px #2B4F61 ;
+   color:whitesmoke
 }
 @media (max-width:768px){
   .forgot-password ,.otp-container{
@@ -94,6 +97,11 @@
     .forgot-password .form-control {
       font-size: 16px;
     }
+
+    .HandleForgotFooter{
+      top:-930px;
+      position: relative;
+    }
   }
   
   @media (max-width: 576px) {
@@ -104,7 +112,10 @@
     .forgot-password .otp-section {
       padding: 15px;
     }
-  
+    .HandleForgotFooter{
+      top:-930px;
+      position: relative;
+    }
     .forgot-password .form-control {
       font-size: 14px;
     }

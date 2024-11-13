@@ -8,6 +8,7 @@ import { SendOtp } from "../services/operations/authCall";
 import image from '../assets/StreetLogin.png'
 import { FaGoogle, FaApple } from 'react-icons/fa';
 import "../StyleSheet/signup.css"
+import  Footer from '../components/Footer'
 
 const SignupForm = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
@@ -165,11 +166,11 @@ const SignupForm = ({ setIsLoggedIn }) => {
         className="imgShadow"
         style={{ height: "760px" , objectFit: 'cover' }}
     />
-     <div className="card-img-overlay d-flex flex-column justify-content-center align-items-start position-relative" style={{marginTop:"-450px",marginLeft:"20px"}}>
-    <h5 className="card-title text-white mt-5 " style={{ fontSize: "4rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Smart</h5>
-    <h6 className="card-title text-white" style={{ fontSize: "2rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Street Veggie</h6>
-    <p className="card-text text-white-50 " style={{paddingLeft:"30px"}}>Yahhh!!! Fresh Veggies</p>
-    <p className="card-text mt-2 text-center" style={{ color: "gainsboro", fontSize: "1.2rem" }}>
+     <div className="card-img-overlay d-flex flex-column justify-content-center animate__animated animate__fadeIn align-items-start position-relative" style={{marginTop:"-450px",marginLeft:"20px"}}>
+    <h5 className="card-title text-white mt-5  " style={{ fontSize: "4rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Smart</h5>
+    <h6 className="card-title text-white animate__animated " style={{ fontSize: "2rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Street Veggie</h6>
+    <p className="card-text text-white-50 animate__animated  " style={{paddingLeft:"30px"}}>Yahhh!!! Fresh Veggies</p>
+    <p className="card-text mt-2 text-center animate__animated " style={{ color: "gainsboro", fontSize: "1.2rem" }}>
       Welcome to Smart Street Veggies, your local source for fresh, healthy, and sustainably grown produce! We are committed to bringing farm-fresh vegetables straight to your neighborhood.
     </p>
 
@@ -343,6 +344,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
                     </div>
                 </div>
             </div>
+<Footer/>
         </>
     )
 }

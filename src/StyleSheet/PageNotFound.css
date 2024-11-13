@@ -8,6 +8,10 @@
         height: 70vh;
         margin-top: -50px;
     }
+    #MaintainFooter{
+     top: -950px;
+        position: relative;
+    }
 }
 /* Typing animation for the 404 text */
 .typing-animation {
@@ -35,3 +39,4 @@
         border-color: #333;
     }
 }
+

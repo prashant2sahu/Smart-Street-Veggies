@@ -116,7 +116,7 @@ export function login(email,password, navigate) {
 
         
         localStorage.setItem("token", JSON.stringify(response.data.token))
-        
+        window.location.reload()
         toast.success("Login Successful")
         dispatch(setIsLoggedIn(true));
         // return;

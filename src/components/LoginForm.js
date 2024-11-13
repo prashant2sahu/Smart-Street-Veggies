@@ -6,6 +6,7 @@ import { login } from '../services/operations/authCall';
 import { useDispatch } from "react-redux"
 import image from '../assets/StreetLogin.png'
 import '../StyleSheet/LoginForm.css'
+import Footer from './Footer';
 
 const LoginForm = ({ setIsLoggedIn }) => {
     const URL = process.env.REACT_APP_BASE_URL;
@@ -35,6 +36,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         setIsLoggedIn(true);
         const { email, password } = formData;
         const res=dispatch(login(email, password, navigate));
+     
       
 
         // try{
@@ -115,7 +117,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         // </div>
         <>
 
-<div className="container-fluid d-flex justify-content-center align-items-start" id="manageHeight">
+<div className="container-fluid d-flex justify-content-center md-5 align-items-start" id="manageHeight">
 <div className="container bg-light otp-container my-5" style={{ maxWidth: '1000px' }}>
         <div className="row  overflow-hidden" id="manageComponenet"  >
             {/* Left side - Login Form */}
@@ -217,7 +219,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
                 
                 <div className="col-md-6 overlay-text position-absolute top-50 start-50 translate-middle text-white text-center d-flex flex-column gap-1">
                     <div className='innerSubheading'>
-                        <div className='' style={{
+                        <div className='animate__animated animate__slideInRight' style={{
                             marginTop: "310px",
                             position: "relative",
                             fontSize: "4.5rem",
@@ -230,12 +232,12 @@ const LoginForm = ({ setIsLoggedIn }) => {
                             color: "white",
                             marginLeft: "-50%",
                             marginTop: "-20px"
-                        }} className='subHeading'
+                        }} className='subHeading animate__animated animate__slideInRight'
                         >Street veggie</div>
-                        <p className="subHeading" style={{
+                        <p className="subHeading animate__animated animate__slideInRight" style={{
                             color: 'gainsboro', marginLeft: "-50%"
                         }}>Yahhh!!! Fresh Veggies</p>
-                        <p className=" " style={{
+                        <p className=" animate__animated animate__slideInRight" style={{
                             fontSize: "1.2rem",
                             textOverflow: "wrap",
                             color: "white",
@@ -252,8 +254,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
             </div>
         </div>
     </div>
+  
 </div>
-
+  <Footer/>
 
         </>
     )

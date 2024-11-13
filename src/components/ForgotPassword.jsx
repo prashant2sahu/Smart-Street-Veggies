@@ -106,6 +106,7 @@ import { useNavigate } from 'react-router-dom';
 import "../StyleSheet/forgot.css";
 import { useDispatch } from 'react-redux';
 import image from '../assets/StreetLogin.png';
+import Footer from './Footer';
 
 function ForgotPasswordPage() {
   const navigate = useNavigate();
@@ -211,6 +212,10 @@ function ForgotPasswordPage() {
           </div>
         </div>
       </div>
+      <div className='HandleForgotFooter'>
+ <Footer />
+      </div>
+     
     </>
   );
 }

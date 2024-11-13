@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom"
 import toast from 'react-hot-toast';
 import '../StyleSheet/Otp.css'
 import image from '../assets/StreetLogin.png'
+import Footer from '../components/Footer';
+
 // const dotenv=require("dotenv")
 
 const URL=process.env.REACT_APP_BASE_URL;
@@ -64,7 +66,7 @@ function VerifyEmail() {
 <>
 <div className='verify-email'>
 <div className="container bg-light otp-container my-5">
-    <div className="row shadow rounded overflow-hidden">
+    <div className="row bg-light rounded overflow-hidden">
       
       {/* OTP Section - Visible on All Screens */}
       <div className="col-md-6 otp-section pt-5 d-flex flex-column justify-content-center align-items-center bg-light" id="OTPBOX">
@@ -128,6 +130,8 @@ function VerifyEmail() {
     </div>
   </div>
   </div>
+  <div className='handleFooter'>
+  <Footer/></div>
 </>
 );
 }
