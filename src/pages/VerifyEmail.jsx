@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom"
 import toast from 'react-hot-toast';
 import '../StyleSheet/Otp.css'
 import image from '../assets/StreetLogin.png'
+import Footer from '../components/Footer';
+
 // const dotenv=require("dotenv")
 
 const URL=process.env.REACT_APP_BASE_URL;
@@ -64,7 +66,7 @@ function VerifyEmail() {
 <>
 <div className='verify-email'>
 <div className="container bg-light otp-container my-5">
-    <div className="row shadow rounded overflow-hidden">
+    <div className="row bg-light rounded overflow-hidden">
       
       {/* OTP Section - Visible on All Screens */}
       <div className="col-md-6 otp-section pt-5 d-flex flex-column justify-content-center align-items-center bg-light" id="OTPBOX">
@@ -114,7 +116,7 @@ function VerifyEmail() {
         <img src={image} alt="Fresh Veggies" className="img" style={{ objectFit: 'cover' ,height:'740px',width:"450px" }} />
         
       
-          <div className="card-img-overlay d-flex flex-column justify-content-center align-items-start  " style={{margin:"0 0 -200px 0" , paddingLeft:"10px", paddingRight:'10px'}}>
+          <div className=" animate__animated animate__fadeIn card-img-overlay d-flex flex-column justify-content-center align-items-start  " style={{margin:"0 0 -200px 0" , paddingLeft:"10px", paddingRight:'10px'}}>
     <h5 className="card-title text-white mt-5 " style={{ fontSize: "4rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Smart</h5>
     <h6 className="card-title text-white" style={{ fontSize: "2rem", fontWeight: "bold" ,paddingLeft:"30px"}}>Street Veggie</h6>
     <p className="card-text text-white-50 " style={{paddingLeft:"30px"}}>Yahhh!!! Fresh Veggies</p>
@@ -128,6 +130,8 @@ function VerifyEmail() {
     </div>
   </div>
   </div>
+  <div className='handleFooter'>
+  <Footer/></div>
 </>
 );
 }

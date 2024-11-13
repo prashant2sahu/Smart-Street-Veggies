@@ -30,3 +30,14 @@
 .footer {
   color: #2B4F61;
 }
+
+
+
+
+/* DAshboard footer handle for mobile  */
+@media ( max-width:768px){
+.HandleFooter{
+ position: relative;
+ top:-935px;
+}
+}

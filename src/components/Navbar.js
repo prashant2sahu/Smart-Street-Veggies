@@ -147,7 +147,7 @@
 // }
 
 // export default Navbar
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../services/operations/authCall';
@@ -160,21 +160,22 @@ const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
- let [accountType,setAccountType]=useState('')
+ let [accountType,setAccountType]=useState(null)
   const handleLogout = () => {
     dispatch(logout(navigate));
     toast.success('Logged Out');
   };
-useLayoutEffect(()=>{
-   let result=getFromLocalStorage('userData')
-    if(result){
-  setAccountType(result.accountType) 
-    }else{
-      
-      
+  useEffect(() => {
+    let result = getFromLocalStorage('userData');
+    
+    if (result) {
+      setAccountType(result.accountType);
+    
     }
-   console.log(accountType); 
-  })
+  
+ 
+  }, []);
+  
  
   
 
@@ -211,9 +212,13 @@ useLayoutEffect(()=>{
               <li className="nav-item mx-3">
                 <Link to="/" id="Hovering" className="nav-link">Contact</Link>
               </li>
-             {accountType==="Customer"?<></>:<> <li className="nav-item mx-3">
-                <Link to="/addVeggie" id="Hovering" className="nav-link">AddVeggie</Link>
-              </li>   </>}
+            {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
+                <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
+              </li></>):accountType==="CartMan" && token?<>  <li className="nav-item mx-3">
+                <Link to="/addveggie" id="Hovering" className="nav-link">AddVeggie</Link>
+              </li></>:<></>}
+
+
             </ul>
          
           </div>
@@ -234,9 +239,7 @@ useLayoutEffect(()=>{
           </div>
         </div>
       </nav>
-
       {/* Off-Canvas Menu for Mobile/Tablet */}
-
     <div
       className="offcanvas offcanvas-end"
       tabIndex="-1"
@@ -244,7 +247,7 @@ useLayoutEffect(()=>{
       aria-labelledby="offcanvasNavbarLabel"
     >
       <div className="offcanvas-header">
-        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">SMART STREET VEGGIES</h5>
+        <h5 className="offcanvas-title  " id="offcanvasNavbarLabel">SMART STREET VEGGIES</h5>
         <button
           type="button"
           className="btn-close text-reset"
@@ -259,7 +262,7 @@ useLayoutEffect(()=>{
           
             <Link
               to="/DashBoard"
-              className="text-primary"
+              className="text-primary "
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
              // Dismiss the offcanvas
             >
@@ -269,7 +272,7 @@ useLayoutEffect(()=>{
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
               to="/"
-              className="text-danger"
+              className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
              // Dismiss the offcanvas
             >
@@ -279,7 +282,7 @@ useLayoutEffect(()=>{
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
               to="/"
-              className="text-success"
+              className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
               // Dismiss the offcanvas
             >
@@ -287,17 +290,32 @@ useLayoutEffect(()=>{
             </Link>
           </li>
 
-          {accountType=="Customer"?"":<> <li className="nav-item mx-3">
-                <Link to="/addVeggie" id="Hovering" className="nav-link" style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
-                >AddVeggie</Link>
-              </li>   </>}
+          {accountType==="Customer" && token ?(<>   <li className="mb-2" data-bs-dismiss="offcanvas">
+            <Link
+              to="/map-display"
+              className="text-primary"
+              style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
+              // Dismiss the offcanvas
+            >
+              Map
+            </Link>
+          </li></>):accountType==="CartMan" && token?<>  <li className="mb-2" data-bs-dismiss="offcanvas">
+            <Link
+              to="/addVeggie"
+              className="text-primary"
+              style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
+              // Dismiss the offcanvas
+            >
+              AddVeggie
+            </Link>
+          </li></>:<></>}
         </ul>
 
         {/* Authentication Links (Login, Signup, Logout, Dashboard) */}
-        <div className="w-100">
+        <div className="w-100 " style={{marginTop:"-20px"}}>
           {token === null ? (
             <>
-            <span data-bs-dismiss="offcanvas" > <Link to="/login" className="btn btn-outline-light btn-light w-100 text-start mb-2 " >
+            <span data-bs-dismiss="offcanvas" > <Link to="/login" className="btn -mt-5 btn-outline-light text-primary w-100 text-start mb-2 " >
                 Login
               </Link></span> 
               <span data-bs-dismiss="offcanvas"> <Link to="/signup" className="btn btn-outline-light text-start text-primary w-100" >

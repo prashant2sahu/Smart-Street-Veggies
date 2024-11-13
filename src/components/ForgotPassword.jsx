@@ -106,7 +106,8 @@ import { useNavigate } from 'react-router-dom';
 import "../StyleSheet/forgot.css";
 import { useDispatch } from 'react-redux';
 import image from '../assets/StreetLogin.png';
-
+import Footer from './Footer';
+  import { getFromLocalStorage, saveToLocalStorage } from '../services/operations/SecureLocal';
 function ForgotPasswordPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -114,7 +115,9 @@ function ForgotPasswordPage() {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [resendTimer, setResendTimer] = useState(30); // Timer for 30 seconds
 
+  
   useEffect(() => {
+localStorage.removeItem('hasVisitedForgot')
     let timer;
     if (isOtpSent && resendTimer > 0) {
       timer = setInterval(() => setResendTimer((prev) => prev - 1), 1000);
@@ -135,6 +138,7 @@ function ForgotPasswordPage() {
       alert(result.message);
       setIsOtpSent(true);
       setResendTimer(30); // Reset the timer for resend OTP
+      saveToLocalStorage('hasVisitedForgot', true);
       navigate("/resetPassword");
     } catch (error) {
       console.error('Error during password reset request:', error);
@@ -197,9 +201,9 @@ function ForgotPasswordPage() {
               </div>
             </div>
 
-            <div className="col-md-6 d-none d-md-block p-0 position-relative">
+            <div className="col-md-6 d-none d-md-block p-0 position-relative ">
               <img src={image} alt="Fresh Veggies" className="img" style={{ objectFit: 'cover', height: '740px', width: '100%' }} />
-              <div className="card-img-overlay d-flex flex-column justify-content-center align-items-start" style={{ margin: "0 0 -200px 0", paddingLeft: "10px", paddingRight: '10px' }}>
+              <div className="animate__animated animate__fadeIn card-img-overlay d-flex flex-column justify-content-center align-items-start" style={{ margin: "0 0 -200px 0", paddingLeft: "10px", paddingRight: '10px' }}>
                 <h5 className="card-title text-white mt-5 " style={{ fontSize: "4rem", fontWeight: "bold", paddingLeft: "30px" }}>Smart</h5>
                 <h6 className="card-title text-white" style={{ fontSize: "2rem", fontWeight: "bold", paddingLeft: "30px" }}>Street Veggie</h6>
                 <p className="card-text text-white-50 " style={{ paddingLeft: "30px" }}>Yahhh!!! Fresh Veggies</p>
@@ -211,6 +215,10 @@ function ForgotPasswordPage() {
           </div>
         </div>
       </div>
+      <div className='HandleForgotFooter'>
+ <Footer />
+      </div>
+     
     </>
   );
 }

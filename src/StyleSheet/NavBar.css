@@ -84,7 +84,7 @@
 /* From Uiverse.io by cssbuttons-io */ 
 .LoginHover {
   text-decoration: none;
-  --color: #560bad;
+  --color: #2B4F61;
   font-family: inherit;
   display: inline-block;
   width: 8em;
@@ -118,7 +118,7 @@
 
 .LoginHover:hover {
   color: #fff;
-  box-shadow:  0 0 10px #560bad,2px 3px 5px #d4b8f3 ;
+  box-shadow:  0 0 10px #2B4F61,2px 3px 5px #d4b8f3 ;
 }
 
 .LoginHover:before {
@@ -133,6 +133,6 @@
 }
 
 .LoginHover:active:before {
-  background: #3a0ca3;
+  background: #2B4F61;
   transition: background 0s;
 }

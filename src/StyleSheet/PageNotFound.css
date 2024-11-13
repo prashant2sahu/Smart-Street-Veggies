@@ -8,6 +8,10 @@
         height: 70vh;
         margin-top: -50px;
     }
+    #MaintainFooter{
+     top: -950px;
+        position: relative;
+    }
 }
 /* Typing animation for the 404 text */
 .typing-animation {
@@ -34,4 +38,11 @@
     50% {
         border-color: #333;
     }
+}
+.ThemeColor1{
+    background-color: #2B4F61;
+}
+.ThemeColor1:hover{
+    background-color: rgb(32, 60, 61);
+    color:white;
 }

@@ -110,13 +110,13 @@ export function login(email,password, navigate) {
        data==="CartMan" ? navigate("/addVeggie"): data==="Customer" ?  navigate("/map-display") : navigate("/map-display");
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
-        
+        saveToLocalStorage("isLoggedIn",true)
         saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email})
      console.log(response.data.user.firstName);
 
         
         localStorage.setItem("token", JSON.stringify(response.data.token))
-        
+        window.location.reload()
         toast.success("Login Successful")
         dispatch(setIsLoggedIn(true));
         // return;
@@ -148,7 +148,7 @@ export function login(email,password, navigate) {
       localStorage.removeItem("token")
       localStorage.removeItem("accountType")
       localStorage.removeItem("userData")
-
+      localStorage.removeItem("isLoggedIn")
       
       // localStorage.removeItem("user")
       toast.success("Logged Out")

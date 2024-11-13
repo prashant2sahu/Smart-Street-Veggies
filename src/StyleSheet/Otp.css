@@ -10,12 +10,16 @@
 
 @media (max-width: 768px) {
   .verify-email .otp-section {
-    padding: 2rem 1rem;
+    margin-top: -120px;
+    background-color: whitesmoke;
   }
   .shadow{
     box-shadow: none;
   }
-
+ .handleFooter{
+ top:-930px;
+  position: relative;
+}
   .verify-email .otp-container {
     width: 100%;
     height: auto;

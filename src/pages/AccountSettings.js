@@ -115,12 +115,12 @@ function AccountSetting() {
             console.log("Profile deleted. ", data.email);
            if( deleteUserAccount(data.email)) 
             handleLogout();
-            navigate('/signup')
+          
         }
     };
   return (
    
-    <Card className="p-4" style={{minHeight:"700px"}}>
+    <Card className="p-4" style={{minHeight:"750px"}}>
        <h4 className="mb-3">Account Settings</h4>
 
 <Form>
