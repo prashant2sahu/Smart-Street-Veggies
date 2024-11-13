@@ -15,7 +15,7 @@ const NotFoundPage = () => {
 				
 				<img src={NotFoundGif} alt="404 Not Found" className="img-fluid mb-4" style={{ maxWidth: '300px' }} />
 
-				<button className="btn ThemeColor text-light"  onClick={() => navigate('/')}>
+				<button className="btn ThemeColor1 text-light"  onClick={() => navigate('/')}>
 					Go Back to Home
 				</button>
 			</div>

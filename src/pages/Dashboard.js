@@ -33,6 +33,10 @@ function Dashboard() {
         return <AccountSettings />;
     }
   };
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
 
   return (<>
     <Container fluid className='mt-1' >
@@ -47,7 +51,7 @@ function Dashboard() {
               style={{ height: "150px", width: "150px" }}
             />
             <h5 className="text-white animate__animated animate__fadeIn animate__delay-1s ">{ans.accountType}</h5>
-            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`${ans.firstName} ${ans.lastName}`}</p>
+            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`${capitalizeFirstLetter(ans.firstName)} ${capitalizeFirstLetter(ans.lastName)}`}</p>
           </div>
           <Nav className="flex-column">
             <Nav.Item className="mb-2">

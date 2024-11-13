@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { resetPassword } from '../services/operations/authCall'; // The resetPassword function is now imported here
 import image from '../assets/StreetLogin.png'; // Import the image
 import { useNavigate } from 'react-router-dom'; // For redirection
 import "../StyleSheet/reset.css";
 import Footer from './Footer';
-
+import { getFromLocalStorage } from '../services/operations/SecureLocal';
+import { Navigate } from 'react-router-dom';
 function ResetPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+
+// If access is denied, redirect to ForgotPassword
 
   const handleResetSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +29,8 @@ function ResetPassword() {
 
     if (result.success) {
       alert("Password reset successfully!");
-      navigate('/login');
+      localStorage.removeItem('hasVisitedForgot')
+      navigate('/');
     } else {
       alert(result.message || "API issue");
     }
@@ -99,9 +104,9 @@ function ResetPassword() {
           </div>
           
           {/* Image Section */}
-          <div className="col-md-6 d-none d-md-block p-0 position-relative">
+          <div className="col-md-6 d-none d-md-block p-0 position-relative ">
             <img src={image} alt="Fresh Veggies" className="img" style={{ objectFit: 'cover', height: '740px', width: '100%' }} />
-            <div className="card-img-overlay d-flex flex-column justify-content-center align-items-start" style={{ margin: "0 0 -200px 0", paddingLeft: "10px", paddingRight: '10px' }}>
+            <div className="animate__animated animate__fadeIn card-img-overlay d-flex flex-column justify-content-center align-items-start" style={{ margin: "0 0 -200px 0", paddingLeft: "10px", paddingRight: '10px' }}>
               <h5 className="card-title text-white mt-5 " style={{ fontSize: "4rem", fontWeight: "bold", paddingLeft: "30px" }}>Smart</h5>
               <h6 className="card-title text-white" style={{ fontSize: "2rem", fontWeight: "bold", paddingLeft: "30px" }}>Street Veggie</h6>
               <p className="card-text text-white-50 " style={{ paddingLeft: "30px" }}>Yahhh!!! Fresh Veggies</p>

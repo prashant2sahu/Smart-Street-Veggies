@@ -219,7 +219,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
                 
                 <div className="col-md-6 overlay-text position-absolute top-50 start-50 translate-middle text-white text-center d-flex flex-column gap-1">
                     <div className='innerSubheading'>
-                        <div className='animate__animated animate__slideInRight' style={{
+                        <div className='animate__animated animate__fadeIn' style={{
                             marginTop: "310px",
                             position: "relative",
                             fontSize: "4.5rem",
@@ -232,12 +232,12 @@ const LoginForm = ({ setIsLoggedIn }) => {
                             color: "white",
                             marginLeft: "-50%",
                             marginTop: "-20px"
-                        }} className='subHeading animate__animated animate__slideInRight'
+                        }} className='subHeading animate__animated animate__fadeIn'
                         >Street veggie</div>
-                        <p className="subHeading animate__animated animate__slideInRight" style={{
+                        <p className="subHeading animate__animated animate__fadeIn" style={{
                             color: 'gainsboro', marginLeft: "-50%"
                         }}>Yahhh!!! Fresh Veggies</p>
-                        <p className=" animate__animated animate__slideInRight" style={{
+                        <p className=" animate__animated animate__fadeIn" style={{
                             fontSize: "1.2rem",
                             textOverflow: "wrap",
                             color: "white",
