@@ -257,7 +257,7 @@ const live = {
 return isLoaded ? (
   <GoogleMap
     mapContainerStyle={containerStyle}
-    center={currentLocation}
+    // center={currentLocation}
     zoom={10}
     onLoad={onLoad}
     // onUnmount={onUnmount}

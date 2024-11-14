@@ -29,7 +29,18 @@
         width:100%;
         justify-content:space-between;
     }
+    .FoterManageSignup{
+        position: relative;
+        top: -930px;
+left: 0;;
+margin: 0;
+padding: 0;
+  
+    /* width: 100vw; */
+  
+}
 
+          
     #handleBtn{
         flex-direction: column;
     }
@@ -56,6 +67,13 @@
         .overlay-text p {
             font-size: 0.9rem; /* Smaller font size for smaller screens */
         }
+        .FoterManageSignup{
+            position: relative;
+            top: -930px;
+    left:0;
+    margin: 0;
+    padding: 0;
+                }
     }
 
     /* For larger screens */
@@ -71,6 +89,7 @@
         .overlay-text p {
             font-size: 1rem; /* Default font size for larger screens */
         }
+        
     }
 
 

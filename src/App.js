@@ -24,17 +24,17 @@ import { getFromLocalStorage } from "./services/operations/SecureLocal";
 // import ResetPassword from "./components/resetPassword";
 // function App() {
 
- 
+
 //     {/* <MapDisplay/> */}
 //       {/* <Veggieform/> */}
 //       {/* <Allveggie/> */}
 //  const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
+
 
 //   return (
 //     <div>
 //       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-    
+
 
 
 
@@ -46,14 +46,14 @@ import { getFromLocalStorage } from "./services/operations/SecureLocal";
 //         <Route path="/dashboard" element = {<Dashboard/>} />
 //         <Route path="/forgot" element = {<ForgotPassword/>} />
 //    <Route path='/resetPassword' element ={<ResetPassword/>}/>
-   
+
 //         <Route path="/verify-email" element={ <VerifyEmail/>} />
 //         <Route path="/addVeggie" element={ <Allveggie/>} />
 //         <Route path="/map-display" element={ <MapDisplay/>} />
-     
+
 
 //         <Route path="*" element={<NotFoundPage />} />
-     
+
 //       </Routes>
 
 //     </div>
@@ -61,81 +61,100 @@ import { getFromLocalStorage } from "./services/operations/SecureLocal";
 // }
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-let  res=localStorage.getItem('accountType')
-res=JSON.parse(res)
-console.log(res,"has");
+  let res = localStorage.getItem('accountType')
+  res = JSON.parse(res)
+  console.log(res, "has");
+  let check=false;
+  if(getFromLocalStorage("isLoggedIn")){
+check=true;
+  console.log(check,"logged in");
+  }
 
   return (
-      <div>
-        
-          <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-          <Routes>
-              <Route path="/" element={<Home />} />
-          
+    <div>
 
-              <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-              <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
-              
-              {/* Protected Routes */}
-              <Route
-                  path="/dashboard"
-                  element={
-                      <ProtectedRoute isLoggedIn={isLoggedIn}>
-                          <Dashboard />
-                      </ProtectedRoute>
-                  }
-              />
-            <Route
-  path="/addVeggie"
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
+        <Route
+  path="/signup"
   element={
-    res === 'Customer' ? (
-      <Navigate to="/" />
+    !check ? (
+      <Signup setIsLoggedIn={setIsLoggedIn} />
     ) : (
-      res === 'CartMan' ? (
-        <ProtectedRoute>
-          <Allveggie />
-        </ProtectedRoute>
-      ) : (
-        <Navigate to="/login" />
-      )
+      <Navigate to="/dashboard" replace />
     )
   }
 />
-
-              <Route
-                  path="/map-display"
-                  element={
-                      <ProtectedRoute isLoggedIn={isLoggedIn}>
-                          <MapDisplay />
-                      </ProtectedRoute>
-                  }
-              />
-
-              <Route path="/forgot"  element={
-                      <ProtectedRoute isLoggedIn={isLoggedIn}>
-                          <ForgotPassword />
-                      </ProtectedRoute>
-                  } />
+<Route
+  path="/verify-email"
+  element={
+    !check ? (
+      <VerifyEmail />
+    ) : (
+      <Navigate to="/dashboard" replace />
+    )
+  }
+/>
+        {/* Protected Routes */}
         <Route
-                  path="/resetPassword"
-                  element={
-                      <ProtectedRoute isLoggedIn={isLoggedIn}>
-                          {getFromLocalStorage('hasVisitedForgot') === true ? (
-                              <ResetPassword />
-                          ) : (
-                              <Navigate to="/forgot" />
-                          )}
-                      </ProtectedRoute>
-                  }
-              />
-              <Route path="/verify-email"  element={
-                      <ProtectedRoute isLoggedIn={isLoggedIn}>
-                          <VerifyEmail />
-                      </ProtectedRoute>
-                  }/>
-              <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-      </div>
+          path="/dashboard"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/addVeggie"
+          element={
+            res === 'Customer' ? (
+              <Navigate to="/" />
+            ) : (
+              res === 'CartMan' ? (
+                <ProtectedRoute>
+                  <Allveggie />
+                </ProtectedRoute>
+              ) : (
+                <Navigate to="/login" />
+              )
+            )
+          }
+        />
+
+        <Route
+          path="/map-display"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MapDisplay />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/forgot" element={
+          <ProtectedRoute isLoggedIn={isLoggedIn}>
+            <ForgotPassword />
+          </ProtectedRoute>
+        } />
+        <Route
+          path="/resetPassword"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              {getFromLocalStorage('hasVisitedForgot') === true ? (
+                <ResetPassword />
+              ) : (
+                <Navigate to="/forgot" />
+              )}
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
   );
 }
 export default App;

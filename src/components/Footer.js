@@ -46,10 +46,10 @@ function Footer() {
                         </ul>
                     </div>
                     {/* Contact Us Section */}
-                    <div className="col-md-2 mb-4 text-center text-md-end">
+                    <div className="col-md-3 mb-4 text-center text-md-end">
                         <h5>Contact Us</h5>
-                        <p>Email: info@example.com</p>
-                        <p>Phone: +1 234 567 890</p>
+                        <p>Email: SmartStreetVeggie@example.com</p>
+                        <p>Phone: +8982577876</p>
                         <div>
                             <a href="#" className="text-white me-2 text-decoration-none">Facebook</a>
                             <a href="#" className="text-white me-2 text-decoration-none">Twitter</a>
