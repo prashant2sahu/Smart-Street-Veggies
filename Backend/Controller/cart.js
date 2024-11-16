@@ -145,10 +145,11 @@ exports.BookCart=async(req,res)=>{
         console.log("id and catmanid",cartmanId);
         
         const BookedCart=await CartBook.create({user:id});
-        // console.log("id", id);
+        console.log("id", id);
         
-        const updatedUser=await User.findOneAndUpdate({cartmanId},
-            {$push:BookedCart._id},
+        const updatedUser=await User.findOneAndUpdate({ _id:cartmanId},
+            // {$push:BookedCart._id},
+            { $push: { cartBooked: BookedCart._id } },
             {new:true}
         );
 

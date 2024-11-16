@@ -147,7 +147,7 @@
 // }
 
 // export default Navbar
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../services/operations/authCall';
@@ -155,16 +155,28 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import '../StyleSheet/NavBar.css';
 import logo from '../assets/horizon logo.png';
-
+import { getFromLocalStorage } from '../services/operations/SecureLocal';
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ let [accountType,setAccountType]=useState('')
   const handleLogout = () => {
     dispatch(logout(navigate));
     toast.success('Logged Out');
   };
+useLayoutEffect(()=>{
+   let result=getFromLocalStorage('userData')
+    if(result){
+  setAccountType(result.accountType) 
+    }else{
+      
+      
+    }
+   console.log(accountType); 
+  })
+ 
+  
 
   return (
    <>
@@ -172,8 +184,8 @@ const Navbar = () => {
      <nav className="navbar navbar-expand-lg navbar-dark ThemeColor">
         <div className="container-fluid">
           {/* Logo */}
-          <Link to="/" className="navbar-brand">
-            <img src={logo} alt="Logo" width={160} height={50} loading="lazy" />
+          <Link to="/" className="navbar-brand pl-5">
+            <img src={logo} alt="Logo" width={180} height={80} loading="lazy" />
           </Link>
 
           {/* Toggle Button for Off-Canvas Menu */}
@@ -199,7 +211,11 @@ const Navbar = () => {
               <li className="nav-item mx-3">
                 <Link to="/" id="Hovering" className="nav-link">Contact</Link>
               </li>
+             {accountType==="Customer"?<></>:<> <li className="nav-item mx-3">
+                <Link to="/addVeggie" id="Hovering" className="nav-link">AddVeggie</Link>
+              </li>   </>}
             </ul>
+         
           </div>
 
           {/* Authentication Buttons for Desktop */}
@@ -270,13 +286,18 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
+
+          {accountType=="Customer"?"":<> <li className="nav-item mx-3">
+                <Link to="/addVeggie" id="Hovering" className="nav-link" style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
+                >AddVeggie</Link>
+              </li>   </>}
         </ul>
 
         {/* Authentication Links (Login, Signup, Logout, Dashboard) */}
         <div className="w-100">
           {token === null ? (
             <>
-            <span data-bs-dismiss="offcanvas" > <Link to="/login" className="btn btn-light w-100 text-start mb-2 " >
+            <span data-bs-dismiss="offcanvas" > <Link to="/login" className="btn btn-outline-light btn-light w-100 text-start mb-2 " >
                 Login
               </Link></span> 
               <span data-bs-dismiss="offcanvas"> <Link to="/signup" className="btn btn-outline-light text-start text-primary w-100" >

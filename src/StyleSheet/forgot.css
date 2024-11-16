@@ -33,7 +33,9 @@
     border-radius: 4px;
     cursor: pointer;
 }
-
+#ForgotPasswordBox{
+    margin-top: 23px;
+}
 .forgot-password-form button:hover {
     background-color: #0056b3;
 }
@@ -42,8 +44,69 @@
     color: green;
     margin-top: 16px;
 }
+#FooterForgotPassword
+{
 
+    margin-top: 200px;
+}
 .error-message {
     color: red;
     margin-top: 16px;
 }
+.reset-button{
+  background-color: #52069a;
+}
+.reset-button:hover{
+  transition: 2s; background-color: #52069a;
+   box-shadow:0 0 10px #52069a ;
+}
+@media (max-width:768px){
+  .forgot-password ,.otp-container{
+    margin-top: -50px;
+   background-color: #ffff;
+  }
+}
+/* CSS for mobile responsiveness */
+@media (max-width: 767px) {
+    .forgot-password .container {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: -100px;
+    }
+    #FooterForgotPassword
+{
+
+    margin-top: 60px;
+    font-size: 14px;
+}
+  #upperFooter{
+    font-size: 14px;
+    text-decoration: none;
+    cursor:context-menu;
+  }
+  .design{
+    cursor: pointer;
+  }
+    .forgot-password .otp-section {
+      padding: 20px;
+    }
+  
+    .forgot-password .form-control {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .forgot-password .container {
+      max-width: 100%;
+    }
+  
+    .forgot-password .otp-section {
+      padding: 15px;
+    }
+  
+    .forgot-password .form-control {
+      font-size: 14px;
+    }
+  }
+  

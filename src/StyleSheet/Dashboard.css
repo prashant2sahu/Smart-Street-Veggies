@@ -1,0 +1,32 @@
+.main-container {
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: #2B4F61;
+}
+
+.sidebar-button {
+  color: #e9ecef;
+  font-weight: 500;
+  text-align: left;
+  padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.sidebar-button:hover {
+  background-color: #1d3b48;
+  color: #e2f0f3;
+  text-decoration: none;
+}
+
+.sidebar-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.footer {
+  color: #2B4F61;
+}

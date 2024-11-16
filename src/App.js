@@ -15,8 +15,9 @@ import MapDisplay from "./maps/MapDisplay";
 import Veggieform from "./veggies/Veggieform";
 import Allveggie from "./veggies/Allveggie";
 import VerifyEmail from "./pages/VerifyEmail"
-
+import ForgotPassword from "./components/ForgotPassword";
 import NotFoundPage from "./components/PageNotFound";
+import ResetPassword from "./components/ResetPassword";
 // import ResetPassword from "./components/resetPassword";
 function App() {
 
@@ -40,10 +41,13 @@ function App() {
         <Route path="/login" element = {<Login  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/dashboard" element = {<Dashboard/>} />
-
+        <Route path="/forgot" element = {<ForgotPassword/>} />
+   <Route path='/resetPassword' element ={<ResetPassword/>}/>
+   
         <Route path="/verify-email" element={ <VerifyEmail/>} />
         <Route path="/addVeggie" element={ <Allveggie/>} />
         <Route path="/map-display" element={ <MapDisplay/>} />
+     
 
         <Route path="*" element={<NotFoundPage />} />
      

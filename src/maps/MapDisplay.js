@@ -20,7 +20,7 @@ import { Navigate } from 'react-router-dom';
 // import { setPosition } from '../services/operations/authCall';
 // import cartMarker from "./CartMan_Marker.png";
 import customerMarker from "./Customer.png";
-// import jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 // import { useEffect } from 'react';
 import io from 'socket.io-client';
 
@@ -119,11 +119,11 @@ width: '100%',
 };
 
 const center = {
-  // lat: 23.296011,
-  // lng: 77.400635,
+  lat: 23.296011,
+  lng: 77.400635,
   
-lat: 23.2319596,
-lng:77.4351323
+// lat: 23.2319596,
+// lng:77.4351323
 };
 
 function MapDisplay() {
@@ -136,7 +136,9 @@ function MapDisplay() {
    
   // const token = localStorage.getItem("token");
   const intervalRef = useRef(null); 
-  const [currentLocation, setCurrent] = useState({ lat: 23.2319596, lng: 77.4351323 });
+  const [currentLocation, setCurrent] = useState({ 
+    lat: 23.296011,
+    lng: 77.400635, });
   const [oneCart,setOneCart]=useState("");
   const destination = { lat: 34.0522, lng: -118.2437 };
   const [map, setMap] = React.useState(null)
@@ -257,7 +259,7 @@ const live = {
 return isLoaded ? (
   <GoogleMap
     mapContainerStyle={containerStyle}
-    center={currentLocation}
+    // center={currentLocation}
     zoom={10}
     onLoad={onLoad}
     // onUnmount={onUnmount}
@@ -267,7 +269,9 @@ return isLoaded ? (
     {
     rowData.map((element) => {
   // Check that element has a valid position with both latitude and longitude
-  const { _id,   } = element; 
+  const { _id   } = element; 
+  // const { _id,   } = element;
+  console.log(element.stall);
   const {firstName,lastName,position}=element.stall
   
   console.log("lat",position);
@@ -325,7 +329,7 @@ return isLoaded ? (
   >
     <div className="mapDisplay1">
       <h1>{oneCart.firstName}</h1>
-      <h1>{oneCart.lastName}</h1>
+      {/* <h1>{oneCart.lastName}</h1> */}
       <h1>{oneCart.email}</h1>
       {oneCart.veggies.map((veg) => (
         <div className="mapDisplay2" key={veg._id}>
@@ -338,7 +342,12 @@ return isLoaded ? (
   </InfoWindow>
 )}
 
-
+{oneCart && oneCart.position && (
+                <GetDirection
+                    destination={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
+                    current={currentLocation}
+                />
+            )}
 
  <></>
     </GoogleMap>

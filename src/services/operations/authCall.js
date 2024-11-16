@@ -4,10 +4,11 @@ import {setIsLoggedIn, setLoading} from "../../Redux/slices/authSlice"
 import toast from "react-hot-toast";
 import { useSelector,useDispatch } from "react-redux";
 import {setToken} from "../../Redux/slices/authSlice";
+import {saveToLocalStorage} from '../operations/SecureLocal'
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,SET_POS} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -32,6 +33,29 @@ export function SendOtp(email,navigate){
         toast.dismiss(taostId)
     }
 }
+export function ReSendOtp(email,navigate){
+  return async(dispatch)=>{
+      const taostId=toast.loading("Loading....");
+      dispatch(setLoading(true))
+      try{ 
+      console.log("andar uhiu");
+      
+      const response= await apiConnector("POST",SEND_OTP,{email,checkUserPresent: true});
+
+          console.log("otp response",response.data);
+          console.log("eamil",email);
+          console.log(SEND_OTP);
+          toast.success("OTP send successsfully ")
+          navigate("/resetPassword")
+          
+      }catch(error){
+                  console.log("error while otp")
+      }
+      dispatch(setLoading(false))
+      toast.dismiss(taostId)
+  }
+}
+
 
 export function SignUp(accountType,firstName,lastName,email,password,confirmPassword,otp,navigate ){
   return async(dispatch)=>{
@@ -87,7 +111,12 @@ export function login(email,password, navigate) {
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
         
+        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email})
+     console.log(response.data.user.firstName);
+
+        
         localStorage.setItem("token", JSON.stringify(response.data.token))
+        
         toast.success("Login Successful")
         dispatch(setIsLoggedIn(true));
         // return;
@@ -118,6 +147,8 @@ export function login(email,password, navigate) {
       // dispatch(resetCart())
       localStorage.removeItem("token")
       localStorage.removeItem("accountType")
+      localStorage.removeItem("userData")
+
       
       // localStorage.removeItem("user")
       toast.success("Logged Out")
@@ -186,6 +217,104 @@ export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
   }
 }
 
+// <<<<<<< HEAD
+// idhar adarsh ka kaam hai
+export function FetchUserVeggies(token) {
+  return async (dispatch) => {
+  
+    
+    try {
+      const response = await apiConnector(
+        "GET",READ_VEG_API,
+        "/readVeggies", // Replace with the actual endpoint if different
+        {},
+        { authorization: `Bearer ${token}` }
+      );
+
+      console.log("Fetching veggies API RESPONSE............", response.data.veggies);
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+     
+    
+      toast.success("Veggies data fetched successfully");
+      return response.data.veggies;
+    } catch (error) {
+      console.log("Fetching veggies API ERROR............", error);
+  
+    }
+  };
+}
+
+
+// export function DeleteVeggie(token, veggieId) {
+//   return async (dispatch) => {
+//     try {
+//       // Construct the DELETE URL
+     
+//       // Log the full URL for debugging
+// console.log("AuthCall :" , veggieId)
+//       // Making the DELETE request with the correct Authorization header
+//       const response = await apiConnector(
+//         "POST",  // HTTP method
+//         DELETE_VEG_API ,// API URL
+//         {veggieId},  // No body data for DELETE request
+//         {
+//           "Authorization": `Bearer ${token}`  // Add the Authorization header correctly
+//         }
+//       );
+
+//       // Log the response data
+//       console.log("Delete Veggie API RESPONSE:", response.data);
+
+//       // Check if the response indicates a successful deletion
+//       if (!response.data.success) {
+//         // If not successful, throw an error with the message from the API response
+//         throw new Error(response.data.message || "Failed to delete veggie");
+//       }
+
+//       // Show success toast message
+//       toast.success("Veggie deleted successfully");
+
+//       // Optionally, return the response data if needed
+//       return response.data;
+//     } catch (error) {
+//       // If an error occurs, log it and show an error toast
+//       console.log("Delete Veggie API ERROR:", error.response ? error.response.data : error.message);
+//       toast.error("Failed to delete veggie");
+//     }
+//   };
+// }
+export function DeleteVeggie(token, veggieId) {
+  return async (dispatch) => {
+    try {
+      // Correct DELETE URL
+    // Assuming /deleteVeggie is correct
+      console.log("Delete Veggie URL: " , veggieId, token);
+
+      const response = await apiConnector(
+        "POST",  // Use DELETE method
+        DELETE_VEG_API,       // URL with the proper path
+        { veggieId },  // Send veggieId in body (if the backend expects it)
+        {
+          "Authorization": `Bearer ${token}`,
+        }
+      );
+
+      if (!response.data.success) {
+        throw new Error(response.data.message || "Failed to delete veggie");
+      }
+
+      toast.success("Veggie deleted successfully");
+      return response.data;
+    } catch (error) {
+      console.log("Error:", error);
+      toast.error("Failed to delete veggie");
+    }
+  };
+}
+
 // export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
 //   return async (dispatch) => {
 //     const toastId = toast.loading("Loading...")
@@ -221,3 +350,90 @@ export function SaveVeggiesHere(veggiesName,rate,token,navigate) {
 //   }
 // }
 
+// >>>>>>> 8319f7e8bb78464687d182c4c83e89fed6ad2edd
+
+// authCall.js
+export async function ForgotPassword(email) {
+  try {
+    console.log(email);
+    const response = await apiConnector('POST', FORGOT, { email });
+    console.log(response);
+    return response.data; // Return the actual data directly
+  } catch (error) {
+    console.log(error, " Forgot password");
+    throw new Error(error.response?.data?.message || 'Error occurred while sending OTP.');
+  }
+}
+
+
+
+export const resetPassword = async (email, otp, newPassword, confirmPassword) => {
+  try {
+    // Check if all fields are provided
+    // if (!email || !otp || !newPassword || !confirmPassword) {
+    //   return {
+    //     success: false,
+    //     message: "All fields are required.",
+    //   };
+    // }
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+      return {
+        success: false,
+        message: "Passwords do not match.",
+      };
+    }
+
+    // Prepare the request payload
+    const payload = { email, otp, newPassword, confirmPassword };
+
+    // Make API call using the apiConnector
+    const response = await apiConnector(
+    'POST',
+    RESET_PASSWORD
+     , {email, otp, newPassword, confirmPassword}  // The data to be sent in the request body
+    );
+
+    // Handle success and return response
+    return {
+      success: true,
+      message: response.data.message || 'Password has been reset successfully.',
+    };
+  } catch (error) {
+    // Handle errors
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Error occurred while resetting password.',
+    };
+  }
+};
+
+// apiConnector.js
+
+export async function deleteUserAccount(email,navigate) {
+  if (!email) {
+      console.error("Email is required to delete account.");
+      return;
+  }
+
+  try {
+      const result = await apiConnector("DELETE",DELETE_ACCOUNT,{email});
+
+     
+      if (result.success) {
+        window.location.href="/signup"
+        console.log("Account deleted successfully.");
+        
+        // Redirect to the signup page after account is deleted
+        localStorage.clear()
+      // Adjust the path as per your routes
+    } else {
+        console.error("Failed to delete account:", result.message);
+    }
+      return result; // Return the result to handle in the calling function
+  } catch (error) {
+      console.error("Error in API call:", error);
+      return { success: false, message: "API call failed" };
+  }
+}

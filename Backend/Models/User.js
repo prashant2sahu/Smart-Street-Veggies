@@ -30,11 +30,11 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         enum:["CartMan","Customer"],
-    },
+    }, 
     otp:{
         // required:true,
         type:Number,
-    },
+    }, 
     token: {
         type: String,
     },
@@ -50,7 +50,7 @@ const userSchema=mongoose.Schema({
     cartBooked:[{
         //may be array but not now
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User" 
+        ref:"CartBook" 
     }] 
 })
 
