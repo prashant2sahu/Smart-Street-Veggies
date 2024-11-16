@@ -117,7 +117,7 @@ function ForgotPasswordPage() {
 
   
   useEffect(() => {
-localStorage.removeItem('hasVisitedForgot')
+// localStorage.removeItem('hasVisitedForgot')
     let timer;
     if (isOtpSent && resendTimer > 0) {
       timer = setInterval(() => setResendTimer((prev) => prev - 1), 1000);

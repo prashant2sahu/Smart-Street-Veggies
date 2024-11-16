@@ -136,20 +136,18 @@ check=true;
         />
 
         <Route path="/forgot" element={
-          <ProtectedRoute isLoggedIn={isLoggedIn}>
             <ForgotPassword />
-          </ProtectedRoute>
         } />
         <Route
           path="/resetPassword"
           element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              {getFromLocalStorage('hasVisitedForgot') === true ? (
+          
+              getFromLocalStorage('hasVisitedForgot') === true ? (
                 <ResetPassword />
               ) : (
                 <Navigate to="/forgot" />
-              )}
-            </ProtectedRoute>
+              )
+           
           }
         />
         <Route path="*" element={<NotFoundPage />} />

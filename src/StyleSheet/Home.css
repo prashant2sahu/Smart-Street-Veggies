@@ -1,0 +1,140 @@
+/* Background Image */
+.vegetables-page {
+    background-image: 
+    linear-gradient(
+      rgba(225, 255, 0, 0.441), /* Red gradient with some transparency */
+      rgba(0, 255, 200, 0.441)  /* Same gradient color to cover the entire image */
+    ), 
+    url("/Smart-Street-Veggies/src/assets/Smart Street Veggies Background.webp");
+      background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding-top: 50px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    background-attachment: fixed;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #921010;
+    text-shadow: 0 0 5px white;
+}
+
+/* Vegetable Section */
+.info-section {
+    background: rgba(49, 7, 7, 0.6);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Vegetable Image with Crush Effect */
+.vegetable-image {
+    width: 100%;
+    border-radius: 50%;
+    /* box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);/ */
+    transition: transform 0.5s ease;
+}
+
+.vegetable-image:hover {
+    transform: scale(1.05);
+}
+
+/* Section Title */
+.section-title {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #ff6f61;
+}
+
+/* Info Text */
+.info-text {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Contact Form Styling */
+.contact-form {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-section{
+    margin-top:110px;
+}
+.vegetable-image{
+        transition: opacity 1s ease-in-out;
+    max-width: 450px;
+    height: 450px;
+}
+.FooterHome{
+    position: relative;
+    top:-410px;
+}
+@media (max-width:768px){
+.vegetable-image{
+height:150px;
+width:150px;
+}
+.vegetables-page {
+    background-attachment: scroll; 
+    height: auto;     
+    margin-top: -10px;            
+    /* padding: 20px;              x
+}
+.info-section {
+    padding: 15px;               /* Reduce padding for smaller screens */
+    border-radius: 10px;         /* Slightly smaller corner rounding */
+    margin: 5px 0;               /* Adjust margin to fit smaller layout */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); /* Adjust shadow for compact look */
+}
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #921010;
+    text-shadow: 0 0 5px white;
+}
+.info-text{
+    font-size: 14px;
+}
+.section-title{
+    font-size: 16px;
+}
+.FooterHome{
+    position: relative;
+    top:-940px;
+}
+}
+
+/* Form Inputs
+.form-control {
+    background-color: #2d2d2d;
+    border: 1px solid #333;
+    color: white;
+}
+
+.form-control:focus {
+    background-color: #333;
+    border-color: #ff6f61;
+    color: white;
+}
+
+/* Submit Button */
+/* button[type="submit"] {
+    background-color: #ff6f61;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+} */
+/* 
+button[type="submit"]:hover {
+    background-color: #ff4f40;
+    cursor: pointer;
+} */ 

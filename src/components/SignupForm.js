@@ -355,10 +355,10 @@ const SignupForm = ({ setIsLoggedIn }) => {
                 
             </div>
          
-
-<div className='FoterManageSignup' >
+<div className='w-100 FoterManageSignup' >
     <Footer/>
 </div>
+
         </>
     )
 }
