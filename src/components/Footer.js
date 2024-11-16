@@ -30,20 +30,19 @@ function Footer() {
                     <div className="col-md-3 mb-4 text-center">
                         <h5>Quick Links</h5>
                         <ul className="list-unstyled">
-                            <li><a href="#" className="text-white text-decoration-none">Home</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">Services</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">About</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">Contact</a></li>
+                            <li><a href="/home" className="text-white text-decoration-none">Home</a></li>
+                            {/* <li><a href="#" className="text-white text-decoration-none">Services</a></li>
+                            <li><a href="#" className="text-white text-decoration-none">About</a></li> */}
+                            <li><a href="/contact" className="text-white text-decoration-none">Contact</a></li>
                         </ul>
                     </div>
                     <div className="col-md-2 mb-4 text-center">
-                        <h5>Quick Links</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="#" className="text-white text-decoration-none">Home</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">Services</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">About</a></li>
-                            <li><a href="#" className="text-white text-decoration-none">Contact</a></li>
-                        </ul>
+                          <h5>Follow Us</h5>
+    <div>
+        <a href="#" className="text-white text-decoration-none me-3"><i className="fab fa-facebook"></i></a>
+        <a href="#" className="text-white text-decoration-none me-3"><i className="fab fa-twitter"></i></a>
+        <a href="#" className="text-white text-decoration-none"><i className="fab fa-instagram"></i></a>
+    </div>
                     </div>
                     {/* Contact Us Section */}
                     <div className="col-md-3 mb-4 text-center text-md-end">
@@ -57,6 +56,18 @@ function Footer() {
                         </div>
                     </div>
                 </div>
+
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", marginTop: "-50px" }}>
+      <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu ,Adarsh Suman </p>
+      {/* <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu</p>
+      <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu</p> */}
+    </div>
+
+    {/* Privacy Policy and Copyright Section */}
+    <div className="d-flex justify-content-between" style={{ marginTop: "-20px", borderTop: "1px solid white", paddingTop: "10px" }}>
+      <p>Privacy Policy</p>
+      <p>2024 @ SmartStreetVeggie</p>
+    </div>
             </div>
             
             

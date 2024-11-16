@@ -1,0 +1,71 @@
+#Aboutuski{
+    /* margin-top:20px; */
+
+        min-height:800px; 
+        
+    
+}
+.mobileLAyout{
+    min-height: 100vh;
+}
+*{
+    user-select: none;
+}
+#Aboutuski h2{
+    padding-top: 40px;
+    font-size: 72px;
+    
+}
+.aboutParra{
+    padding-top: 70px;
+    margin-top:50px;
+    font-weight:bolder;
+}
+.aboutParra img{
+    height: 400px;
+    width:600px;
+
+}
+/* In your CSS file (e.g., App.css) */
+.carousel-image {
+    height: 300px; /* Adjust height */
+    width: 100%;   /* Set width to 100% for responsiveness */
+    object-fit:fill; /* Ensure image covers the area proportionally */
+  }
+  
+@media (max-width:768px){
+    .mobileLAyout
+    
+    {
+        min-height: 650px;
+    }
+    .crousouelDisplay{
+        display: none;
+    }
+    .crousoulheight{
+        height: 100px;
+        width:100px;
+    }
+    #Aboutuski{
+        /* margin-top:20px; */
+    
+            min-height: 70px; 
+            padding-bottom: 30px;
+            
+        
+    }
+    #Aboutuski h2{
+        padding-top: 0px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .aboutParra{
+        padding-top: 30px;
+        margin-top:50px;
+        font-size: 14px;
+    }
+    .aboutParra img{
+       display: none;
+    
+    }
+}

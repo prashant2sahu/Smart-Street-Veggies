@@ -183,7 +183,7 @@ const Navbar = () => {
    <>
      {/* Main Navbar */}
      <nav className="navbar navbar-expand-lg navbar-dark ThemeColor">
-        <div className="container-fluid">
+        <div className="container-fluid navKiposition" >
           {/* Logo */}
           <Link to="/" className="navbar-brand pl-5">
             <img src={logo} alt="Logo" width={180} height={80} loading="lazy" />
@@ -204,13 +204,11 @@ const Navbar = () => {
           <div className="collapse navbar-collapse justify-content-center">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item mx-3">
-                <Link to="/DashBoard" id="Hovering"className="nav-link">Home</Link>
+                <Link to="/home" id="Hovering"className="nav-link">Home</Link>
               </li>
+         
               <li className="nav-item mx-3">
-                <Link to="/" id="Hovering" className="nav-link">About</Link>
-              </li>
-              <li className="nav-item mx-3">
-                <Link to="/" id="Hovering" className="nav-link">Contact</Link>
+                <Link to="/contact" id="Hovering" className="nav-link">Know & Reach Us</Link>
               </li>
             {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
                 <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
@@ -261,7 +259,7 @@ const Navbar = () => {
           <li className="mb-2" data-bs-dismiss="offcanvas">
           
             <Link
-              to="/DashBoard"
+              to="/home"
               className="text-primary "
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
              // Dismiss the offcanvas
@@ -269,24 +267,15 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+          
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
-              to="/"
-              className="text-primary"
-              style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
-             // Dismiss the offcanvas
-            >
-              About
-            </Link>
-          </li>
-          <li className="mb-2" data-bs-dismiss="offcanvas">
-            <Link
-              to="/"
+              to="/contact"
               className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
               // Dismiss the offcanvas
             >
-              Contact
+              Know & Reach Us
             </Link>
           </li>
 

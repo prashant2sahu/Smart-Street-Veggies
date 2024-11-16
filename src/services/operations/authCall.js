@@ -111,7 +111,7 @@ export function login(email,password, navigate) {
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
         saveToLocalStorage("isLoggedIn",true)
-        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email})
+        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,number:response.data.user.number})
      console.log(response.data.user.firstName);
 
         

@@ -115,87 +115,91 @@ const Home = () => {
 
     return (
         <>
-        <div className="vegetables-page">
-      {/* Vegetable Information Section */}
-      <Container className="text-white">
-        <h1 className="text-center mb-4 mt-5 page-title">Vegetables Information</h1>
-        <Row className="vegetable-info p-4 mb-4 info-section">
-          <Col xs={12} md={6}>
-            <h3 className="section-title ">{vegetables[currentVeggie].name}</h3>
-            <p className="info-text">{vegetables[currentVeggie].description}</p>
-            <h5>Vitamins:</h5>
-            <ul>
-              {vegetables[currentVeggie].vitamins.map((vitamin, index) => (
-                <li key={index} className="info-text">{vitamin}</li>
-              ))}
-            </ul>
-            <h5>Protein Content:</h5>
-            <p className="info-text">{vegetables[currentVeggie].protein}</p>
-            <h5>Type:</h5>
-            <p className="info-text">{vegetables[currentVeggie].types}</p>
-          </Col>
-          <Col xs={12} md={6} className="text-center">
-            <img
-              className="vegetable-image"
-              src={vegetables[currentVeggie].image}
-              alt={vegetables[currentVeggie].name}
-              
-            />
-          </Col>
-        </Row>
-      </Container>
+       <div className="vegetables-page">
+  {/* Vegetable Information Section */}
+  <Container className="text-white">
+    <h1 className="text-center mb-4 mt-5 page-title">Vegetables Information</h1>
+    <Row className="vegetable-info p-4 mb-4 info-section" style={{minHeight: '500px'}}>
+      <Col xs={12} md={6} className="mb-4">
+        <h3 className="section-title">{vegetables[currentVeggie].name}</h3>
+        <p className="info-text">{vegetables[currentVeggie].description}</p>
+        <h5>Vitamins:</h5>
+        <ul>
+          {vegetables[currentVeggie].vitamins.map((vitamin, index) => (
+            <li key={index} className="info-text">{vitamin}</li>
+          ))}
+        </ul>
+        <h5>Protein Content:</h5>
+        <p className="info-text">{vegetables[currentVeggie].protein}</p>
+        <h5>Type:</h5>
+        <p className="info-text">{vegetables[currentVeggie].types}</p>
+      </Col>
+      <Col xs={12} md={6} className="text-center">
+        <img
+          className="vegetable-image"  // Ensure the image is responsive
+          src={vegetables[currentVeggie].image}
+          alt={vegetables[currentVeggie].name}
+         // Makes image responsive and adjusts on smaller screens
+        />
+      </Col>
+    </Row>
+  </Container>
 
-      {/* Contact Section */}
-      <div
-        className="contact-section text-white"
-        style={{
-          backgroundColor: '#2B4F61',
-          padding: '50px 0',
-        }}
-      >
-        <Container>
-          <h3 className="text-center mb-4 section-title">Contact Us</h3>
-          <Form onSubmit={handleSubmit} className="contact-form p-4">
-            <Form.Group controlId="name" className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="email" className="mb-3">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter your email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="message" className="mb-3">
-              <Form.Label>Message</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={4}
-                placeholder="Enter your message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Button variant="danger" type="submit" block>
-              Submit
-            </Button>
-          </Form>   
-        </Container>
-      </div> 
-    </div>
+  {/* Contact Section */}
+  <div
+    className="contact-section text-white"
+    style={{
+      backgroundColor: '#2B4F61',
+      padding: '50px 0',
+      minHeight: '500px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    }}
+  >
+    <Container>
+      <h3 className="text-center mb-4 section-title">Contact Us</h3>
+      <Form onSubmit={handleSubmit} className="contact-form p-4">
+        <Form.Group controlId="name" className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="email" className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="message" className="mb-3">
+          <Form.Label>Message</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={4}
+            placeholder="Enter your message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button variant="danger" type="submit" block>
+          Submit
+        </Button>
+      </Form>   
+      
+    </Container><div className='FooterHome'> <Footer/> </div>
+  </div> 
+</div>
 
-    <div className='FooterHome'> <Footer/> </div>
 
    
         </>
