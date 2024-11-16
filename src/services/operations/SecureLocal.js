@@ -55,3 +55,34 @@ export function getFromLocalStorage(key) {
     }
     return decryptData(encryptedData);
 }
+
+
+/**
+ * Updates specific fields in encrypted user data stored in localStorage.
+ * @param {String} key - The localStorage key for the encrypted data.
+ * @param {Object} updatedFields - The fields to update (e.g., { firstName, lastName }).
+ */
+export function updateLocalStorageData(key, updatedFields) {
+    try {
+        // Retrieve existing data
+        const existingData = getFromLocalStorage(key);
+        if (!existingData) {
+            console.error("No existing data found for update.");
+            return false;
+        }
+
+        // Merge the updated fields into the existing data
+        const updatedData = {
+            ...existingData, // Retain all existing fields
+            ...updatedFields, // Overwrite with updated fields
+        };
+
+        // Save the updated data back to localStorage
+        saveToLocalStorage(key, updatedData);
+        console.log("Data updated successfully:", updatedData);
+        return true;
+    } catch (error) {
+        console.error("Error updating localStorage data:", error.message);
+        return false;
+    }
+}

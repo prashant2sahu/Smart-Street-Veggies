@@ -9,6 +9,7 @@ import image from '../assets/StreetLogin.png'
 import { FaGoogle, FaApple } from 'react-icons/fa';
 import "../StyleSheet/signup.css"
 import  Footer from '../components/Footer'
+import { Container } from 'react-bootstrap';
 
 const SignupForm = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
@@ -51,10 +52,17 @@ const SignupForm = ({ setIsLoggedIn }) => {
         const { email } = formData;
         console.log(email);
         // navigate("/login");
-        dispatch(setSignupData(formData))
-
-        dispatch(SendOtp(email, navigate))
+     try{
+        let result=  dispatch(setSignupData(formData))
+        console.log(result);
+  dispatch(SendOtp(email, navigate))
+  
         setIsLoggedIn(true);
+     } 
+     catch(e){
+        console.log(e);
+     }
+      
 
 
     }
@@ -343,8 +351,14 @@ const SignupForm = ({ setIsLoggedIn }) => {
                         </form>
                     </div>
                 </div>
+
+                
             </div>
-<Footer/>
+         
+<div className='w-100 FoterManageSignup' >
+    <Footer/>
+</div>
+
         </>
     )
 }

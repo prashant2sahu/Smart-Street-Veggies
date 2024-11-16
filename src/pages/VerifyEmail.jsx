@@ -2,8 +2,8 @@ import React from 'react';
 import OtpInput from 'react-otp-input'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import  {SignUp} from "../services/operations/authCall";
-import {useNavigate} from "react-router-dom"
+import  {SendOtp, SignUp} from "../services/operations/authCall";
+import {useNavigate,useLocation} from "react-router-dom"
 import toast from 'react-hot-toast';
 import '../StyleSheet/Otp.css'
 import image from '../assets/StreetLogin.png'
@@ -13,7 +13,9 @@ import Footer from '../components/Footer';
 
 const URL=process.env.REACT_APP_BASE_URL;
 
+
 function VerifyEmail() {
+    const location = useLocation();
     const dispatch=useDispatch()
     const [otp,setOtp]=useState("");
     const navigate=useNavigate();
@@ -45,9 +47,16 @@ function VerifyEmail() {
     
     if (savedUserResponse.ok) {
         console.log("Success: Series info created from front to backend successfully");
-        navigate("/login");
+      await  navigate("/login");
       } else {
+        try{
+        alert("User already exist") 
+        navigate('/login')
         console.log("Error: Failed to create series info from front to backend");
+        }
+        catch(e){
+          console.log(e);
+        }
       }
   
 }catch(error){
@@ -56,6 +65,7 @@ function VerifyEmail() {
     
 }
     }
+  
  
 
     return (
@@ -102,7 +112,7 @@ function VerifyEmail() {
         </form>
         <div className='d-flex  gap-2 justify-content-between h-100 w-75'  >
                 <p className='text-primary'><a href="/login">back to login</a></p>
-                 <p className='text-danger' onClick={()=>{}}>Resend it</p>
+                 <p className='text-danger' style={{cursor:"pointer"}} onClick={()=>{}}>Resend it</p>
            </div>
         
         <div className="d-flex justify-content-between w-100" id="FooterOTp">

@@ -35,6 +35,9 @@ const userSchema=mongoose.Schema({
         // required:true,
         type:Number,
     },
+    number:{
+        type:Number,
+    },
     token: {
         type: String,
     },

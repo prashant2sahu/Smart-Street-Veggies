@@ -8,7 +8,7 @@ import {saveToLocalStorage} from '../operations/SecureLocal'
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,UPDATE_ACCOUNT,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -435,5 +435,26 @@ export async function deleteUserAccount(email,navigate) {
   } catch (error) {
       console.error("Error in API call:", error);
       return { success: false, message: "API call failed" };
+  }
+}
+
+
+export async function updateUserDetails(data) {
+  try {
+    // Make the POST request to the API
+    console.log(data ,"yh authcall ka data");
+    const response = await apiConnector('POST', UPDATE_ACCOUNT, {data});
+
+    if (response?.status === 200) {
+      toast.success('User details updated successfully!');
+      return true;
+    } else {
+      toast.error(response?.data?.message || 'Failed to update user details.');
+      return false;
+    }
+  } catch (error) {
+    console.error('Error updating user details:', error);
+    toast.error('An error occurred while updating user details. Please try again.');
+    return false;
   }
 }

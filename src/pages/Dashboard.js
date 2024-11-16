@@ -17,7 +17,7 @@ function Dashboard() {
 // let FirstName=getFromLocalStorage("firstName")
 // let LastName=getFromLocalStorage("lastName")
 
-  console.log(ans);
+  console.log(ans,"Dashboard ka h");
   // Render the main content based on the active section
   const renderSection = () => {
     switch (activeSection) {
@@ -51,7 +51,9 @@ function Dashboard() {
               style={{ height: "150px", width: "150px" }}
             />
             <h5 className="text-white animate__animated animate__fadeIn animate__delay-1s ">{ans.accountType}</h5>
-            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`${capitalizeFirstLetter(ans.firstName)} ${capitalizeFirstLetter(ans.lastName)}`}</p>
+            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`userName : ${capitalizeFirstLetter(ans.firstName)} ${capitalizeFirstLetter(ans.lastName)}`}</p>
+            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`Contact no. : ${ans.number}`}</p>
+
           </div>
           <Nav className="flex-column">
             <Nav.Item className="mb-2">

@@ -123,6 +123,7 @@ import { useNavigate } from "react-router-dom";
 import { SaveVeggiesHere, FetchUserVeggies,DeleteVeggie } from "../services/operations/authCall";
 import { makeCartOnline } from "../services/operations/cartApi";
 import '../StyleSheet/veggie.css'
+import Footer from "../components/Footer";
 const token = localStorage.getItem("token");
 
 function Allveggie() {
@@ -304,6 +305,7 @@ function Allveggie() {
           </span>
         </h3>
       </div>
+      <Footer/>
     </div>
   );
 }
