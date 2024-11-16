@@ -7,6 +7,7 @@ import PurchaseHistory from './PurchaseHistory'
 import Wallet from './Wallet';
 import {getFromLocalStorage} from '../services/operations/SecureLocal'
 import Notifications from './Notification';
+import Footer from '../components/Footer';
 
 // Importing other components
 function Dashboard() {
@@ -16,7 +17,7 @@ function Dashboard() {
 // let FirstName=getFromLocalStorage("firstName")
 // let LastName=getFromLocalStorage("lastName")
 
-  console.log(ans);
+  console.log(ans,"Dashboard ka h");
   // Render the main content based on the active section
   const renderSection = () => {
     switch (activeSection) {
@@ -32,9 +33,13 @@ function Dashboard() {
         return <AccountSettings />;
     }
   };
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
-  return (
-    <Container fluid className='mt-2' >
+
+  return (<>
+    <Container fluid className='mt-1' >
       <Row className='p-3'  style={{ background: "#2B4F61" }}>
         {/* Sidebar Navigation */}
         <Col xs={12} md={3} className="sidebar  p-4 rounded" style={{ background: "#2B4F61" }}>
@@ -42,17 +47,19 @@ function Dashboard() {
             <img
               src={image} // Placeholder for logo
               alt="Logo"
-              className="img-fluid rounded-circle mt-4 mb-2"
+              className=" animate__animated animate__fadeIn animate__delay-1s  img-fluid rounded-circle mt-4 mb-2"
               style={{ height: "150px", width: "150px" }}
             />
-            <h5 className="text-white">{ans.accountType}</h5>
-            <p className="text-white">{`${ans.firstName} ${ans.lastName}`}</p>
+            <h5 className="text-white animate__animated animate__fadeIn animate__delay-1s ">{ans.accountType}</h5>
+            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`userName : ${capitalizeFirstLetter(ans.firstName)} ${capitalizeFirstLetter(ans.lastName)}`}</p>
+            <p className="text-white animate__animated animate__fadeIn animate__delay-1s ">{`Contact no. : ${ans.number}`}</p>
+
           </div>
           <Nav className="flex-column">
             <Nav.Item className="mb-2">
               <Button
                 variant="link"
-                className="text-start w-100 sidebar-button "
+                className="animate__animated animate__fadeInLeft text-start w-100 sidebar-button "
                 onClick={() => setActiveSection('account')}
               >
                 Account Settings
@@ -61,7 +68,7 @@ function Dashboard() {
             <Nav.Item className="mb-2">
               <Button
                 variant="link"
-                className="text-start w-100 sidebar-button"
+                className=" animate__animated animate__fadeInLeft text-start w-100 sidebar-button"
                 onClick={() => setActiveSection('wallet')}
               >
                 My Wallet
@@ -70,7 +77,7 @@ function Dashboard() {
             <Nav.Item className="mb-2">
               <Button
                 variant="link"
-                className="text-start w-100 sidebar-button"
+                className="animate__animated animate__fadeInLeft text-start w-100 sidebar-button"
                 onClick={() => setActiveSection('purchaseHistory')}
               >
                 Purchase History
@@ -79,7 +86,7 @@ function Dashboard() {
             <Nav.Item className="mb-2">
               <Button
                 variant="link"
-                className="text-start w-100 sidebar-button"
+                className="text-start w-100 sidebar-button animate__animated animate__fadeInLeft"
                 onClick={() => setActiveSection('notifications')}
               >
                 Notifications
@@ -93,10 +100,12 @@ function Dashboard() {
           {renderSection()}
         </Col>
       </Row>
-      <footer className="d-flex justify-content-between mt-1">
-      <p>Privacy Policy</p> <p>2024 © Smart Street Veggies</p>
-      </footer>
-    </Container>
+    
+ 
+    </Container> 
+    <div className="HandleFooter container"> 
+      <Footer/>
+      </div>  </>
   );
 }
 

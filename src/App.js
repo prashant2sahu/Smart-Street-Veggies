@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import "animate.css"
 // import "./App.css";
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
@@ -16,45 +16,143 @@ import Veggieform from "./veggies/Veggieform";
 import Allveggie from "./veggies/Allveggie";
 import VerifyEmail from "./pages/VerifyEmail"
 import ForgotPassword from "./components/ForgotPassword";
+import { Navigate } from "react-router-dom";
 import NotFoundPage from "./components/PageNotFound";
 import ResetPassword from "./components/ResetPassword";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { getFromLocalStorage } from "./services/operations/SecureLocal";
 // import ResetPassword from "./components/resetPassword";
+// function App() {
+
+
+//     {/* <MapDisplay/> */}
+//       {/* <Veggieform/> */}
+//       {/* <Allveggie/> */}
+//  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+//   return (
+//     <div>
+//       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+
+
+
+
+//       <Routes>
+
+//         <Route path="/" element= {<Home/>} />
+//         <Route path="/login" element = {<Login  setIsLoggedIn={setIsLoggedIn} />} />
+//         <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} />
+//         <Route path="/dashboard" element = {<Dashboard/>} />
+//         <Route path="/forgot" element = {<ForgotPassword/>} />
+//    <Route path='/resetPassword' element ={<ResetPassword/>}/>
+
+//         <Route path="/verify-email" element={ <VerifyEmail/>} />
+//         <Route path="/addVeggie" element={ <Allveggie/>} />
+//         <Route path="/map-display" element={ <MapDisplay/>} />
+
+
+//         <Route path="*" element={<NotFoundPage />} />
+
+//       </Routes>
+
+//     </div>
+//     )
+// }
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
-
-  
+  let res = localStorage.getItem('accountType')
+  res = JSON.parse(res)
+  console.log(res, "has");
+  let check=false;
+  if(getFromLocalStorage("isLoggedIn")){
+check=true;
+  console.log(check,"logged in");
+  }
 
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-      {/* <MapDisplay/> */}
-      {/* <Veggieform/> */}
-      {/* <Allveggie/> */}
 
-
-
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
+        <Route path="/" element={<Home />} />
 
-        <Route path="/" element= {<Home/>} />
-        <Route path="/login" element = {<Login  setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/dashboard" element = {<Dashboard/>} />
-        <Route path="/forgot" element = {<ForgotPassword/>} />
-   <Route path='/resetPassword' element ={<ResetPassword/>}/>
-   
-        <Route path="/verify-email" element={ <VerifyEmail/>} />
-        <Route path="/addVeggie" element={ <Allveggie/>} />
-        <Route path="/map-display" element={ <MapDisplay/>} />
-     
 
-        <Route path="*" element={<NotFoundPage />} />
-     
-      </Routes>
-
-    </div>
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
+        <Route
+  path="/signup"
+  element={
+    !check ? (
+      <Signup setIsLoggedIn={setIsLoggedIn} />
+    ) : (
+      <Navigate to="/dashboard" replace />
     )
-}
+  }
+/>
+<Route
+  path="/verify-email"
+  element={
+    !check ? (
+      <VerifyEmail />
+    ) : (
+      <Navigate to="/dashboard" replace />
+    )
+  }
+/>
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/addVeggie"
+          element={
+            res === 'Customer' ? (
+              <Navigate to="/" />
+            ) : (
+              res === 'CartMan' ? (
+                <ProtectedRoute>
+                  <Allveggie />
+                </ProtectedRoute>
+              ) : (
+                <Navigate to="/login" />
+              )
+            )
+          }
+        />
 
+        <Route
+          path="/map-display"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MapDisplay />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/forgot" element={
+            <ForgotPassword />
+        } />
+        <Route
+          path="/resetPassword"
+          element={
+          
+              getFromLocalStorage('hasVisitedForgot') === true ? (
+                <ResetPassword />
+              ) : (
+                <Navigate to="/forgot" />
+              )
+           
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
+  );
+}
 export default App;

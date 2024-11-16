@@ -22,7 +22,7 @@ const PurchaseHistory = () => {
   ];
 
   return (
-    <Card className="p-4" style={{minHeight:"700px"}}>
+    <Card className="p-4" style={{minHeight:"750px"}}>
       <h4 className="mb-3">Purchase History</h4>
       <div style={{ maxHeight: '600px', overflowY: 'auto' }}>
         <Table striped bordered hover size="sm" responsive>

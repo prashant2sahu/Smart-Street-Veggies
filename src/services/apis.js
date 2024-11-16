@@ -8,6 +8,8 @@ export const  endpoint ={
     SET_POS: BASE_URL+ "/user/setPosition",
     FORGOT: BASE_URL+"/user/forgotPassword",
     DELETE_ACCOUNT:BASE_URL+"/user/deleteAcc",
+    UPDATE_ACCOUNT:BASE_URL+"/user/updateUserDetails",
+
     RESET_PASSWORD:BASE_URL+"/user/resetPassword",
     // veggies 
     SAVE_VEG_API:BASE_URL+"/veggies/setVeggies",

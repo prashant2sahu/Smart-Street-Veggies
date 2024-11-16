@@ -362,6 +362,58 @@ exports.forgotPassword = async (req, res) => {
     }
   };
   
+
+
+
+  exports.updateUserDetails = async (req, res) => {
+    try {
+        console.log(req.body);
+      const data= req.body;
+      console.log(data)
+            console.log(data.data.firstName,"yh backend ka hai ");
+      // Validate the request body
+      if (!data.data.firstName || !data.data.lastName||!data.data.email || !data.data.number) {
+        return res.status(400).json({
+          success: false,
+          message: "Email, name, and number are required.",
+        });
+      }
+  let email=data.data.email;
+      // Find the user by email
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found.",
+        });
+      }
+  
+      // Update the user's name and number
+      user.firstName = data.data.firstName;
+      user.lastName = data.data.lastName;
+
+      user.number = data.data.number;
+      await user.save();
+  
+      return res.status(200).json({
+        success: true,
+        message: "User details updated successfully.",
+        data: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName:user.lastName,
+          number: user.number,
+        },
+      });
+    } catch (error) {
+      console.error("Error updating user details:", error);
+      return res.status(500).json({
+        success: false,
+        message: "Error while updating user details.",
+      });
+    }
+  };
+  
 // <<<<<<< HEAD
 // >>>>>>> 008b1003dedf8d9e3e7a98e9f9314bf5ee121697
 // =======

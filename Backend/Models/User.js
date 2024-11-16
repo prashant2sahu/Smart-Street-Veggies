@@ -34,7 +34,14 @@ const userSchema=mongoose.Schema({
     otp:{
         // required:true,
         type:Number,
+// <<<<<<< HEAD
     }, 
+// =======
+    // },
+    number:{
+        type:Number,
+    },
+// >>>>>>> 35674311d64255197669f3e6b374ff9257a2e33d
     token: {
         type: String,
     },

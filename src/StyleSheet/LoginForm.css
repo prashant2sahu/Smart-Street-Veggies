@@ -23,10 +23,7 @@
   color: #fff;
 }
 
-#manageHeight {
-  height: 90vh;
-  margin-top: -10%;;
-}
+
 
 #manageComponenet{
   padding-left: 50px;
@@ -48,10 +45,7 @@
 background-color: #ffffff;
 
   }
-  #manageHeight {
-      height: 100dvh;
-      margin:0;
-  }
+  
    #manageComponenet {
    margin-top:-90px;
    justify-content: center;
@@ -74,7 +68,7 @@ background-color: #ffffff;
   .signinTheme {
     border-radius: 999px;
     padding: 0.9em 1em;
-    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    background: linear-gradient(117deg,   #237096,   #2B4F61);
     border: none;
     color: #fff;
     font-size: 13px;
@@ -88,8 +82,8 @@ background-color: #ffffff;
   
   .signinTheme:hover,
   .signinTheme:focus {
-    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
-    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+    background: linear-gradient(117deg, rgb(35, 97, 105),   #2B4F61);
+    box-shadow: 0 0.1rem 0.8rem   #2B4F61;
   }
   #FooterHead {
       margin-top: -20px;
@@ -102,7 +96,12 @@ background-color: #ffffff;
   .overlay-text h1 {
       font-size: 2.5rem; /* Reduce font size on tablets */
   }
-
+  #manageHeight{
+    position:absolute;
+    top:90px;
+    left:0;
+   max-height: 700px;
+      }
   .shadow {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
                   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
@@ -121,7 +120,12 @@ background-color: #ffffff;
   }
 
  
-
+  #manageHeight{
+    position:absolute;
+    top:90px;
+    left:0;
+   max-height: 700px;
+      }
   .shadow {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
                   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
@@ -144,7 +148,12 @@ background-color: #ffffff;
   .innerSubheading {
       margin-left: 5px;
   }
-
+  #manageHeight{
+    position:absolute;
+    top:90px;
+    left:0;
+   
+      }
   #manageComponenet {
       /* margin-left: 200px; */
   }
@@ -152,7 +161,7 @@ background-color: #ffffff;
   .signinTheme {
     border-radius: 999px;
     padding: 1em 2em;
-    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    background: linear-gradient(117deg,   #237096,   #2B4F61);
     border: none;
     color: #fff;
     font-size: 0.9rem;
@@ -166,8 +175,8 @@ background-color: #ffffff;
   
   .signinTheme:hover,
   .signinTheme:focus {
-    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
-    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+    background: linear-gradient(117deg, rgb(35, 97, 105),   #2B4F61);
+    box-shadow: 0 0.1rem 0.8rem   #2B4F61;
   }
 }
 
@@ -176,10 +185,16 @@ background-color: #ffffff;
   .innerSubheading {
       margin-left: 5px;
   }
+  #manageHeight{
+    position:absolute;
+    top:90px;
+    left:0;
+   max-height: 700px;
+      }
   .signinTheme {
     border-radius: 999px;
     padding: 1em 2em;
-    background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
+    background: linear-gradient(117deg,   #237096,   #2B4F61);
     border: none;
     color: #fff;
     font-size: 0.9rem;
@@ -193,16 +208,14 @@ background-color: #ffffff;
   
   .signinTheme:hover,
   .signinTheme:focus {
-    background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
-    box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
+    background: linear-gradient(117deg, rgb(35, 97, 105),   #2B4F61);
+    box-shadow: 0 0.1rem 0.8rem   #2B4F61;
   }
   #FooterHead {
       font-size: 10px;
   }
 
-  #manageComponenet {
-      /* margin-left: -200px; */
-  }
+
 
   .shadow {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
@@ -218,24 +231,3 @@ background-color: #ffffff;
   }
 }
 
-/* Sign-in button theme */
-/* .signinTheme {
-  border-radius: 999px;
-  padding: 1em 2em;
-  background: linear-gradient(117deg, rgb(144, 76, 252), rgb(208, 70, 254));
-  border: none;
-  color: #fff;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  font-family: inherit;
-  font-weight: 500;
-  cursor: pointer;
-  transition: box-shadow 0.25s ease;
-  letter-spacing: 0.08rem;
-}
-
-.signinTheme:hover,
-.signinTheme:focus {
-  background: linear-gradient(117deg, rgb(161, 73, 248), rgb(129, 49, 248));
-  box-shadow: 0 0.1rem 0.8rem rgb(190, 70, 254);
-} */
