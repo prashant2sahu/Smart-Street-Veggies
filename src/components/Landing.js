@@ -9,7 +9,7 @@ import CUCUMBER from '../assets/CUCUMBER.png'
 const Landing = () => {
     return (
         <>
-            <div>
+            <div className=' w-100'>
                 {/* Hero Section */}
                 <div className="text-center text-white pb-5 position-relative mobileLAyout"  style={{
                    
@@ -19,6 +19,7 @@ const Landing = () => {
                     marginTop:"-20px"
                 }}>
                     <img
+                     className='img-fluid'
                         src={LandingImg}
                         alt="Smart Street Veggies"
                         style={{
@@ -32,8 +33,8 @@ const Landing = () => {
                         }}
                     />
                     <div className="position-relative">
-                        <h1 className="display-4 fw-bold" >Smart Street Veggies</h1>
-                        <p className="lead">Fresh, Organic, and Sustainable Veggies Delivered Right to Your Doorstep</p>
+                        <h1 className="display-4 fw-bold mainHead" >Smart Street Veggies</h1>
+                        <p className="lead mainHead">Fresh, Organic, and Sustainable Veggies Delivered Right to Your Doorstep</p>
                         <Button href="#products" variant="success" size="lg" className="mt-3">
                             Explore Our Products
                         </Button>
@@ -47,7 +48,7 @@ const Landing = () => {
                 <Container className="pt-5" id="Aboutuski">
                     <h2 className="text-center  fw-bold mb-4">About Smart Street Veggies</h2>
                     <Row  className="aboutParra">
-                        <Col md={6}>
+                        <Col md={6} className="aboutParraContent">
                             <p clign="center" style={{wordSpacing:"16px",textAlign: "justify" }}>
                                 Smart Street Veggies offers fresh, organic vegetables directly to your doorstep, making healthy eating convenient and accessible. Through our user-friendly app, you can easily browse a wide selection of veggies and book your order with just a few clicks.
                                 What makes Smart Street Veggies even more unique is our Cartman service, designed to make your shopping experience even smoother. Cartman allows you to easily compare prices of vegetables from different vendors and select the one that suits your budget. With just a few taps, you can book your fresh produce and have it delivered right to your door.
