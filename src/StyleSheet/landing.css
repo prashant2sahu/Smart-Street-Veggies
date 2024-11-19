@@ -1,0 +1,123 @@
+#Aboutuski{
+    /* margin-top:20px; */
+
+        min-height:800px; 
+        
+    
+}
+.mobileLAyout{
+    min-height: 100vh;
+}
+*{
+    user-select: none;
+}
+#Aboutuski h2{
+    padding-top: 40px;
+    font-size: 72px;
+    color: teal;
+    text-shadow:-2px 0 5px gray,2px 5px 3px black;
+}
+.aboutParra{
+    padding-top: 70px;
+    margin-top:50px;
+    font-weight:bolder;
+}
+.aboutParra img{
+    height: 400px;
+    width:600px;
+        filter: contrast(50%) ;
+
+}
+.aboutParra img:hover{
+    height: 400px;
+    width:600px;
+    transition: 2s;
+        filter: contrast(100%) ;
+
+}
+/* In your CSS file (e.g., App.css) */
+.carousel-image {
+    height: 300px; /* Adjust height */
+    width: 100%;   /* Set width to 100% for responsiveness */
+    object-fit:fill; /* Ensure image covers the area proportionally */
+  }
+  
+  @media (min-width:768px) and (max-width:1180px){
+    .carousel-image {
+        height: 150px; /* Adjust height */
+        width: 100%;   /* Set width to 100% for responsiveness */
+        object-fit:contain; /* Ensure image covers the area proportionally */
+      }
+    #Aboutuski{
+        /* margin-top:20px; */
+    
+            min-height: 70px; 
+            padding-bottom: 30px;
+            
+        
+    }    .aboutParra img{
+       /* height:100%;
+       width:100%;
+       background: fill; */
+     display: none;
+     }
+     .aboutParraContent{
+        width: 100%;
+     }
+     .manageFooterText{
+        text-wrap: wrap;
+        font-size: 12px;
+        margin-left: 10%;
+       
+     }
+     .manageFooterText1{
+        text-wrap: wrap;
+        font-size: 14px;
+     }
+     
+     .manageFooterText i{
+        height: 13px;
+     }
+
+  }
+
+
+@media (max-width:768px){
+    .mobileLAyout
+    
+    {
+        min-height: 650px;
+    }
+    .crousouelDisplay{
+        display: none;
+    }
+    .crousoulheight{
+        height: 100px;
+        width:100px;
+    }
+    #Aboutuski{
+        /* margin-top:20px; */
+    
+            min-height: 70px; 
+            padding-bottom: 30px;
+            
+        
+    }
+    #Aboutuski h2{
+        padding-top: 0px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .aboutParra{
+        padding-top: 30px;
+        margin-top:50px;
+        font-size: 14px;
+    }
+    .aboutParra img{
+       display: none;
+    
+    }
+    .manageFooterFooter{
+        font-size: 10px;
+    }
+}

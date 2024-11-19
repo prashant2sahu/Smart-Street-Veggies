@@ -10,9 +10,9 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Dashboard from "./pages/Dashboard"
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import MapDisplay from "./maps/MapDisplay";
-import Veggieform from "./veggies/Veggieform";
+// import Veggieform from "./veggies/Veggieform";
 import Allveggie from "./veggies/Allveggie";
 import VerifyEmail from "./pages/VerifyEmail"
 import ForgotPassword from "./components/ForgotPassword";
@@ -21,7 +21,11 @@ import NotFoundPage from "./components/PageNotFound";
 import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { getFromLocalStorage } from "./services/operations/SecureLocal";
+// <<<<<<< master
+import Landing from "./components/Landing";
+// =======
 import MapPages from "./maps/MapPage";
+// >>>>>>> master
 // import ResetPassword from "./components/resetPassword";
 // function App() {
 
@@ -76,9 +80,19 @@ check=true;
 
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+// <<<<<<< master
         <Route path="/contact" element={<Home />} />
-        <Route path="/map-page" element={< MapPages/>}/>
+        <Route path="/home" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
+
+
+
+
+=======
+        {/* <Route path="/" element={<Home />} /> */}
+//         <Route path="/contact" element={<Home />} />
+//         <Route path="/map-page" element={< MapPages/>}/>
+// >>>>>>> master
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
         <Route
