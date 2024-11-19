@@ -5,7 +5,7 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         trim:true
-    },
+    }, 
     lastName:{
         required:true,
         type:String,
@@ -15,13 +15,13 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         trim:true
-    },
+    }, 
     password:{
-        required:true,
+        required:true, 
         type:String,
         // trim:true
     },
-    image:{
+    image:{ 
         // required:true,
         type:String,
         // trim:true

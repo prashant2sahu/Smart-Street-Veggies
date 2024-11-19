@@ -1,5 +1,6 @@
 const User=require("../Models/User");
 // const OTP =require("../Models/OTP");
+const mongoose=require("mongoose");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const cookie=require("cookie-parser");
@@ -89,38 +90,52 @@ exports.signup=async(req ,res)=>{
     }
 
 }
-// Controller function to delete the account
-exports.deleteAcc = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
     try {
-        const { email } = req.body;
-
-        // Check if email is provided
-        if (!email) {
+        const { userId } = req.params;
+        // const { userId } = req.body;
+        if (userId.startsWith(":")) { userId = userId.substring(1); }
+        // Assuming userId is sent in the request body
+        console.log( "userid",userId);
+        
+        if (!userId) {
             return res.status(400).json({
                 success: false,
-                message: "Email is required to delete account",
+                message: 'User ID is required',
             });
-        }
+        }   
+        console.log("dhoodh raha hu");
+        
+        const userdata = await User.findOne({ _id: userId }
+        )
+        .populate({path:"cartBooked",
+            populate:{
 
-        // Find and delete the user by email
-        const user = await User.findOneAndDelete({ email });
+                path:"user"
+           }
+        });
+         // Find the user by ID
+        console.log("dhoodh liya");
 
-        if (!user) {
+        if (!userdata) {
             return res.status(404).json({
                 success: false,
-                message: "User not found",
+                message: 'User not found',
             });
         }
+        const newData=userdata.cartBooked;
+        
 
         res.status(200).json({
             success: true,
-            message: "Account deleted successfully",
-        });
+            message: 'User details fetched successfully',
+            data:newData,
+        }); 
     } catch (error) {
-        console.error("Error deleting account:", error);
+        console.log(error);
         res.status(500).json({
             success: false,
-            message: "Error deleting account",
+            message: 'Error fetching user details',
         });
     }
 };

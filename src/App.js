@@ -21,6 +21,7 @@ import NotFoundPage from "./components/PageNotFound";
 import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { getFromLocalStorage } from "./services/operations/SecureLocal";
+import MapPages from "./maps/MapPage";
 // import ResetPassword from "./components/resetPassword";
 // function App() {
 
@@ -75,9 +76,9 @@ check=true;
 
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        <Route path="/" element={<Home />} />
-
-
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/contact" element={<Home />} />
+        <Route path="/map-page" element={< MapPages/>}/>
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
         <Route

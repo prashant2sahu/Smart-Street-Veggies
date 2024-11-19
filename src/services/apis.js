@@ -9,6 +9,7 @@ export const  endpoint ={
     FORGOT: BASE_URL+"/user/forgotPassword",
     DELETE_ACCOUNT:BASE_URL+"/user/deleteAcc",
     UPDATE_ACCOUNT:BASE_URL+"/user/updateUserDetails",
+    FETCH_USER:BASE_URL +"/user/fetchUserData",
 
     RESET_PASSWORD:BASE_URL+"/user/resetPassword",
     // veggies 
@@ -24,3 +25,4 @@ export const  endpoint ={
 
     
 }
+ 

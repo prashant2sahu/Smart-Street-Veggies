@@ -132,7 +132,7 @@ function MapDisplay() {
   const decodedToken = token ? jwtDecode(token) : null;
   const userId=decodedToken.id; 
   const accountType=localStorage.getItem("accountType");
-  console.log("account Type",userId);
+  console.log("account Type",accountType);
    
   // const token = localStorage.getItem("token");
   const intervalRef = useRef(null); 
@@ -238,7 +238,7 @@ function MapDisplay() {
     rotation: 0,
     scale: 2,
     // anchor: new window.google.maps.Point(0, 20),
-};
+}; 
 
 const live = {
   url: liveMarker, // url
@@ -342,19 +342,19 @@ return isLoaded ? (
   </InfoWindow>
 )}
 
-{oneCart && oneCart.position && (
+{/* {oneCart && oneCart.position && (
                 <GetDirection
                     destination={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
                     current={currentLocation}
                 />
-            )}
+            )} */}
 
  <></>
     </GoogleMap>
+    
+    
   ) : <p>Ooops !! Map Loading fail</p>
 
-
-  
 }
 
 

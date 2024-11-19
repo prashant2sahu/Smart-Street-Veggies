@@ -210,7 +210,7 @@ const Navbar = () => {
                 <Link to="/" id="Hovering" className="nav-link">About</Link>
               </li>
               <li className="nav-item mx-3">
-                <Link to="/" id="Hovering" className="nav-link">Contact</Link>
+                <Link to="/contact" id="Hovering" className="nav-link">Contact</Link>
               </li>
             {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
                 <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
@@ -281,7 +281,7 @@ const Navbar = () => {
           </li>
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
-              to="/"
+              to="/contact"
               className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
               // Dismiss the offcanvas
