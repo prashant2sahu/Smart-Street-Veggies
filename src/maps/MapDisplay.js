@@ -119,11 +119,11 @@ width: '100%',
 };
 
 const center = {
-  // lat: 23.296011,
-  // lng: 77.400635,
+  lat: 23.296011,
+  lng: 77.400635,
   
-lat: 23.2319596,
-lng:77.4351323
+// lat: 23.2319596,
+// lng:77.4351323
 };
 
 function MapDisplay() {
@@ -132,11 +132,13 @@ function MapDisplay() {
   const decodedToken = token ? jwtDecode(token) : null;
   const userId=decodedToken.id; 
   const accountType=localStorage.getItem("accountType");
-  console.log("account Type",userId);
+  console.log("account Type",accountType);
    
   // const token = localStorage.getItem("token");
   const intervalRef = useRef(null); 
-  const [currentLocation, setCurrent] = useState({ lat: 23.2319596, lng: 77.4351323 });
+  const [currentLocation, setCurrent] = useState({ 
+    lat: 23.296011,
+    lng: 77.400635, });
   const [oneCart,setOneCart]=useState("");
   const destination = { lat: 34.0522, lng: -118.2437 };
   const [map, setMap] = React.useState(null)
@@ -214,9 +216,9 @@ function MapDisplay() {
 
     setMap(map)
   }, [])
-  function BookCartHandler(){
-      dispatch(BookCart(token,Navigate));
-      console.log("Your Card has booked now we will connect you soon ");
+  function BookCartHandler(id){
+      dispatch(BookCart(id,token,Navigate));
+      console.log("Your Card has booked now we will connect you soon ",id);
   }
 
   const icon = {
@@ -236,7 +238,7 @@ function MapDisplay() {
     rotation: 0,
     scale: 2,
     // anchor: new window.google.maps.Point(0, 20),
-};
+}; 
 
 const live = {
   url: liveMarker, // url
@@ -267,7 +269,8 @@ return isLoaded ? (
     {
     rowData.map((element) => {
   // Check that element has a valid position with both latitude and longitude
-  const { _id,   } = element;
+  const { _id   } = element; 
+  // const { _id,   } = element;
   console.log(element.stall);
   const {firstName,lastName,position}=element.stall
   
@@ -279,7 +282,8 @@ return isLoaded ? (
       <div key={_id}>
         <Marker
           position={{ lat: lat, lng: lng }}
-          onClick={() => setOneCart(element.stall)}
+          // onClick={() => setOneCart(element.stall)}
+          onClick={() => setOneCart(prevCart => (prevCart && prevCart._id === _id ? null : element.stall))}
           icon={icon}
         />
       </div>
@@ -321,11 +325,11 @@ return isLoaded ? (
   <InfoWindow
     key={oneCart._id}
     position={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
-    // onCloseClick={() => setOneCart(null)} // Optional: Close the InfoWindow when clicked outside
+    onCloseClick={() => setOneCart(null)} // Optional: Close the InfoWindow when clicked outside
   >
     <div className="mapDisplay1">
       <h1>{oneCart.firstName}</h1>
-      <h1>{oneCart.lastName}</h1>
+      {/* <h1>{oneCart.lastName}</h1> */}
       <h1>{oneCart.email}</h1>
       {oneCart.veggies.map((veg) => (
         <div className="mapDisplay2" key={veg._id}>
@@ -333,19 +337,24 @@ return isLoaded ? (
           <h2>{veg.rate}</h2>
         </div>
       ))}
-      <button className='mapDisplay3' onClick={BookCartHandler}>Book Now</button>
+      <button className='mapDisplay3' onClick={()=>BookCartHandler(oneCart._id)}>Book Now</button>
     </div>
   </InfoWindow>
 )}
 
-
+{/* {oneCart && oneCart.position && (
+                <GetDirection
+                    destination={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
+                    current={currentLocation}
+                />
+            )} */}
 
  <></>
     </GoogleMap>
+    
+    
   ) : <p>Ooops !! Map Loading fail</p>
 
-
-  
 }
 
 

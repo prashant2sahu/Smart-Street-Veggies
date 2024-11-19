@@ -1,22 +1,24 @@
-import React from 'react';
-import {DirectionsService , DirectionsRenderer} from '@react-google-maps/api'
+import React, { useState } from 'react';
+import { DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 
-
-
-function GetDirection({destination , current}) {
+function GetDirection({ destination, current }) {
+    const [directions, setDirections] = useState(null);
 
     const directionsCallback = (response) => {
-        if (response !== null && response.status === 'OK') {
-          console.log(response);
+        if (response && response.status === 'OK') {
+            setDirections(response);
         }
-      };
-    return (<div>
+    };
+
+    return (
+        <>
             <DirectionsService
-               options={{ destination: destination, origin: current, travelMode: 'DRIVING' }}
+                options={{ destination, origin: current, travelMode: 'DRIVING' }}
                 callback={directionsCallback}
-            /> 
-            <DirectionsRenderer /> 
-        </div> );
+            />
+            {directions && <DirectionsRenderer directions={directions} />}
+        </>
+    );
 }
 
 export default GetDirection;

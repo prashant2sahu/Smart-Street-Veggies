@@ -21,7 +21,11 @@ import NotFoundPage from "./components/PageNotFound";
 import ResetPassword from "./components/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { getFromLocalStorage } from "./services/operations/SecureLocal";
+// <<<<<<< master
 import Landing from "./components/Landing";
+// =======
+import MapPages from "./maps/MapPage";
+// >>>>>>> master
 // import ResetPassword from "./components/resetPassword";
 // function App() {
 
@@ -76,6 +80,7 @@ check=true;
 
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
+// <<<<<<< master
         <Route path="/contact" element={<Home />} />
         <Route path="/home" element={<Landing />} />
         <Route path="/" element={<Landing />} />
@@ -83,6 +88,11 @@ check=true;
 
 
 
+=======
+        {/* <Route path="/" element={<Home />} /> */}
+//         <Route path="/contact" element={<Home />} />
+//         <Route path="/map-page" element={< MapPages/>}/>
+// >>>>>>> master
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
         <Route

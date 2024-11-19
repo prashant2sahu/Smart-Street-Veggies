@@ -8,7 +8,7 @@ import {saveToLocalStorage} from '../operations/SecureLocal'
 // import jwt from "jsonwebtoken"
 // const {accountType}=useSelector((state)=>state.auth.action);
     // const 
-const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,UPDATE_ACCOUNT,DELETE_VEG_API,FORGOT,RESET_PASSWORD} = endpoint;
+const {SEND_OTP, LOGIN ,SIGN_UP,SAVE_VEG_API,MAKE_ONLINE,DELETE_ACCOUNT,SET_POS,READ_VEG_API,UPDATE_ACCOUNT,DELETE_VEG_API,FORGOT,RESET_PASSWORD,FETCH_USER} = endpoint;
 // const token = localStorage.getItem("token");
  
 const BASE_URL=process.env.BASE_URL;
@@ -111,7 +111,11 @@ export function login(email,password, navigate) {
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
         saveToLocalStorage("isLoggedIn",true)
-        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,number:response.data.user.number})
+// <<<<<<< master
+//         saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,number:response.data.user.number})
+// =======
+        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,id:response.data.user._id})
+// >>>>>>> master
      console.log(response.data.user.firstName);
 
         
@@ -458,3 +462,41 @@ export async function updateUserDetails(data) {
     return false;
   }
 }
+
+export function FetchUserData(userId) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    console.log("inside api connector",userId);
+    
+    try {
+      console.log("id", userId);
+      const response = await apiConnector(
+        "GET",
+        `${FETCH_USER}/${userId}`,
+        // {userId}
+        // { Authorization: `Bearer ${token}` } // Pass headers correctly here
+      );
+
+      console.log("fetch userdata API RESPONSE............", response.data.data);
+      // navigate("/login");
+      // navigate("")
+      // need to add navigation
+
+      // toast.success("Your Cart is Booked");
+
+      // if (!response.data.data.success) {
+      //   throw new Error(response.data.message);
+      // }
+      return response.data.data;
+
+    } catch (error) {
+      console.log("fetch user API ERROR............", error);
+      // toast.error("Failed to make cart online");
+      toast.error(error.message);
+    }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
+}
+

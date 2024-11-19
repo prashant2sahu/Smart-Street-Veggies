@@ -5,7 +5,7 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         trim:true
-    },
+    }, 
     lastName:{
         required:true,
         type:String,
@@ -15,13 +15,13 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         trim:true
-    },
+    }, 
     password:{
-        required:true,
+        required:true, 
         type:String,
         // trim:true
     },
-    image:{
+    image:{ 
         // required:true,
         type:String,
         // trim:true
@@ -30,14 +30,18 @@ const userSchema=mongoose.Schema({
         required:true,
         type:String,
         enum:["CartMan","Customer"],
-    },
+    }, 
     otp:{
         // required:true,
         type:Number,
-    },
+// <<<<<<< HEAD
+    }, 
+// =======
+    // },
     number:{
         type:Number,
     },
+// >>>>>>> 35674311d64255197669f3e6b374ff9257a2e33d
     token: {
         type: String,
     },
@@ -49,6 +53,11 @@ const userSchema=mongoose.Schema({
         //may be array but not now
         type:mongoose.Schema.Types.ObjectId,
         ref:"Veggie"
+    }] ,
+    cartBooked:[{
+        //may be array but not now
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"CartBook" 
     }] 
 })
 

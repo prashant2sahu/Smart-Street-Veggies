@@ -133,20 +133,32 @@ exports.hideIndivisualCart=async(req,res)=>{
 
 exports.BookCart=async(req,res)=>{
     try{
+
         const id=req.user.id;
+        const cartmanId=req.body.cartmanId;
         if(!id){
             res.status(400).json({
                 success:false,
                 message:" id not  found"
             })
         }
-
+        console.log("id and catmanid",cartmanId);
+        
         const BookedCart=await CartBook.create({user:id});
+        console.log("id", id);
+        
+        const updatedUser=await User.findOneAndUpdate({ _id:cartmanId},
+            // {$push:BookedCart._id},
+            { $push: { cartBooked: BookedCart._id } },
+            {new:true}
+        );
 
+ 
         res.status(200).json({
             success:true,
             message:"Cart Booked successfully ",
-            BookedCart
+            BookedCart,
+            updatedUser
         })
     }catch(error){
         console.log(error);

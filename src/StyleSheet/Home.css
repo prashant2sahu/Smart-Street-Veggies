@@ -5,7 +5,7 @@
       rgba(225, 255, 0, 0.441), /* Red gradient with some transparency */
       rgba(0, 255, 200, 0.441)  /* Same gradient color to cover the entire image */
     ), 
-    url("/Smart-Street-Veggies/src/assets/Smart Street Veggies Background.webp");
+    url("../assets/Smart Street Veggies Background.webp");
       background-size: cover;
     background-position: center;
     height: 100vh;
