@@ -80,7 +80,7 @@ check=true;
 
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-// <<<<<<< master
+{/* // <<<<<<< master */}
         <Route path="/contact" element={<Home />} />
         <Route path="/home" element={<Landing />} />
         <Route path="/" element={<Landing />} />
@@ -88,11 +88,11 @@ check=true;
 
 
 
-=======
+{/* ======= */}
         {/* <Route path="/" element={<Home />} /> */}
 //         <Route path="/contact" element={<Home />} />
 //         <Route path="/map-page" element={< MapPages/>}/>
-// >>>>>>> master
+{/* // >>>>>>> master */}
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
         <Route

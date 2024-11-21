@@ -463,40 +463,79 @@ export async function updateUserDetails(data) {
   }
 }
 
+// export function FetchUserData(userId) {
+//   return async (dispatch) => {
+//     const toastId = toast.loading("Loading...");
+//     dispatch(setLoading(true));
+//     console.log("inside api connector",userId);
+    
+//     try {
+//       console.log("id", userId);
+//       const response = await apiConnector(
+//         "GET",
+//         `${FETCH_USER}/${userId}`,
+//         // {userId}
+//         // { Authorization: `Bearer ${token}` } // Pass headers correctly here
+//       );
+
+//       console.log("fetch userdata API RESPONSE............", response.data.data);
+//       // navigate("/login");
+//       // navigate("")
+//       // need to add navigation
+
+//       // toast.success("Your Cart is Booked");
+
+//       // if (!response.data.data.success) {
+//       //   throw new Error(response.data.message);
+//       // }
+//       return response.data.data;
+
+//     } catch (error) {
+//       console.log("fetch user API ERROR............", error);
+//       // toast.error("Failed to make cart online");
+//       toast.error(error.message);
+//     }
+//     dispatch(setLoading(false));
+//     toast.dismiss(toastId);
+//   };
+// }
+
+
 export function FetchUserData(userId) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
-    dispatch(setLoading(true));
-    console.log("inside api connector",userId);
+    dispatch(setLoading(true));  // Dispatch loading action to show loading spinner
+    console.log("inside api connector", userId);
     
     try {
-      console.log("id", userId);
+      console.log("Fetching data for userId:", userId);
+      
+      // Make the API call
       const response = await apiConnector(
         "GET",
-        `${FETCH_USER}/${userId}`,
-        // {userId}
-        // { Authorization: `Bearer ${token}` } // Pass headers correctly here
+        `${FETCH_USER}/${userId}`
+        // If you need to pass an authorization token, you can add it here in headers:
+        // { Authorization: `Bearer ${token}` }
       );
 
-      console.log("fetch userdata API RESPONSE............", response.data.data);
-      // navigate("/login");
-      // navigate("")
-      // need to add navigation
+      console.log("API Response:", response);
 
-      // toast.success("Your Cart is Booked");
+      // Check if the response is valid and contains data
+      if (response && response.data && response.data.success) {
+        console.log("Fetched user data:", response.data.data);
 
-      // if (!response.data.data.success) {
-      //   throw new Error(response.data.message);
-      // }
-      return response.data.data;
-
+        // Return the fetched data (you can dispatch another action here if needed)
+        return response.data.data;
+      } else {
+        throw new Error(response.data.message || 'Failed to fetch user data');
+      }
     } catch (error) {
-      console.log("fetch user API ERROR............", error);
-      // toast.error("Failed to make cart online");
-      toast.error(error.message);
+      console.log("Error fetching user data:", error);
+      toast.error(error.message || 'An error occurred while fetching user data');
+    } finally {
+      // Always dispatch loading state and dismiss toast
+      dispatch(setLoading(false));
+      toast.dismiss(toastId);
     }
-    dispatch(setLoading(false));
-    toast.dismiss(toastId);
   };
 }
-

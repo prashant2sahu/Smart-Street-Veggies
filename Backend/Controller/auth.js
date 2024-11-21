@@ -90,32 +90,76 @@ exports.signup=async(req ,res)=>{
     }
 
 }
-exports.getUserDetails = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        // const { userId } = req.body;
-        if (userId.startsWith(":")) { userId = userId.substring(1); }
-        // Assuming userId is sent in the request body
-        console.log( "userid",userId);
+// exports.getUserDetails = async (req, res) => {
+//     try { 
+//         const { userId } = req.params;
+//         // const { userId } = req.body;
+//         if (userId.startsWith(":")) { userId = userId.substring(1); }
+//         // Assuming userId is sent in the request body
+//         console.log( "userid",userId);
         
+//         if (!userId) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: 'User ID is required',
+//             });
+//         }   
+//         console.log("dhoodh raha hu");
+        
+//         const userdata = await User.findOne({ _id: userId }
+//         )
+//         .populate({path:"cartBooked",
+//             populate:{
+
+//                 path:"user"
+//            }
+//         });
+//          // Find the user by ID
+//         console.log("dhoodh liya");
+
+//         if (!userdata) {
+//             return res.status(404).json({
+//                 success: false,
+//                 message: 'User not found',
+//             });
+//         }
+//         const newData=userdata.cartBooked;
+        
+
+//         res.status(200).json({
+//             success: true,
+//             message: 'User details fetched successfully',
+//             data:newData,
+//         }); 
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({
+//             success: false,
+//             message: 'Error fetching user details',
+//         });
+//     }
+// };
+
+
+exports.getUserDetails = async (req, res) => {
+    try { 
+        const { userId } = req.params;  // Get userId from the URL params
+        console.log("Received userId:", userId);
+        
+        // Check if userId is provided
         if (!userId) {
             return res.status(400).json({
                 success: false,
                 message: 'User ID is required',
             });
-        }   
-        console.log("dhoodh raha hu");
-        
-        const userdata = await User.findOne({ _id: userId }
-        )
-        .populate({path:"cartBooked",
-            populate:{
+        }
 
-                path:"user"
-           }
-        });
-         // Find the user by ID
-        console.log("dhoodh liya");
+        // Find the user by ID and populate the `cartBooked` and `user` fields
+        const userdata = await User.findOne({ _id: userId })
+            .populate({
+                path: "cartBooked", 
+                populate: { path: "user" } // Populating user inside cartBooked
+            });
 
         if (!userdata) {
             return res.status(404).json({
@@ -123,22 +167,22 @@ exports.getUserDetails = async (req, res) => {
                 message: 'User not found',
             });
         }
-        const newData=userdata.cartBooked;
-        
 
+        // Returning the entire user data or specific details you need
         res.status(200).json({
             success: true,
             message: 'User details fetched successfully',
-            data:newData,
-        }); 
+            data: userdata,  // Return full user data or modify according to your needs
+        });
     } catch (error) {
-        console.log(error);
+        console.log("Error fetching user details:", error);
         res.status(500).json({
             success: false,
             message: 'Error fetching user details',
         });
     }
 };
+
 
 exports.login=async(req ,res)=>{
 
@@ -271,11 +315,30 @@ exports.sendOtp=async(req,res)=>{
         })
     }
 }
-// <<<<<<< HEAD
-// // <<<<<<< HEAD
-// // =======
-// =======
-// >>>>>>> 82e8f0305bc9bc9392c88f20568e457086590d05
+
+exports.deleteAcc = async (req, res) => {
+    const { email } = req.body;  // Get the email from the request body
+  
+    // Check if email is provided
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email is required' });
+    }
+  
+    try {
+      // Find and delete the user by email
+      const user = await User.findOneAndDelete({ email });
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      // Send success response
+      res.status(200).json({ success: true, message: 'Account deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting user account:', error);
+      res.status(500).json({ success: false, message: 'Server error, please try again later' });
+    }
+  };
 
 exports.forgotPassword = async (req, res) => {
     try {
