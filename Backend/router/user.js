@@ -10,7 +10,7 @@ router.post("/login", login);
 
 router.post("/signup",signup);
 
-// router.delete('/deleteAcc', deleteAcc);
+router.delete('/deleteAcc', deleteAcc);
 
 router.post("/updateUserDetails",updateUserDetails);
 
