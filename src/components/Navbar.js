@@ -210,6 +210,12 @@ const Navbar = () => {
               <li className="nav-item mx-3">
 {/* // <<<<<<< master */}
                 <Link to="/contact" id="Hovering" className="nav-link">Know & Reach Us</Link>
+{/* <<<<<<< HEAD
+======= */}
+{/* // ======= */}
+              {/* <Link to="/contact" id="Hovering" className="nav-link">Contact</Link> */}
+{/* // >>>>>>> master */}
+{/* >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa */}
               </li>
             {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
                 <Link to="/map-page" id="Hovering" className="nav-link">MAP</Link>
@@ -269,7 +275,7 @@ const Navbar = () => {
             </Link>
           </li>
           
-          <li className="mb-2" data-bs-dismiss="offcanvas">
+          {/* <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
 // <<<<<<< master
 // =======
@@ -280,7 +286,7 @@ const Navbar = () => {
             >
               About
             </Link>
-          </li>
+          </li> */}
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
 // >>>>>>> master

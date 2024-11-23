@@ -153,6 +153,9 @@ function MapPages() {
     console.log("User Data:", userdata);
 
     // Fetch user data on component mount
+    console.log("User Data:", userdata);
+
+    // Fetch user data on component mount
     useEffect(() => {
         const fetchData = async () => {
             if (userId) {
@@ -324,6 +327,8 @@ function MapPages() {
                 )}
             </div>
         </div>
+        
+        // </>
     );
 }
 
