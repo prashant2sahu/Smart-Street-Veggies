@@ -23,7 +23,7 @@ import customerMarker from "./Customer.png";
 import jwt_decode from 'jwt-decode';
 // import { useEffect } from 'react';
 import io from 'socket.io-client';
-
+const libraries = ['places','maps'];
 const socket = io('http://localhost:5000');
 
 const sendLocation = (userId, latitude, longitude) => {
@@ -126,13 +126,14 @@ const center = {
 // lng:77.4351323
 };
 
-function MapDisplay() {
+function MapDisplay({ currentLocationfrom, destinationLocation }) {
   // const id=localStorage.getItem("token");
   const token=localStorage.getItem("token");
   const decodedToken = token ? jwtDecode(token) : null;
   const userId=decodedToken.id; 
   const accountType=localStorage.getItem("accountType");
   console.log("account Type",accountType);
+   console.log("props",currentLocationfrom,destinationLocation);
    
   // const token = localStorage.getItem("token");
   const intervalRef = useRef(null); 
@@ -147,7 +148,7 @@ function MapDisplay() {
   const { isLoaded } = useJsApiLoader({
     // id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-
+    libraries:libraries,// additionally added
   })
 
   
@@ -166,7 +167,7 @@ function MapDisplay() {
             //   const { latitude, longitude } = position.coords;
             let lat = position.coords.latitude;
             let lng = position.coords.longitude;
-            console.log(position);
+            // console.log(position);
             sendLocation(userId, lat, lng);
             setCurrent({ lat:lat, lng:lng});
             // dispatch(setPosition(lat,lng,token));
@@ -217,6 +218,7 @@ function MapDisplay() {
     setMap(map)
   }, [])
   function BookCartHandler(id){
+    
       dispatch(BookCart(id,token,Navigate));
       console.log("Your Card has booked now we will connect you soon ",id);
   }
@@ -264,6 +266,7 @@ return isLoaded ? (
     onLoad={onLoad}
     // onUnmount={onUnmount}
   >
+    {/* <Marker position={destination} /> */}
     <Marker position={currentLocation} icon={live}></Marker>
 
     {
@@ -271,10 +274,10 @@ return isLoaded ? (
   // Check that element has a valid position with both latitude and longitude
   const { _id   } = element; 
   // const { _id,   } = element;
-  console.log(element.stall);
+  // console.log(element.stall);
   const {firstName,lastName,position}=element.stall
   
-  console.log("lat",position);
+  // console.log("lat",position);
   if (position) {
     const lat = parseFloat(position.lat);
       const lng = parseFloat(position.lng);
@@ -342,12 +345,13 @@ return isLoaded ? (
   </InfoWindow>
 )}
 
-{/* {oneCart && oneCart.position && (
-                <GetDirection
-                    destination={{ lat: parseFloat(oneCart.position.lat), lng: parseFloat(oneCart.position.lng) }}
+{ destinationLocation  && (
+                <GetDirection 
+                    
+                    destination={{ lat: parseFloat(destinationLocation.lat), lng: parseFloat(destinationLocation.lng) }}
                     current={currentLocation}
                 />
-            )} */}
+            )}
 
  <></>
     </GoogleMap>

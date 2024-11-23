@@ -91,31 +91,28 @@ exports.signup=async(req ,res)=>{
 
 }
 exports.getUserDetails = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        // const { userId } = req.body;
-        if (userId.startsWith(":")) { userId = userId.substring(1); }
-        // Assuming userId is sent in the request body
-        console.log( "userid",userId);
+    try { 
+        const { userId } = req.params;  // Get userId from the URL params
+        console.log("Received userId:", userId);
         
+        // Check if userId is provided
         if (!userId) {
             return res.status(400).json({
                 success: false,
                 message: 'User ID is required',
             });
-        }   
-        console.log("dhoodh raha hu");
-        
-        const userdata = await User.findOne({ _id: userId }
-        )
-        .populate({path:"cartBooked",
-            populate:{
+        }
 
-                path:"user"
-           }
-        });
-         // Find the user by ID
-        console.log("dhoodh liya");
+        // Find the user by ID and populate the cartBooked and user fields
+        const userdata = await User.findOne({ _id: userId })
+            .populate([
+                {path:"position"}
+                ,{
+                path: "cartBooked", 
+                populate: { path: "user" ,
+                    populate: { path: "position" }
+                } // Populating user inside cartBooked
+            }]);
 
         if (!userdata) {
             return res.status(404).json({
@@ -123,16 +120,15 @@ exports.getUserDetails = async (req, res) => {
                 message: 'User not found',
             });
         }
-        const newData=userdata.cartBooked;
-        
 
+        // Returning the entire user data or specific details you need
         res.status(200).json({
             success: true,
             message: 'User details fetched successfully',
-            data:newData,
-        }); 
+            data: userdata,  // Return full user data or modify according to your needs
+        });
     } catch (error) {
-        console.log(error);
+        console.log("Error fetching user details:", error);
         res.status(500).json({
             success: false,
             message: 'Error fetching user details',

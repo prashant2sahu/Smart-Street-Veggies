@@ -208,14 +208,11 @@ const Navbar = () => {
               </li>
          
               <li className="nav-item mx-3">
-// <<<<<<< master
+{/* // <<<<<<< master */}
                 <Link to="/contact" id="Hovering" className="nav-link">Know & Reach Us</Link>
-// =======
-//                 <Link to="/contact" id="Hovering" className="nav-link">Contact</Link>
-// >>>>>>> master
               </li>
             {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
-                <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
+                <Link to="/map-page" id="Hovering" className="nav-link">MAP</Link>
               </li></>):accountType==="CartMan" && token?<>  <li className="nav-item mx-3">
                 <Link to="/addveggie" id="Hovering" className="nav-link">AddVeggie</Link>
               </li></>:<></>}
@@ -298,7 +295,7 @@ const Navbar = () => {
 
           {accountType==="Customer" && token ?(<>   <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
-              to="/map-display"
+              to="/map-page"
               className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
               // Dismiss the offcanvas

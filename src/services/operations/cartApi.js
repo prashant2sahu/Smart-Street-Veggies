@@ -104,7 +104,7 @@ export function makeCartOnline(token, navigate) {
         );
   
         console.log("makeCartOnline API RESPONSE............", response);
-        navigate("/map-display");
+        navigate("/map-page");
         // navigate("")
         // need to add navigation
   
