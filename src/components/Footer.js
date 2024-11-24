@@ -58,7 +58,7 @@ function Footer() {
                 </div>
 
                 <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", marginTop: "-50px" }}>
-      <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu ,Adarsh Suman </p>
+      <p style={{ marginRight: "20px" }}className="text-center">Developed By: Prahant Sahu ,Adarsh Suman ,Hardik Dhakite </p>
       {/* <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu</p>
       <p style={{ marginRight: "20px" }}>Developed By: Prahant Sahu</p> */}
     </div>

@@ -4,7 +4,7 @@ import {setLoading} from "../../Redux/slices/authSlice"
 import toast from "react-hot-toast";
 import axios from 'axios';
 
-const {MAKE_ONLINE,SHOW_CART,SHOW_BOOKED_CART,BOOK_CART} = endpoint;
+const {MAKE_ONLINE,SHOW_CART,SHOW_BOOKED_CART,BOOK_CART,CART_UPDATE,CART_DELETE,USER_VEGGIES_API} = endpoint;
 
 // services/operations/cartApi.js
 
@@ -199,3 +199,58 @@ export function makeCartOnline(token, navigate) {
     };
   }
   
+  export const updateCartStatus = async (cartId, newStatus) => {
+    try {
+      console.log(cartId,"updated");
+        const response = await apiConnector("PATCH", `${CART_UPDATE}/${cartId}`, {
+            status: newStatus,
+        });
+
+        return response.data; // Assuming `response.data` contains the updated data
+    } catch (error) {
+        console.error("Error in updateCartStatus:", error.response?.data || error.message);
+        throw error; // Rethrow to handle in the calling function
+    }
+};
+
+export const deleteCart = async (cartId) => {
+  try {
+      const response = await apiConnector("DELETE", `${CART_DELETE}/${cartId}`);
+
+      return response.data; // Assuming `response.data` contains confirmation of deletion
+  } catch (error) {
+      console.error("Error in deleteCart:", error.response?.data || error.message);
+      throw error; // Rethrow to handle in the calling function
+  }
+};
+export const cartBookVeggie = async (userId) => {
+  try {
+    let id = localStorage.getItem("userId");
+    console.log(id);
+    
+    // Make API call with dynamic userId and pass the id as query parameter
+    const response = await apiConnector("GET", `${USER_VEGGIES_API}/${userId}?id=${id}`);
+
+    // Log the complete response for debugging
+    console.log("User Veggies API Response:", response);
+
+    if (response && response.data) {
+      const { veggies, user, cartStatus } = response.data;
+
+      if (!veggies || !user) {
+        throw new Error("Missing data in response: veggies or user not found");
+      }
+
+      console.log("Fetched User:", user);
+      console.log("Fetched Veggies:", veggies);
+      console.log("CartBooked Data:", cartStatus); // Log cartBooked for debugging
+
+      // Return an object with user, veggies, and cartBooked data
+      return { user, veggies, cartStatus };
+    }
+  } catch (e) {
+    console.error("Error in fetching data:", e.response?.data || e.message);
+    throw e;
+  }
+};
+

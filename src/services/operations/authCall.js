@@ -114,7 +114,7 @@ export function login(email,password, navigate) {
 // <<<<<<< master
 //         saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,number:response.data.user.number})
 // =======
-        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,id:response.data.user._id})
+        saveToLocalStorage("userData", {accountType:response.data.accountType,firstName:response.data.user.firstName ,lastName:response.data.user.lastName,email:response.data.user.email,id:response.data.user._id,number:response.data.user.number})
 // >>>>>>> master
      console.log(response.data.user.firstName);
 
@@ -153,6 +153,10 @@ export function login(email,password, navigate) {
       localStorage.removeItem("accountType")
       localStorage.removeItem("userData")
       localStorage.removeItem("isLoggedIn")
+      localStorage.removeItem("BookingID")
+      localStorage.removeItem("userId")
+
+
       
       // localStorage.removeItem("user")
       toast.success("Logged Out")
