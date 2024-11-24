@@ -153,6 +153,10 @@ export function login(email,password, navigate) {
       localStorage.removeItem("accountType")
       localStorage.removeItem("userData")
       localStorage.removeItem("isLoggedIn")
+      localStorage.removeItem("BookingID")
+      localStorage.removeItem("userId")
+
+
       
       // localStorage.removeItem("user")
       toast.success("Logged Out")

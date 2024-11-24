@@ -111,6 +111,7 @@ import { useDispatch } from 'react-redux';
 import { FetchUserData } from '../services/operations/authCall';
 import { getFromLocalStorage } from '../services/operations/SecureLocal';
 import Footer from '../components/Footer'
+import '../StyleSheet/MapPage.css'
 import { updateCartStatus, deleteCart, cartBookVeggie } from "../services/operations/cartApi";
 import toast from 'react-hot-toast';
 // import { FetchUserData } from '../services/operations/authCall';
@@ -149,6 +150,7 @@ function MapPages() {
                         console.log("Response for BookId", id, res.cartStatus);
                         const userVeggiesData = {
                             firstname: res.user.firstName, // Extract firstname from user object
+                            number :res.user.number,
                             veggies: res.veggies, // Extract veggies array
                             cartStatus: res.cartStatus.map(item => ({
                                 id: item._id, // CartBook entry ID
@@ -285,7 +287,7 @@ function MapPages() {
                 {accountType === "CartMan" ? (
                     <div className="card shadow-sm">
                         <div className="card-body">
-                            <h2 className="card-title text-center">CartMan Section</h2>
+                            <h2 className="card-title text-center text3d">CartMan Section</h2>
                             {usersList.length > 0 ? (
                                 <div>
                                     <h3>User Details</h3>
@@ -296,7 +298,7 @@ function MapPages() {
                                                     <p><strong>First Name:</strong> {userData.user?.firstName}</p>
                                                     <p><strong>Number:</strong> {userData.user?.number}</p>
                                                 </div>
-                                                <div>
+                                                <div className='d-flex'>
 
                                                     {userData.status != "delivered" ? (<>
                                                         <button
@@ -306,16 +308,16 @@ function MapPages() {
                                                             {userData.status === "deactivated" ? "Accept" : "Deliver"}
                                                         </button>
                                                     </>) : (<>
-                                                        <span className="badge bg-success">Delivered</span>
-
+                                                        <span className="badge bg-success text-center mt-2">Delivered</span>
+                                                     
                                                     </>)}
-                                                    {userData.status == "delivered" && (
+                                                  
                                                         <button
                                                             className="btn btn-danger btn-sm ms-2"
                                                             onClick={() => handleDelete(userData._id)}>
                                                             Delete
                                                         </button>
-                                                    )}
+                                                  
                                                 </div>
                                             </li>
                                         ))}
@@ -333,7 +335,7 @@ function MapPages() {
                 ) : (
                     <>
                         <div className="container mt-5">
-                            <h2 className="text-center mb-4">Veggie List</h2>
+                            <h2 className="text-center mb-4 text3d">Veggie List</h2>
 
                             <div className="row">
                                 {veggies.length > 0 ? (
@@ -347,20 +349,22 @@ function MapPages() {
                                         return (
                                             <div className="col-12 mb-4" key={index}>
                                                 {/* User Name and Status */}
-                                                <h4 className="text-primary mb-3">
-                                                    {user.firstname}'s Veggies
+                                                <h4 className="text-primary mb-2">
+                                                <p className=' text-decoration-underline'><strong> {user.firstname}'s Veggies</strong> </p> 
+                                                  <p ><strong className='text-danger'>contact us:</strong> {user.number}</p> 
                                                 </h4>
                                                 <p className={`text-${status === "deactivated" ? "danger" : "success"}`}>
-                                                    Status: {status || "Unknown"}
+                                                    Status: {status || "Unknown"} 
+                                                   
                                                 </p>
 
                                                 {/* Display Veggies */}
                                                 <div className="row">
                                                     {user.veggies.map((item, vegIndex) => (
-                                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={vegIndex}>
-                                                            <div className="card shadow-sm h-100">
+                                                        <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 " key={vegIndex}>
+                                                            <div className="card boxshow h-100 ">
                                                                 {/* Veggie Details */}
-                                                                <div className="card-body">
+                                                                <div className="card-body ">
                                                                     <h5 className="card-title text-truncate">{item.veggiesName}</h5>
                                                                     <p className="card-text">
                                                                         <strong>Price: ₹</strong> {item.rate}
@@ -386,7 +390,7 @@ function MapPages() {
                 )}
             </div>
 
-            <Footer />
+            <div  className='FooterMapPage'><Footer /></div>
         </>
     );
 }
