@@ -70,7 +70,21 @@ export function updateLocalStorageData(key, updatedFields) {
             console.error("No existing data found for update.");
             return false;
         }
-
+        if (updatedFields.BookId) {
+            if (existingData.BookId) {
+                // If BookId exists, check if it's not an array, convert it to an array
+                if (!Array.isArray(existingData.BookId)) {
+                    existingData.BookId = [existingData.BookId];
+                }
+                // Push the new BookId if it's not already in the array
+                if (!existingData.BookId.includes(updatedFields.BookId)) {
+                    existingData.BookId.push(updatedFields.BookId);
+                }
+            } else {
+                // If no BookId exists, create it as an array
+                existingData.BookId = [updatedFields.BookId];
+            }
+        }
         // Merge the updated fields into the existing data
         const updatedData = {
             ...existingData, // Retain all existing fields

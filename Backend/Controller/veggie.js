@@ -2,6 +2,7 @@ const expres=require("express");
 const Veggie=require("../Models/veggie");
 const User=require("../Models/User");
 const Cart=require("../Models/Cart");
+const CartBook = require('../Models/CartBook');
 const veggie = require("../Models/veggie");
 const mongoose = require('mongoose');
 // const id="662a7181b97b98ee6f0e2d4a";
@@ -86,7 +87,7 @@ exports.getVeggies=async(req,res)=>{
 }
       
 
-// YH BHI ADARSH H
+// YH BHI   ADARSH H
 exports.readVeggies = async (req, res) => {
   try {
       const userId = req.user.id; // Get the authenticated user ID
@@ -171,5 +172,47 @@ exports.deleteVeggie = async (req, res) => {
       success: false,
       message: "Error while deleting veggie",
     });
+  }
+};
+
+exports.cartBookVeggie = async (req, res) => {
+  const userId = req.params.userId; // Fetch user ID from request params
+  const bookId = req.query.id; // Fetch id from query parameters
+  console.log("User ID from Params:", userId);
+  console.log("Book ID from Query:", bookId);
+
+  try {
+    // Check if the userId and bookId are valid ObjectIds
+    if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(bookId)) {
+      return res.status(400).json({ success: false, message: "Invalid ID format" });
+    }
+
+    // Find user by ID and populate the veggies field
+    const user = await User.findById(userId).populate("veggies");
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Ensure bookId is converted to ObjectId for the query
+    const cartBooked = await CartBook.find({ user:`${bookId}`})
+      .select('status'); // Only select the status field
+
+    console.log("CartBook Entries:", cartBooked);
+
+    if (!cartBooked || cartBooked.length === 0) {
+      return res.status(404).json({ success: false, message: "No CartBook data found" });
+    }
+
+    // Respond with user, veggies, and only the status from CartBook data
+    res.status(200).json({
+      success: true,
+      veggies: user.veggies,
+      user: user,
+      cartStatus: cartBooked // Extracting only the status field
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch data" });
   }
 };

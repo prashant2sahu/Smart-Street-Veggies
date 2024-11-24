@@ -74,7 +74,9 @@ function App() {
 check=true;
   console.log(check,"logged in");
   }
-
+  var rs=false;
+ rs=getFromLocalStorage('hasVisitedForgot');
+console.log(rs);
   return (
     <div>
 
@@ -91,7 +93,9 @@ check=true;
 {/* ======= */}
         {/* <Route path="/" element={<Home />} /> */}
 //         <Route path="/contact" element={<Home />} />
-//         <Route path="/map-page" element={< MapPages/>}/>
+//         <Route path="/map-page" element={<ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MapPages />
+            </ProtectedRoute>}/>
 {/* // >>>>>>> master */}
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
@@ -157,7 +161,7 @@ check=true;
           path="/resetPassword"
           element={
           
-              getFromLocalStorage('hasVisitedForgot') === true ? (
+              rs == true ? (
                 <ResetPassword />
               ) : (
                 <Navigate to="/forgot" />

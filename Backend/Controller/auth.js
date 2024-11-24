@@ -90,62 +90,11 @@ exports.signup=async(req ,res)=>{
     }
 
 }
-// exports.getUserDetails = async (req, res) => {
-//     try { 
-//         const { userId } = req.params;
-//         // const { userId } = req.body;
-//         if (userId.startsWith(":")) { userId = userId.substring(1); }
-//         // Assuming userId is sent in the request body
-//         console.log( "userid",userId);
-        
-//         if (!userId) {
-//             return res.status(400).json({
-//                 success: false,
-//                 message: 'User ID is required',
-//             });
-//         }   
-//         console.log("dhoodh raha hu");
-        
-//         const userdata = await User.findOne({ _id: userId }
-//         )
-//         .populate({path:"cartBooked",
-//             populate:{
-
-//                 path:"user"
-//            }
-//         });
-//          // Find the user by ID
-//         console.log("dhoodh liya");
-
-//         if (!userdata) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: 'User not found',
-//             });
-//         }
-//         const newData=userdata.cartBooked;
-        
-
-//         res.status(200).json({
-//             success: true,
-//             message: 'User details fetched successfully',
-//             data:newData,
-//         }); 
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({
-//             success: false,
-//             message: 'Error fetching user details',
-//         });
-//     }
-// };
-
-
 exports.getUserDetails = async (req, res) => {
     try { 
         const { userId } = req.params;  // Get userId from the URL params
         console.log("Received userId:", userId);
-        
+   
         // Check if userId is provided
         if (!userId) {
             return res.status(400).json({

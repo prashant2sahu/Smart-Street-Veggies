@@ -201,7 +201,7 @@ const Navbar = () => {
           </button>
 
           {/* Desktop Navbar */}
-          <div className="collapse navbar-collapse justify-content-center">
+          {/* <div className="collapse navbar-collapse justify-content-center">
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item mx-3">
                 <Link to="/home" id="Hovering"className="nav-link">Home</Link>
@@ -209,22 +209,47 @@ const Navbar = () => {
          
               <li className="nav-item mx-3">
 {/* // <<<<<<< master */}
-                <Link to="/contact" id="Hovering" className="nav-link">Know & Reach Us</Link>
+                {/* <Link to="/contact" id="Hovering" className="nav-link">Know & Reach Us</Link> */}
 {/* // ======= */}
               {/* <Link to="/contact" id="Hovering" className="nav-link">Contact</Link> */}
 {/* // >>>>>>> master */}
-              </li>
+              {/* </li>
             {accountType==="Customer" && token ?(<>   <li className="nav-item mx-3">
                 <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
               </li></>):accountType==="CartMan" && token?<>  <li className="nav-item mx-3">
                 <Link to="/addveggie" id="Hovering" className="nav-link">AddVeggie</Link>
-              </li></>:<></>}
+              </li></>:<></>} */}
 
 
-            </ul>
+            {/* </ul>
          
-          </div>
+          </div> */} 
 
+<div className="collapse navbar-collapse justify-content-center">
+<ul className="navbar-nav d-flex flex-wrap align-items-center mb-2 mb-lg-0" style={{ gap: "3px" }}>
+  <li className="nav-item">
+    <Link to="/home" id="Hovering" className="nav-link">Home</Link>
+  </li>
+
+  <li className="nav-item">
+    <Link to="/contact" id="Hovering" className="nav-link">Know&ReachUs</Link>
+  </li>
+
+  <li className="nav-item">
+    <Link to="/map-page" id="Hovering" className="nav-link">VeggieList</Link>
+  </li>
+
+  {accountType === "Customer" && token ? (
+    <li className="nav-item">
+      <Link to="/map-display" id="Hovering" className="nav-link">MAP</Link>
+    </li>
+  ) : accountType === "CartMan" && token ? (
+    <li className="nav-item">
+      <Link to="/addveggie" id="Hovering" className="nav-link">AddVeggie</Link>
+    </li>
+  ) : null}
+</ul>
+</div>
           {/* Authentication Buttons for Desktop */}
           <div className="d-none d-lg-flex">
             {token === null ? (
@@ -286,7 +311,6 @@ const Navbar = () => {
           </li> */}
           <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
-// >>>>>>> master
               to="/contact"
               className="text-primary"
               style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
@@ -295,7 +319,16 @@ const Navbar = () => {
               Know & Reach Us
             </Link>
           </li>
-
+          <li className="mb-2" data-bs-dismiss="offcanvas">
+            <Link
+              to="/map-page"
+              className="text-primary"
+              style={{ textDecoration: 'none', width: '100%', display: 'block', padding: '10px', borderRadius: '5px' }}
+              // Dismiss the offcanvas
+            >
+             MapPage
+            </Link>
+          </li>
           {accountType==="Customer" && token ?(<>   <li className="mb-2" data-bs-dismiss="offcanvas">
             <Link
               to="/map-display"

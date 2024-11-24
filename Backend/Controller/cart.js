@@ -190,3 +190,79 @@ exports.showBookedCart=async(req,res)=>{
       }
   
 }
+
+// idhar adarsh ne banai hai api okay 
+exports.updateCartStatus = async (req, res) => {
+    try {
+        const { cartId } = req.params; // Get cartId from the request params
+        const { status } = req.body;   // Get the new status from request body
+
+        // Validate input
+        if (!["deactivated", "accepted", "delivered"].includes(status)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid status value.",
+            });
+        }
+
+        // Find the cart entry by ID and update the status
+        const updatedCart = await CartBook.findByIdAndUpdate(
+            cartId,
+            { status },
+            { new: true } // Return the updated document
+        );
+
+        // Check if cart entry was found
+        if (!updatedCart) {
+            return res.status(404).json({
+                success: false,
+                message: "Cart entry not found.",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Cart status updated successfully.",
+            data: updatedCart,
+        });
+    } catch (error) {
+        console.log("Error updating cart status:", error);
+        res.status(500).json({
+            success: false,
+            message: "Error updating cart status.",
+        });
+    }
+};
+
+
+exports.deleteCart = async (req, res) => {
+    try {
+        const { cartId } = req.params; // Get the cartId from the request parameters
+        console.log("cart ki id agayi backend me",cartId);
+        // Find the cart entry by ID and delete it
+        const deletedCart = await CartBook.findByIdAndDelete(cartId);
+
+        // Check if the cart entry was found and deleted
+        if (!deletedCart) {
+            return res.status(404).json({
+                success: false,
+                message: "Cart entry not found.",
+            });
+        }
+
+        // Respond with success message
+        res.status(200).json({
+            success: true,
+            message: "Cart entry deleted successfully.",
+            data: deletedCart, // Return the deleted entry for confirmation if needed
+        });
+    } catch (error) {
+        console.error("Error deleting cart entry:", error);
+
+        // Handle server errors
+        res.status(500).json({
+            success: false,
+            message: "An error occurred while deleting the cart entry.",
+        });
+    }
+};

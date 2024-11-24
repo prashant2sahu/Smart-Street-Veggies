@@ -6,6 +6,12 @@ const cartBookSchema=mongoose.Schema({
         ref:"User",
         required:true,
         // expires:2*60
-    }
-})
+    },
+    status: {
+        type: String,
+        enum: ["deactivated", "accepted", "delivered"],
+        default: "deactivated",
+    },
+    
+}, { timestamps: true } )
 module.exports=mongoose.model("CartBook",cartBookSchema);
