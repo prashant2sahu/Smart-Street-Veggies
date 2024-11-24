@@ -23,7 +23,12 @@ import customerMarker from "./Customer.png";
 import jwt_decode from 'jwt-decode';
 // import { useEffect } from 'react';
 import io from 'socket.io-client';
+// <<<<<<< master
+import { updateLocalStorageData } from '../services/operations/SecureLocal';
+
+// =======
 const libraries = ['places','maps'];
+// >>>>>>> master
 const socket = io('http://localhost:5000');
 
 const sendLocation = (userId, latitude, longitude) => {
@@ -220,6 +225,24 @@ function MapDisplay({ currentLocationfrom, destinationLocation }) {
   function BookCartHandler(id){
     
       dispatch(BookCart(id,token,Navigate));
+function addToLocalStorageArray(key, newData) {
+  let existingData = localStorage.getItem(key);
+  if (!existingData) {
+      existingData = [];
+  } else {
+      existingData = JSON.parse(existingData);
+  }
+
+  // Add the new data to the array
+  existingData.push(newData);
+
+  // Save the updated array back to localStorage
+  localStorage.setItem(key, JSON.stringify(existingData));
+}
+
+// Example usage:
+addToLocalStorageArray("BookingID",id); // Add new BookId to the array
+
       console.log("Your Card has booked now we will connect you soon ",id);
   }
 

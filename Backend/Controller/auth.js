@@ -90,6 +90,8 @@ exports.signup=async(req ,res)=>{
     }
 
 }
+// <<<<<<< master
+// =======
 // <<<<<<< HEAD
 // exports.getUserDetails = async (req, res) => {
 //     try { 
@@ -148,12 +150,17 @@ exports.signup=async(req ,res)=>{
 // };
 
 
+// >>>>>>> master
 exports.getUserDetails = async (req, res) => {
     try { 
         const { userId } = req.params;  // Get userId from the URL params
         console.log("Received userId:", userId);
+// <<<<<<< master
+   
+// =======
         
-// >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa
+// // >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa
+// >>>>>>> master
         // Check if userId is provided
         if (!userId) {
             return res.status(400).json({
