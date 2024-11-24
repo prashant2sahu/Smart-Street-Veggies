@@ -90,11 +90,77 @@ exports.signup=async(req ,res)=>{
     }
 
 }
+// <<<<<<< master
+// =======
+// <<<<<<< HEAD
+// exports.getUserDetails = async (req, res) => {
+//     try { 
+//         const { userId } = req.params;  // Get userId from the URL params
+//         console.log("Received userId:", userId);
+        
+// =======
+// exports.getUserDetails = async (req, res) => {
+//     try { 
+//         const { userId } = req.params;
+//         // const { userId } = req.body;
+//         if (userId.startsWith(":")) { userId = userId.substring(1); }
+//         // Assuming userId is sent in the request body
+//         console.log( "userid",userId);
+        
+//         if (!userId) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: 'User ID is required',
+//             });
+//         }   
+//         console.log("dhoodh raha hu");
+        
+//         const userdata = await User.findOne({ _id: userId }
+//         )
+//         .populate({path:"cartBooked",
+//             populate:{
+
+//                 path:"user"
+//            }
+//         });
+//          // Find the user by ID
+//         console.log("dhoodh liya");
+
+//         if (!userdata) {
+//             return res.status(404).json({
+//                 success: false,
+//                 message: 'User not found',
+//             });
+//         }
+//         const newData=userdata.cartBooked;
+        
+
+//         res.status(200).json({
+//             success: true,
+//             message: 'User details fetched successfully',
+//             data:newData,
+//         }); 
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({
+//             success: false,
+//             message: 'Error fetching user details',
+//         });
+//     }
+// };
+
+
+// >>>>>>> master
 exports.getUserDetails = async (req, res) => {
     try { 
         const { userId } = req.params;  // Get userId from the URL params
         console.log("Received userId:", userId);
+// <<<<<<< master
    
+// =======
+        
+// // >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa
+// >>>>>>> master
         // Check if userId is provided
         if (!userId) {
             return res.status(400).json({
@@ -103,12 +169,25 @@ exports.getUserDetails = async (req, res) => {
             });
         }
 
-        // Find the user by ID and populate the `cartBooked` and `user` fields
+// <<<<<<< HEAD
+        // Find the user by ID and populate the cartBooked and user fields
         const userdata = await User.findOne({ _id: userId })
-            .populate({
+            .populate([
+                {path:"position"}
+                ,{
                 path: "cartBooked", 
-                populate: { path: "user" } // Populating user inside cartBooked
-            });
+                populate: { path: "user" ,
+                    populate: { path: "position" }
+                } // Populating user inside cartBooked
+            }]);
+// =======
+//         // Find the user by ID and populate the `cartBooked` and `user` fields
+//         const userdata = await User.findOne({ _id: userId })
+//             .populate({
+//                 path: "cartBooked", 
+//                 populate: { path: "user" } // Populating user inside cartBooked
+//             });
+// >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa
 
         if (!userdata) {
             return res.status(404).json({

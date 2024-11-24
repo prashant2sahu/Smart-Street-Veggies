@@ -107,7 +107,7 @@ export function login(email,password, navigate) {
           throw new Error(response.data.message)
         }
   
-       data==="CartMan" ? navigate("/addVeggie"): data==="Customer" ?  navigate("/map-display") : navigate("/map-display");
+       data==="CartMan" ? navigate("/addVeggie"): data==="Customer" ?  navigate("/map-page") : navigate("/map-page");
         // localStorage.setItem("accountType", JSON.stringify(decode.accountType));
         localStorage.setItem("accountType", JSON.stringify(response.data.accountType))
         saveToLocalStorage("isLoggedIn",true)

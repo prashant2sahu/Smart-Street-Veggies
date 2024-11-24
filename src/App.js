@@ -82,7 +82,10 @@ console.log(rs);
 
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
+{/* <<<<<<< HEAD
+======= */}
 {/* // <<<<<<< master */}
+{/* >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa */}
         <Route path="/contact" element={<Home />} />
         <Route path="/home" element={<Landing />} />
         <Route path="/" element={<Landing />} />
@@ -90,13 +93,25 @@ console.log(rs);
 
 
 
+{/* <<<<<<< HEAD */}
+        {/* <Route path="/" element={<Home />} /> */}
+         {/* <Route path="/contact" element={<Home />} /> */}
+         <Route path="/map-page" element={< MapPages/>}/>
+
+{/* ======= */}
 {/* ======= */}
         {/* <Route path="/" element={<Home />} /> */}
+// <<<<<<< master
 //         <Route path="/contact" element={<Home />} />
 //         <Route path="/map-page" element={<ProtectedRoute isLoggedIn={isLoggedIn}>
               <MapPages />
             </ProtectedRoute>}/>
+// =======
+{/* //         <Route path="/contact" element={<Home />} />
+//         <Route path="/map-page" element={< MapPages/>}/> */}
+// >>>>>>> master
 {/* // >>>>>>> master */}
+{/* >>>>>>> b1a9d8163105ac8f79b298843e232b516a7552aa */}
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} /> */}
         <Route
